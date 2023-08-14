@@ -2,7 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Verdana', serif !important;
+  font-family: 'Zerdana', serif !important;
 }
 
 .jumbotron .display-4 {
@@ -187,4 +187,29 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+/* formulario de login */
+.centrar{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerLoguin {
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.formLoguin label, .formLoguin input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.formLoguin input {
+  width: 100%;
+  padding: 8px;
 }
