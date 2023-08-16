@@ -5,13 +5,22 @@ const icontainer = document.getElementById('icontainerCars')
 function showData(dataArray){
 
   for (const item of dataArray) {
-   
-    icontainer.innerHTML +=`<div class='product'>
-    <img src='${item.image}'Alt='${item.name}'>
-    <h2>${item.name} ${item.currency} ${item.cost}</h2>
-    <p>${item.description} ${item.soldCount} vendidos </p> </div>`;
+
+    icontainer.innerHTML += `<div class="row">
+                    <div class="col-3">
+                        <img src="${item.image}" alt="${item.name}" class="img-thumbnail">
+                    </div>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h4 class="mb-1">${item.name} - ${item.currency} ${item.cost}</h4>
+                            <small class="text-muted">${item.soldCount} vendidos</small>
+                        </div>
+                        <p class="mb-1">${item.description}</p>
+                    </div>
+                </div>`
   }
 };
+
 
 
 
