@@ -92,6 +92,17 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultObj.status === "ok"){
             currentCategoriesArray = resultObj.data
             showCategoriesList()
+
+            let autosCategory = currentCategoriesArray.find(function (category) {
+                return category.id === 101;
+            }};
+
+            if (autosCategory) {
+                // Realizar una solicitud GET a la URL de la categoría 101 (Autos)
+                getJSONData(autosCategory.url).then(function (productsResult) {
+                    if (productsResult.status === "ok") {
+                    }
+                });
             //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
         }
     });
