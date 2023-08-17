@@ -1,3 +1,4 @@
+
 const Cars_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
 
 const icontainer = document.getElementById('icontainerCars')
@@ -29,3 +30,4 @@ function showData(dataArray){
   .then((response) => response.json())
   .then((data) => {showData(data.products);})
   .catch(error => console.error("Error al cargar los datos:", error));
+
