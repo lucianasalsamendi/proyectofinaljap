@@ -9,34 +9,49 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+  <script src="/js/login.js"></script>
   <style>
     body {
-      background-color: rgb(248, 249, 250);
+      margin-top: 5%;
+      background-color: rgb(255, 255, 255);
     }
   </style>
 </head>
 
 <body>
-  <main class="mt-5 centrar">
-    <div class="containerLoguin">
-      <h5>Formulario de login</h5>
-      <form action="login" class="formLoguin">
-        <label for="nombre" >Nombre:</label>
-        <input type="text" name="user">
-        <label for="contraseña">Contraseña:</label>
-        <input type="password" name="pass">
-      </form>
+    
+  <main class="form-signin">
+    <div class="center"> <!-- Cambio aquí: Añade "action" a la etiqueta form con la ruta de la página a la que redireccionar -->
+      <br><br><br><br>
+      <h1 class="h3 mb-3 fw-normal">Bienvenido</h1>
+  
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">E-mail</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Contraseña</label>
+      </div>
+  
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Recordar cuenta
+        </label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" id="login">Iniciar sesión</button>
   </div>
-  </main>
-  <footer class="text-muted">
+</main>
+ <footer class="text-muted">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
-  </footer>
-  <script src="js/login.js"></script>
+  </footer>  
+
 </body>
 
 </html>
