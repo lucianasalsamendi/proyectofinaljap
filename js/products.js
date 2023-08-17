@@ -6,7 +6,8 @@ function showData(dataArray){
 
   for (const item of dataArray) {
 
-    icontainer.innerHTML += `<div class="row">
+    icontainer.innerHTML += `<div onclick="setCatID(${item.id})" class="list-group-item list-group-item-action cursor-active">
+    <div class="row">
                     <div class="col-3">
                         <img src="${item.image}" alt="${item.name}" class="img-thumbnail">
                     </div>
