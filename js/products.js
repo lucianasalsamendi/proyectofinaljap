@@ -1,31 +1,33 @@
-const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"; 
-const container = document.getElementById("containerproductos");
 
-function showData(dataArray) {
+const Cars_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
 
-  for (const item of dataArray.products) {
-    container.innerHTML += `
-	<div onclick="setCatID(${item.id})" class="list-group-item list-group-item-action cursor-active">
-                <div class="row">
+const icontainer = document.getElementById('icontainerCars')
+
+function showData(dataArray){
+
+  for (const item of dataArray) {
+
+    icontainer.innerHTML += `<div onclick="setCatID(${item.id})" class="list-group-item list-group-item-action cursor-active">
+    <div class="row">
                     <div class="col-3">
-                        <img src="${item.image}" alt="${item.cost}" class="img-thumbnail">
+                        <img src="${item.image}" alt="${item.name}" class="img-thumbnail">
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">${item.name} - USD ${item.cost}</h4>
-                            <small class="text-muted">${item.soldCount} artículos</small>
+                            <h4 class="mb-1">${item.name} - ${item.currency} ${item.cost}</h4>
+                            <small class="text-muted">${item.soldCount} vendidos</small>
                         </div>
                         <p class="mb-1">${item.description}</p>
                     </div>
-                </div>
-            </div>
-            `; 
+                </div>`
   }
-}
+};
 
-  fetch(DATA_URL)
-  .then(response => response.json()) 
-  .then(data => showData(data))
+
+
+
+  fetch(Cars_URL)
+  .then((response) => response.json())
+  .then((data) => {showData(data.products);})
   .catch(error => console.error("Error al cargar los datos:", error));
-  
-  
+
