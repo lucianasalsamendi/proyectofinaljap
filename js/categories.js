@@ -1,6 +1,7 @@
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";
+const CATEGORIES_URL = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 let currentCategoriesArray = [];
 let currentSortCriteria = undefined;
 let minCount = undefined;
@@ -87,6 +88,7 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(CATEGORIES_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
@@ -95,17 +97,21 @@ document.addEventListener("DOMContentLoaded", function(e){
 
             let autosCategory = currentCategoriesArray.find(function (category) {
                 return category.id === 101;
-            }};
+            });
 
             if (autosCategory) {
                 // Realizar una solicitud GET a la URL de la categoría 101 (Autos)
                 getJSONData(autosCategory.url).then(function (productsResult) {
                     if (productsResult.status === "ok") {
-                    }
+                    } 
                 });
+
+
             //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
         }
-    });
+    };
+})
+})
 
     document.getElementById("sortAsc").addEventListener("click", function(){
         sortAndShowCategories(ORDER_ASC_BY_NAME);
@@ -151,4 +157,4 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showCategoriesList();
     });
-});
+
