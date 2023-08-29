@@ -1,5 +1,6 @@
+const id = localStorage.getItem('catID')
 
-const Cars_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/" + id +".json";
 
 const icontainer = document.getElementById('icontainerCars')
 
@@ -7,7 +8,7 @@ function showData(dataArray){
 
   for (const item of dataArray) {
 
-    icontainer.innerHTML += `<div onclick="setCatID(${item.id})" class="list-group-item list-group-item-action cursor-active">
+    icontainer.innerHTML += `<div class="list-group-item list-group-item-action cursor-active">
     <div class="row">
                     <div class="col-3">
                         <img src="${item.image}" alt="${item.name}" class="img-thumbnail">
@@ -23,10 +24,7 @@ function showData(dataArray){
   }
 };
 
-
-
-
-  fetch(Cars_URL)
+  fetch(Categorias_URL)
   .then((response) => response.json())
   .then((data) => {showData(data.products);})
   .catch(error => console.error("Error al cargar los datos:", error));
