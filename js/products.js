@@ -1,19 +1,18 @@
-const id = localStorage.getItem('catID')
 
-const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/" + id +".json";
+document.addEventListener('DOMContentLoaded', function () {
+  fetch(Categorias_URL)
+    .then((response) => response.json())
+    .then((data) => {
+      showData(data.products);
+    })
+    .catch(error => console.error("Error loading data:", error));
+});
 
-const icontainer = document.getElementById('icontainer')
-
-const tituleCat = document.getElementById('ih5Products')
-
-function nameCat(param1){
-  tituleCat.innerHTML=`<h5 id=ih5products>Verás aquí todos los productos de la categoria ${param1.catName}</h5>`
-}
- 
-function showData(dataArray){
+function showData(dataArray) {
+  icontainer.innerHTML = '';
 
   for (const item of dataArray) {
-
+    
     icontainer.innerHTML += `<div class="list-group-item list-group-item-action cursor-active">
     <div class="row">
                     <div class="col-3">
@@ -26,12 +25,20 @@ function showData(dataArray){
                         </div>
                         <p class="mb-1">${item.description}</p>
                     </div>
-                </div>`
+                </div>`;
   }
 };
 
-  fetch(Categorias_URL)
-  .then((response) => response.json())
-  .then((data) => {showData(data.products) ,nameCat(data) ;})
-  .catch(error => console.error("Error al cargar los datos:", error));
 
+function filtrado() {
+  const minPrice = parseFloat(document.getElementById('rangeFilterCountMin').value) || 0;
+  const maxPrice = parseFloat(document.getElementById('rangeFilterCountMax').value) || Number.MAX_SAFE_INTEGER;
+
+  fetch(Categorias_URL)
+    .then((response) => response.json())
+    .then((data) => {
+      const filteredProducts = data.products.filter(item => item.cost >= minPrice && item.cost <= maxPrice);
+      showData(filteredProducts);
+    })
+    .catch(error => console.error("Error loading data:", error));
+}
