@@ -189,20 +189,8 @@ a.custom-card:hover {
   color: orange;
 }
 
-
-
-#ih1Products{
-  text-align: center;
-}
-#ih5Products{
-  text-align: center;
-}
-/* formulario de login */
-.centrar{
-
 html,
 .text-center {
-
   height: 100%;
 }
 
@@ -246,6 +234,5 @@ html,
 
 .text-muted {
   width: 100%;
-  padding: 8px;
 
 }}
