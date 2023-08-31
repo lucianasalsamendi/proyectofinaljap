@@ -49,7 +49,16 @@ function filtrado() {
 
 //buscador
 
-let carsData = [ ];
+fetch(Categorias_URL)
+  .then((response) => response.json()) // Convertir la respuesta a JSON
+  .then((data) => {
+    categoriesData = data.products; // Asignar los productos a la variable carsData
+    showData(carsData); // Mostrar los productos en el contenedor
+  })
+  .catch(error => console.error("Error al cargar los datos:", error));
+  
+
+let categoriesData = [ ];
 const inputBuscar = document.getElementById("buscador");
 
 inputBuscar.addEventListener('input', () => {
@@ -59,7 +68,7 @@ inputBuscar.addEventListener('input', () => {
 });
 
 function filterItems(query) {
-  return carsData.filter(function (el) {
+  return categoriesData.filter(function (el) {
     return el.name.toLowerCase().includes(query);
   });
 }
