@@ -2,8 +2,14 @@ const id = localStorage.getItem('catID')
 
 const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/" + id +".json";
 
-const icontainer = document.getElementById('icontainerCars')
+const icontainer = document.getElementById('icontainer')
 
+const tituleCat = document.getElementById('ih5Products')
+
+function nameCat(param1){
+  tituleCat.innerHTML=`<h5 id=ih5products>Verás aquí todos los productos de la categoria ${param1.catName}</h5>`
+}
+ 
 function showData(dataArray){
 
   for (const item of dataArray) {
@@ -26,6 +32,6 @@ function showData(dataArray){
 
   fetch(Categorias_URL)
   .then((response) => response.json())
-  .then((data) => {showData(data.products);})
+  .then((data) => {showData(data.products) ,nameCat(data) ;})
   .catch(error => console.error("Error al cargar los datos:", error));
 
