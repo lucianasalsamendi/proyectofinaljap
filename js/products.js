@@ -1,31 +1,48 @@
-const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"; 
-const container = document.getElementById("containerproductos");
+document.addEventListener('DOMContentLoaded', function () {
+  fetch(Categorias_URL)
+    .then((response) => response.json())
+    .then((data) => {
+      showData(data.products);
+    })
+    .catch(error => console.error("Error loading data:", error));
+});
+
+const id = localStorage.getItem('catID');
+const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/" + id + ".json";
+const icontainer = document.getElementById('containerproductos');
+const filterButton = document.getElementById('rangeFilterCount');
+
+filterButton.addEventListener('click', filtrado);
 
 function showData(dataArray) {
+  icontainer.innerHTML = '';
 
-  for (const item of dataArray.products) {
-    container.innerHTML += `
-	<div onclick="setCatID(${item.id})" class="list-group-item list-group-item-action cursor-active">
-                <div class="row">
+  for (const item of dataArray) {
+    icontainer.innerHTML += `<div class="list-group-item list-group-item-action cursor-active">
+    <div class="row">
                     <div class="col-3">
-                        <img src="${item.image}" alt="${item.cost}" class="img-thumbnail">
+                        <img src="${item.image}" alt="${item.name}" class="img-thumbnail">
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">${item.name} - USD ${item.cost}</h4>
-                            <small class="text-muted">${item.soldCount} artículos</small>
+                            <h4 class="mb-1">${item.name} - ${item.currency} ${item.cost}</h4>
+                            <small class="text-muted">${item.soldCount} vendidos</small>
                         </div>
                         <p class="mb-1">${item.description}</p>
                     </div>
-                </div>
-            </div>
-            `; 
+                </div>`;
   }
 }
 
-  fetch(DATA_URL)
-  .then(response => response.json()) 
-  .then(data => showData(data))
-  .catch(error => console.error("Error al cargar los datos:", error));
-  
-  
+function filtrado() {
+  const minPrice = parseFloat(document.getElementById('rangeFilterCountMin').value) || 0;
+  const maxPrice = parseFloat(document.getElementById('rangeFilterCountMax').value) || Number.MAX_SAFE_INTEGER;
+
+  fetch(Categorias_URL)
+    .then((response) => response.json())
+    .then((data) => {
+      const filteredProducts = data.products.filter(item => item.cost >= minPrice && item.cost <= maxPrice);
+      showData(filteredProducts);
+    })
+    .catch(error => console.error("Error loading data:", error));
+}
