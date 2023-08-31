@@ -2,7 +2,7 @@ const id = localStorage.getItem('catID')
 
 const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/" + id +".json";
 
-const icontainer = document.getElementById('icontainerCars')
+const icontainer = document.getElementById('icontainer')
 
 const tituleCat = document.getElementById('ih5Products')
 
