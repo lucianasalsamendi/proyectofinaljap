@@ -8,13 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch(error => console.error("Error loading data:", error));
 });
 
-const id = localStorage.getItem('catID');
-const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/" + id + ".json";
-const icontainer = document.getElementById('containerproductos');
-const filterButton = document.getElementById('rangeFilterCount');
-
-filterButton.addEventListener('click', filtrado);
-
 function showData(dataArray) {
   icontainer.innerHTML = '';
 
