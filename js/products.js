@@ -46,3 +46,32 @@ function filtrado() {
     })
     .catch(error => console.error("Error loading data:", error));
 }
+
+//buscador
+
+let carsData = [ ];
+const inputBuscar = document.getElementById("buscador");
+
+inputBuscar.addEventListener('input', () => {
+  const busqueda = inputBuscar.value.toLowerCase();
+  const resultadosFiltrados = filterItems(busqueda);
+  mostrarDatosFiltrados(resultadosFiltrados);
+});
+
+function filterItems(query) {
+  return carsData.filter(function (el) {
+    return el.name.toLowerCase().includes(query);
+  });
+}
+
+function mostrarDatosFiltrados(data) {
+  icontainer.innerHTML = "";
+
+  if (data.length === 0) {
+    icontainer.innerHTML = "No existe el producto buscado";
+    return;
+  }
+
+  showData(data);
+}
+
