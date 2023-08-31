@@ -2,7 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Verdana', serif !important;
+  font-family: 'Zerdana', serif !important;
 }
 
 .jumbotron .display-4 {
@@ -43,7 +43,7 @@ nav a {
 
 @media (min-width: 768px) {
   .jumbotron {
-    padding-top: 6rem;
+    padding-top: 15rem;
     padding-bottom: 6rem;
   }
 }
@@ -187,4 +187,52 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+
+html,
+.text-center {
+  height: 100%;
+}
+
+.center {
+  text-align: center;
+}
+
+.text-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.text-muted {
+  width: 100%;
+
 }

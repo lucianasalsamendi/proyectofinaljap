@@ -12,3 +12,9 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+let guardado = localStorage.getItem("user");
+let noguardado = sessionStorage.getItem("user");
+if (!(guardado || noguardado)){
+    window.location.href = "login.html";
+}

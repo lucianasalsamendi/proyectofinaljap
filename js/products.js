@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
   fetch(Categorias_URL)
     .then((response) => response.json())
@@ -18,6 +19,7 @@ function showData(dataArray) {
   icontainer.innerHTML = '';
 
   for (const item of dataArray) {
+    
     icontainer.innerHTML += `<div class="list-group-item list-group-item-action cursor-active">
     <div class="row">
                     <div class="col-3">
@@ -32,7 +34,8 @@ function showData(dataArray) {
                     </div>
                 </div>`;
   }
-}
+};
+
 
 function filtrado() {
   const minPrice = parseFloat(document.getElementById('rangeFilterCountMin').value) || 0;

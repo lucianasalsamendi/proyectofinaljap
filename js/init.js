@@ -14,8 +14,10 @@ let showSpinner = function(){
 let hideSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "none";
 }
+//Se realizo una solicitud a la URL de la API proporcionada.
+//se introdujo una constante en el js init que almacena la mencionada URL
 
-let getJSONData = function(url){
+let getJSONData = function(url){  
     let result = {};
     showSpinner();
     return fetch(url)
