@@ -1,13 +1,24 @@
+document.addEventListener('DOMContentLoaded', function () {
+  fetch(Categorias_URL)
+    .then((response) => response.json())
+    .then((data) => {
+      showData(data.products);
+    })
+    .catch(error => console.error("Error loading data:", error));
+});
 
-const Cars_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+const id = localStorage.getItem('catID');
+const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/" + id + ".json";
+const icontainer = document.getElementById('containerproductos');
+const filterButton = document.getElementById('rangeFilterCount');
 
-const icontainer = document.getElementById('icontainerCars')
+filterButton.addEventListener('click', filtrado);
 
-function showData(dataArray){
+function showData(dataArray) {
+  icontainer.innerHTML = '';
 
   for (const item of dataArray) {
-
-    icontainer.innerHTML += `<div onclick="setCatID(${item.id})" class="list-group-item list-group-item-action cursor-active">
+    icontainer.innerHTML += `<div class="list-group-item list-group-item-action cursor-active">
     <div class="row">
                     <div class="col-3">
                         <img src="${item.image}" alt="${item.name}" class="img-thumbnail">
@@ -19,15 +30,19 @@ function showData(dataArray){
                         </div>
                         <p class="mb-1">${item.description}</p>
                     </div>
-                </div>`
+                </div>`;
   }
-};
+}
 
+function filtrado() {
+  const minPrice = parseFloat(document.getElementById('rangeFilterCountMin').value) || 0;
+  const maxPrice = parseFloat(document.getElementById('rangeFilterCountMax').value) || Number.MAX_SAFE_INTEGER;
 
-
-
-  fetch(Cars_URL)
-  .then((response) => response.json())
-  .then((data) => {showData(data.products);})
-  .catch(error => console.error("Error al cargar los datos:", error));
-
+  fetch(Categorias_URL)
+    .then((response) => response.json())
+    .then((data) => {
+      const filteredProducts = data.products.filter(item => item.cost >= minPrice && item.cost <= maxPrice);
+      showData(filteredProducts);
+    })
+    .catch(error => console.error("Error loading data:", error));
+}
