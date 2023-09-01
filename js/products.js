@@ -12,6 +12,7 @@ const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/"
 const icontainer = document.getElementById('containerproductos');
 const filterButton = document.getElementById('rangeFilterCount');
 
+
 filterButton.addEventListener('click', filtrado);
 
 function showData(dataArray) {
@@ -53,7 +54,7 @@ fetch(Categorias_URL)
   .then((response) => response.json()) // Convertir la respuesta a JSON
   .then((data) => {
     categoriesData = data.products; // Asignar los productos a la variable carsData
-    showData(carsData); // Mostrar los productos en el contenedor
+    showData(categoriesData); // Mostrar los productos en el contenedor
   })
   .catch(error => console.error("Error al cargar los datos:", error));
   
