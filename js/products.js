@@ -46,3 +46,39 @@ function filtrado() {
     })
     .catch(error => console.error("Error loading data:", error));
 }
+//buscador
+
+fetch(Categorias_URL)
+  .then((response) => response.json()) // Convertir la respuesta a JSON
+  .then((data) => {
+    categoriesData = data.products; // Asignar los productos a la variable carsData
+    showData(categoriesData); // Mostrar los productos en el contenedor
+  })
+  .catch(error => console.error("Error al cargar los datos:", error));
+  
+
+let categoriesData = [ ];
+const inputBuscar = document.getElementById("buscador");
+
+inputBuscar.addEventListener('input', () => {
+  const busqueda = inputBuscar.value.toLowerCase();
+  const resultadosFiltrados = filterItems(busqueda);
+  mostrarDatosFiltrados(resultadosFiltrados);
+});
+
+function filterItems(query) {
+  return categoriesData.filter(function (el) {
+    return el.name.toLowerCase().includes(query);
+  });
+}
+
+function mostrarDatosFiltrados(data) {
+  icontainer.innerHTML = "";
+
+  if (data.length === 0) {
+    icontainer.innerHTML = "No existe el producto buscado";
+    return;
+  }
+
+  showData(data);
+}
