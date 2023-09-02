@@ -1,23 +1,29 @@
+let productsarray = [];
+
 document.addEventListener('DOMContentLoaded', function () {
+  const id = localStorage.getItem('catID');
+  const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/" + id + ".json";
   fetch(Categorias_URL)
-    .then((response) => response.json())
-    .then((data) => {
-      showData(data.products);
+    .then(response => response.json())
+    .then(data => {
+      if (data && Array.isArray(data.products)) {
+        productsarray = data.products;
+
+        showData(productsarray);
+
+        console.log(productsarray);
+      } else {
+        console.error("No funca la cosa");
+      }
     })
     .catch(error => console.error("Error loading data:", error));
 });
 
-const id = localStorage.getItem('catID');
-const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/" + id + ".json";
-const icontainer = document.getElementById('containerproductos');
-const filterButton = document.getElementById('rangeFilterCount');
-
-filterButton.addEventListener('click', filtrado);
-
-function showData(dataArray) {
+function showData(productsarray) {
+	const icontainer = document.getElementById('containerproductos');
   icontainer.innerHTML = '';
 
-  for (const item of dataArray) {
+  for (const item of productsarray) {
     icontainer.innerHTML += `<div class="list-group-item list-group-item-action cursor-active">
     <div class="row">
                     <div class="col-3">
@@ -34,30 +40,34 @@ function showData(dataArray) {
   }
 }
 
+///filtrado rango de precios
+const filterButton = document.getElementById('rangeFilterCount');
+
+filterButton.addEventListener('click', filtrado);
 function filtrado() {
   const minPrice = parseFloat(document.getElementById('rangeFilterCountMin').value) || 0;
   const maxPrice = parseFloat(document.getElementById('rangeFilterCountMax').value) || Number.MAX_SAFE_INTEGER;
-
-  fetch(Categorias_URL)
-    .then((response) => response.json())
-    .then((data) => {
-      const filteredProducts = data.products.filter(item => item.cost >= minPrice && item.cost <= maxPrice);
+	const filteredProducts = productsarray.filter(item => item.cost >= minPrice && item.cost <= maxPrice);
       showData(filteredProducts);
-    })
-    .catch(error => console.error("Error loading data:", error));
+
 }
-//buscador
 
-fetch(Categorias_URL)
-  .then((response) => response.json()) // Convertir la respuesta a JSON
-  .then((data) => {
-    categoriesData = data.products; // Asignar los productos a la variable carsData
-    showData(categoriesData); // Mostrar los productos en el contenedor
-  })
-  .catch(error => console.error("Error al cargar los datos:", error));
-  
+const botonborradorango = document.getElementById('clearRangeFilter');
 
-let categoriesData = [ ];
+botonborradorango.addEventListener('click', borrarrango);
+
+function borrarrango() {
+
+  document.getElementById('rangeFilterCountMin').value = '';
+  document.getElementById('rangeFilterCountMax').value = '';
+
+  showData(productsarray);
+}
+
+
+
+////filtrado de nombre en tiempo real
+
 const inputBuscar = document.getElementById("buscador");
 
 inputBuscar.addEventListener('input', () => {
@@ -66,14 +76,16 @@ inputBuscar.addEventListener('input', () => {
   mostrarDatosFiltrados(resultadosFiltrados);
 });
 
-function filterItems(query) {
-  return categoriesData.filter(function (el) {
-    return el.name.toLowerCase().includes(query);
+function filterItems(busqueda) {
+  return productsarray.filter(function (item) {
+    return item.name.toLowerCase().includes(busqueda);
   });
 }
 
+
 function mostrarDatosFiltrados(data) {
-  icontainer.innerHTML = "";
+  const icontainer = document.getElementById('containerproductos');
+  icontainer.innerHTML = '';
 
   if (data.length === 0) {
     icontainer.innerHTML = "No existe el producto buscado";
@@ -81,4 +93,30 @@ function mostrarDatosFiltrados(data) {
   }
 
   showData(data);
+}
+
+
+
+
+//////filtrado por costo y relevancia
+
+
+function ordenar(cost) {
+  sortOrder = cost;
+  productsarray.sort(function(a, b) {
+    if (sortOrder === 'ascendente') {
+      return a.cost - b.cost;
+    } else {
+      return b.cost - a.cost;
+    }
+  });
+
+  showData(productsarray);
+}
+
+function ordenarPorRelevancia() {
+   productsarray.sort(function(a, b) {
+    return b.soldCount - a.soldCount;
+  });
+ showData(productsarray);
 }
