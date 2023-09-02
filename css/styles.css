@@ -13,6 +13,19 @@ nav a {
   text-decoration: none;
 }
 
+#logoutBtn, #userDisplay, #profileBtn{
+  color: #cacaca;
+  text-decoration: none;
+}
+
+#logoutBtn:hover {
+  color: #fff;
+}
+
+#profileBtn:hover {
+  color: #fff;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;

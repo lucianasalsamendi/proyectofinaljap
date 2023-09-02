@@ -12,7 +12,6 @@ const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/"
 const icontainer = document.getElementById('containerproductos');
 const filterButton = document.getElementById('rangeFilterCount');
 
-
 filterButton.addEventListener('click', filtrado);
 
 function showData(dataArray) {
@@ -47,7 +46,6 @@ function filtrado() {
     })
     .catch(error => console.error("Error loading data:", error));
 }
-
 //buscador
 
 fetch(Categorias_URL)
@@ -84,4 +82,3 @@ function mostrarDatosFiltrados(data) {
 
   showData(data);
 }
-
