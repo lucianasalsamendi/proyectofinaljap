@@ -1,19 +1,29 @@
-const id = localStorage.getItem('catID')
+let productsarray = [];
 
-const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/" + id +".json";
+document.addEventListener('DOMContentLoaded', function () {
+  const id = localStorage.getItem('catID');
+  const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/" + id + ".json";
+  fetch(Categorias_URL)
+    .then(response => response.json())
+    .then(data => {
+      if (data && Array.isArray(data.products)) {
+        productsarray = data.products;
 
-const icontainer = document.getElementById('icontainer')
+        showData(productsarray);
 
-const tituleCat = document.getElementById('ih5Products')
+        console.log(productsarray);
+      } else {
+        console.error("No funca la cosa");
+      }
+    })
+    .catch(error => console.error("Error loading data:", error));
+});
 
-function nameCat(param1){
-  tituleCat.innerHTML=`<h5 id=ih5products>Verás aquí todos los productos de la categoria ${param1.catName}</h5>`
-}
- 
-function showData(dataArray){
+function showData(productsarray) {
+	const icontainer = document.getElementById('containerproductos');
+  icontainer.innerHTML = '';
 
-  for (const item of dataArray) {
-
+  for (const item of productsarray) {
     icontainer.innerHTML += `<div class="list-group-item list-group-item-action cursor-active">
     <div class="row">
                     <div class="col-3">
@@ -26,12 +36,61 @@ function showData(dataArray){
                         </div>
                         <p class="mb-1">${item.description}</p>
                     </div>
-                </div>`
+                </div>`;
   }
-};
+}
 
-  fetch(Categorias_URL)
-  .then((response) => response.json())
-  .then((data) => {showData(data.products) ,nameCat(data) ;})
-  .catch(error => console.error("Error al cargar los datos:", error));
+///filtrado rango de precios
+const filterButton = document.getElementById('rangeFilterCount');
 
+filterButton.addEventListener('click', filtrado);
+function filtrado() {
+  const minPrice = parseFloat(document.getElementById('rangeFilterCountMin').value) || 0;
+  const maxPrice = parseFloat(document.getElementById('rangeFilterCountMax').value) || Number.MAX_SAFE_INTEGER;
+	const filteredProducts = productsarray.filter(item => item.cost >= minPrice && item.cost <= maxPrice);
+      showData(filteredProducts);
+
+}
+
+const botonborradorango = document.getElementById('clearRangeFilter');
+
+botonborradorango.addEventListener('click', borrarrango);
+
+function borrarrango() {
+
+  document.getElementById('rangeFilterCountMin').value = '';
+  document.getElementById('rangeFilterCountMax').value = '';
+
+  showData(productsarray);
+}
+
+
+
+////filtrado de nombre en tiempo real
+
+const inputBuscar = document.getElementById("buscador");
+
+inputBuscar.addEventListener('input', () => {
+  const busqueda = inputBuscar.value.toLowerCase();
+  const resultadosFiltrados = filterItems(busqueda);
+  mostrarDatosFiltrados(resultadosFiltrados);
+});
+
+function filterItems(busqueda) {
+  return productsarray.filter(function (item) {
+    return item.name.toLowerCase().includes(busqueda);
+  });
+}
+
+
+function mostrarDatosFiltrados(data) {
+  const icontainer = document.getElementById('containerproductos');
+  icontainer.innerHTML = '';
+
+  if (data.length === 0) {
+    icontainer.innerHTML = "No existe el producto buscado";
+    return;
+  }
+
+  showData(data);
+}
