@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (data && Array.isArray(data.products)) {
         productsarray = data.products;
 
-        showData(productsarray);
+        showData(productsarray), nameCat(data) ;
 
         console.log(productsarray);
       } else {
@@ -19,12 +19,23 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch(error => console.error("Error loading data:", error));
 });
 
+
+function nameCat(param1){
+  const tituleCat = document.getElementById('ih2products')
+   tituleCat.innerHTML=`<h2 id=ih2products>Verás aquí todos los productos de la categoría <b>${param1.catName}<b></h2>`
+ }
+ 
+ function setCatIDproducts(id) {
+  localStorage.setItem("Product",id);
+  window.location = "product-info.html"}
+ 
+
 function showData(productsarray) {
 	const icontainer = document.getElementById('containerproductos');
   icontainer.innerHTML = '';
 
   for (const item of productsarray) {
-    icontainer.innerHTML += `<div class="list-group-item list-group-item-action cursor-active">
+    icontainer.innerHTML += `<div onclick="setCatIDproducts(${item.id})" class="list-group-item list-group-item-action cursor-active">
     <div class="row">
                     <div class="col-3">
                         <img src="${item.image}" alt="${item.name}" class="img-thumbnail">
@@ -93,4 +104,30 @@ function mostrarDatosFiltrados(data) {
   }
 
   showData(data);
+}
+
+
+
+
+//////filtrado por costo y relevancia
+
+
+function ordenar(cost) {
+  sortOrder = cost;
+  productsarray.sort(function(a, b) {
+    if (sortOrder === 'ascendente') {
+      return a.cost - b.cost;
+    } else {
+      return b.cost - a.cost;
+    }
+  });
+
+  showData(productsarray);
+}
+
+function ordenarPorRelevancia() {
+   productsarray.sort(function(a, b) {
+    return b.soldCount - a.soldCount;
+  });
+ showData(productsarray);
 }
