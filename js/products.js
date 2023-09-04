@@ -19,19 +19,21 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch(error => console.error("Error loading data:", error));
 });
 
-
 function nameCat(param1){
   const tituleCat = document.getElementById('ih2products')
    tituleCat.innerHTML=`<h2 id=ih2products>Verás aquí todos los productos de la categoría <b>${param1.catName}<b></h2>`
  }
-
+ 
+ function setCatIDproducts(id) {
+  localStorage.setItem("Product",id);
+  window.location = "product-info.html"}
 
 function showData(productsarray) {
 	const icontainer = document.getElementById('containerproductos');
   icontainer.innerHTML = '';
 
   for (const item of productsarray) {
-    icontainer.innerHTML += `<div class="list-group-item list-group-item-action cursor-active">
+    icontainer.innerHTML += `<div onclick="setCatIDproducts(${item.id})" class="list-group-item list-group-item-action cursor-active">
     <div class="row">
                     <div class="col-3">
                         <img src="${item.image}" alt="${item.name}" class="img-thumbnail">
@@ -56,7 +58,6 @@ function filtrado() {
   const maxPrice = parseFloat(document.getElementById('rangeFilterCountMax').value) || Number.MAX_SAFE_INTEGER;
 	const filteredProducts = productsarray.filter(item => item.cost >= minPrice && item.cost <= maxPrice);
       showData(filteredProducts);
-
 }
 
 const botonborradorango = document.getElementById('clearRangeFilter');
@@ -70,8 +71,6 @@ function borrarrango() {
 
   showData(productsarray);
 }
-
-
 
 ////filtrado de nombre en tiempo real
 
@@ -89,7 +88,6 @@ function filterItems(busqueda) {
   });
 }
 
-
 function mostrarDatosFiltrados(data) {
   const icontainer = document.getElementById('containerproductos');
   icontainer.innerHTML = '';
@@ -101,9 +99,6 @@ function mostrarDatosFiltrados(data) {
 
   showData(data);
 }
-
-
-
 
 //////filtrado por costo y relevancia
 
