@@ -19,6 +19,13 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch(error => console.error("Error loading data:", error));
 });
 
+
+function nameCat(param1){
+  const tituleCat = document.getElementById('ih2products')
+   tituleCat.innerHTML=`<h2 id=ih2products>Verás aquí todos los productos de la categoría <b>${param1.catName}<b></h2>`
+ }
+
+
 function showData(productsarray) {
 	const icontainer = document.getElementById('containerproductos');
   icontainer.innerHTML = '';
