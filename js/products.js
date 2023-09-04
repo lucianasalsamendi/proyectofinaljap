@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (data && Array.isArray(data.products)) {
         productsarray = data.products;
 
-        showData(productsarray);
+        showData(productsarray), nameCat(data) ;
 
         console.log(productsarray);
       } else {
