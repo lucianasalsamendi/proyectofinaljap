@@ -18,7 +18,7 @@ starLabels.forEach((label, index) => {
             }
         }
 
-        // Actualizar el valor del campo de entrada oculto
+        // Actualizar el valor 
         ratingInput.value = index + 1;
 
         // Actualizar el número de estrellas seleccionadas
