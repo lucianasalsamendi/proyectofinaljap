@@ -314,3 +314,19 @@ html,
   max-height: 100%; 
     
 }
+
+.stars {
+  display: inline-block;
+}
+.stars label {
+  font-size: 30px;
+  cursor: pointer;
+}
+.fa-star-empty::before {
+  content: "\2606"; /* Estrella vacía */
+  color: rgba(255, 255, 0, 0.788);
+}
+.fa-star-filled::before {
+  content: "\2605"; /* Estrella llena */
+  color: rgba(255, 255, 0, 0.788);
+}
