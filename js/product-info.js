@@ -42,6 +42,8 @@ document.getElementById('comment-form').addEventListener('submit', function(even
         message = 'Buen producto';
     } else if (rating >= 2) {
         message = 'Aceptable';
+    } else if (rating >= 1) {
+        message = 'Malo';
     }
 
     // Mostrar el mensaje
