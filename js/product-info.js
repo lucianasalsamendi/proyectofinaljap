@@ -31,8 +31,8 @@ document.getElementById('comment-form').addEventListener('submit', function(even
     event.preventDefault(); // Evitar el envío del formulario por defecto
 
     // Obtener los valores del comentario y la puntuación
-    const comment = document.getElementById('comment').value;
-    const rating = ratingInput.value;
+    var comment = document.getElementById('comment').value;
+    var rating = ratingInput.value;
 
     // 
     let message = '';
