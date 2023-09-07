@@ -36,7 +36,7 @@ document.getElementById('comment-form').addEventListener('submit', function(even
 
     // 
     let message = '';
-    if (rating >= 4) {
+    if (rating >= 5) {
         message = '¡Extraordinario!';
     }else if (rating >= 4) {
         message = '¡Excelente Producto!';
