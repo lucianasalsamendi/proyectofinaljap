@@ -37,6 +37,8 @@ document.getElementById('comment-form').addEventListener('submit', function(even
     // 
     let message = '';
     if (rating >= 4) {
+        message = '¡Extraordinario!';
+    }else if (rating >= 4) {
         message = '¡Excelente Producto!';
     } else if (rating >= 3) {
         message = 'Buen producto';
