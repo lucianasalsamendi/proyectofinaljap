@@ -315,6 +315,7 @@ html,
     
 }
 
+/*comentario y estrellas*/
 
 .containerComentario {
   background-color: #f0f0f0; 
@@ -326,7 +327,6 @@ html,
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-family: cursive
 }
-
 
 .stars {
   display: inline-block;
