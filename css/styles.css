@@ -388,7 +388,7 @@ img {
   border: 1px solid #ccc; 
   border-radius: 5px; 
   width: 40%; 
-  margin: 20px;
+  margin: 0 auto;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-family: cursive
 }
