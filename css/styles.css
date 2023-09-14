@@ -315,6 +315,71 @@ html,
     
 }
 
+/* Productos comentarios */
+
+/* Estilo general de la sección de comentarios */
+#name {
+  text-align: center;
+  background-color: #fff; /* Fondo blanco */
+  color: #000; /* Texto negro */
+  padding: 20px;
+  margin: 20px;
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000; /* Texto negro */
+  padding: 20px;
+  margin: 20px;
+  flex-direction: column;
+}
+img {
+  width: 400px; /* Ancho de la imagen de fondo */ 
+  margin-right: 20px;
+  margin-top: 20px;
+  border: 2px solid #000; /* Borde negro */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+#informacion{
+  margin-top: 3rem;
+  font-family: Helvetica Neue;
+  font-size: 20px ;
+}
+.botonCarrito{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnCarro{
+  background-color: rgba(240, 144, 1, 1);
+  color: #fff; /* Texto blanco */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px; /* Esquinas redondeadas */
+  cursor: pointer;
+  font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
+  font-size: 16px; /* Tamaño de fuente */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+.btnCarro:hover {
+  background-color: rgba(200, 120, 0, 1); /* Cambia el color al pasar el mouse */
+}
+
+.titulo{
+  font-family: "Times New Roman", Times, serif;
+  font-size: 3rem; 
+  font-weight: bold;
+  color: rgba(240, 144, 1, 1);
+  text-align: center;
+  margin: 10px ;
+}
 /*comentario y estrellas*/
 
 .containerComentario {
