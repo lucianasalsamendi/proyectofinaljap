@@ -129,12 +129,14 @@ document.getElementById('comment-form').addEventListener('submit', function(even
     // Mostrar el mensaje
     document.getElementById('message').textContent = message;
 
-    // Crea un nuevo comentario
+
+    // Crear un nuevo comentario con la puntuación
     const newComment = document.createElement('div');
     newComment.classList.add('comentario');
     newComment.innerHTML = `
-        <strong>Usuario</strong> - ${new Date().toLocaleString()}<br>
-        ${comment}
+      <strong>user</strong> - ${new Date().toLocaleString()}<br>
+      Puntuación: ${rating}<br>
+      ${comment}
     `;
 
     // Agrega el nuevo comentario a la lista de comentarios existentes
@@ -149,6 +151,8 @@ document.getElementById('comment-form').addEventListener('submit', function(even
         label.classList.remove('fas');
         label.classList.add('fa-regular');
     });
+    
+
     
 });
 })
