@@ -380,3 +380,31 @@ img {
   text-align: center;
   margin: 10px ;
 }
+/*comentario y estrellas*/
+
+.containerComentario {
+  background-color: #f0f0f0; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  width: 40%; 
+  margin: 20px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: cursive
+}
+
+.stars {
+  display: inline-block;
+}
+.stars label {
+  font-size: 30px;
+  cursor: pointer;
+}
+.fa-star-empty::before {
+  content: "\2606"; /* Estrella vacía */
+  color: rgba(107, 107, 4, 0.788);
+}
+.fa-star-filled::before {
+  content: "\2605"; /* Estrella llena */
+  color: rgba(107, 107, 4, 0.788);
+}

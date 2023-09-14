@@ -37,12 +37,33 @@
     </div>
   </nav>
   <main>
+
     <div id="product-info">
       
     </div>
     <div id="product-comment">
 
     </div>
+    <div class="containerComentario">
+        <h3>Puntuación:</h3>
+          <div class="stars">
+              <input type="hidden" id="rating" name="rating" value="0">
+              <label for="star5" class="fas fa-regular fa-star fa-beat"></label>
+              <label for="star4" class="fas fa-regular fa-star fa-beat"></label>
+              <label for="star3" class="fas fa-regular fa-star fa-beat"></label>
+              <label for="star2" class="fas fa-regular fa-star fa-beat"></label>
+              <label for="star1" class="fas fa-regular fa-star fa-beat"></label>
+          </div>
+          <h4>Nuevo Comentario</h4>
+          <form id="comment-form">
+              <label for="comment">Comentario:</label>
+              <input type="text" id="comment" name="comment" required>
+          <button type="submit">Enviar</button>
+      </form>
+      <div id="result">
+         <p>Mensaje: <span id="message"></span></p>
+      </div>
+  </div>
   </main>
   <footer class="text-muted">
     <div class="container">
