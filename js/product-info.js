@@ -135,7 +135,7 @@ document.getElementById('comment-form').addEventListener('submit', function(even
     newComment.classList.add('comentario');
     newComment.innerHTML = `
       <strong>user</strong> - ${new Date().toLocaleString()}<br>
-      Puntuación: ${rating}<br>
+      Puntuación: ${message}<br>
       ${comment}
     `;
 
@@ -151,8 +151,6 @@ document.getElementById('comment-form').addEventListener('submit', function(even
         label.classList.remove('fas');
         label.classList.add('fa-regular');
     });
-    
-
     
 });
 })
