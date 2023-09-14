@@ -190,6 +190,18 @@ document.getElementById('comment-form').addEventListener('submit', function(even
 
     // Mostrar el mensaje
     document.getElementById('message').textContent = message;
+
+    // Crea un nuevo comentario
+    const newComment = document.createElement('div');
+    newComment.classList.add('comentario');
+    newComment.innerHTML = `
+        <strong>Usuario</strong> - ${new Date().toLocaleString()}<br>
+        ${comment}
+    `;
+
+    // Agrega el nuevo comentario a la lista de comentarios existentes
+    const comentariosDiv = document.getElementById('comentarios');
+    comentariosDiv.appendChild(newComment);
    
     // Limpia el formulario después del envío 
     document.getElementById('comment').value = '';
@@ -199,5 +211,7 @@ document.getElementById('comment-form').addEventListener('submit', function(even
         label.classList.remove('fas');
         label.classList.add('fa-regular');
     });
+
+    
 });
 
