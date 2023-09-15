@@ -15,8 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       let product = respondeID.data;
           // Pido los datos del json en este caso los datos de productos
 
-
-      productInfo.innerHTML = `
+          productInfo.innerHTML = `
           <div id="name">
           <h1 class="titulo">${product.name}<h1>
           </div>
@@ -106,13 +105,13 @@ starLabels.forEach((label, index) => {
 
 // envío del formulario al servidor
 document.getElementById('comment-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evitar el envío del formulario por defecto
+event.preventDefault(); // Evitar el envío del formulario por defecto
 
     // Obtener los valores del comentario y la puntuación
     var comment = document.getElementById('comment').value;
     var rating = ratingInput.value;
 
-    // 
+    
     let message = '';
     if (rating >= 5) {
         message = '¡Extraordinario!';
@@ -126,31 +125,33 @@ document.getElementById('comment-form').addEventListener('submit', function(even
         message = 'Malo';
     }
 
-    // Mostrar el mensaje
-    document.getElementById('message').textContent = message;
+// Mostrar el mensaje
+document.getElementById('message').textContent = message;
 
+const user = localStorage.getItem('user');
+// Comprobar si el nombre de usuario existe en localStorage
+if (user) {
+  // Crear un nuevo comentario con la puntuación
+  const newComment = document.createElement('div');
+  newComment.classList.add('comentario');
+  newComment.innerHTML = `
+    <strong>${user}</strong> - ${new Date().toLocaleString()}<br>
+    Puntuación: ${rating} ${message}<br>
+    Comentario:${comment}
+  `;
 
-    // Crear un nuevo comentario con la puntuación
-    const newComment = document.createElement('div');
-    newComment.classList.add('comentario');
-    newComment.innerHTML = `
-      <strong>user</strong> - ${new Date().toLocaleString()}<br>
-      Puntuación: ${message}<br>
-      ${comment}
-    `;
+  // Agrega el nuevo comentario a la lista de comentarios existentes
+  const comentariosDiv = document.getElementById('comentarios');
+  comentariosDiv.appendChild(newComment);
+}
 
-    // Agrega el nuevo comentario a la lista de comentarios existentes
-    const comentariosDiv = document.getElementById('comentarios');
-    comentariosDiv.appendChild(newComment);
-   
-    // Limpia el formulario después del envío 
-    document.getElementById('comment').value = '';
-    ratingInput.value = '0';
-    selectedRating.textContent = '0';
-    starLabels.forEach(label => {
-        label.classList.remove('fas');
-        label.classList.add('fa-regular');
-    });
-    
+// Limpia el formulario después del envío 
+document.getElementById('comment').value = '';
+ratingInput.value = '0';
+selectedRating.textContent = '0';
+starLabels.forEach(label => {
+    label.classList.remove('fas');
+    label.classList.add('fa-regular');
 });
+})
 })
