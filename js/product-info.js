@@ -143,6 +143,19 @@ if (user) {
   // Agrega el nuevo comentario a la lista de comentarios existentes
   const comentariosDiv = document.getElementById('comentarios');
   comentariosDiv.appendChild(newComment);
+
+} else {  // Usuario no registrado
+    const newComment = document.createElement('div');
+    newComment.classList.add('comentario');
+    newComment.innerHTML = `
+      <strong>Usuario no registrado</strong> - ${new Date().toLocaleString()}<br>
+      Puntuación: ${rating} ${message}<br>
+      Comentario: ${comment}
+    `;
+  
+    // Agrega el nuevo comentario a la lista de comentarios existentes
+    const comentariosDiv = document.getElementById('comentarios');
+    comentariosDiv.appendChild(newComment);
 }
 
 // Limpia el formulario después del envío 
