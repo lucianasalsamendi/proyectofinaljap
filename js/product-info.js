@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", async () => {
   
   const productID = localStorage.getItem("Product");
@@ -10,8 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       // pido que me de el url de productos y el tipo de extension 
   ); 
 
-
-  
       let product = respondeID.data;
           // Pido los datos del json en este caso los datos de productos
 
@@ -75,7 +71,11 @@ document.addEventListener("DOMContentLoaded", async () => {
               showImage();
           });
       });
-    
+
+
+    }) 
+
+
 // cambio de estrellas al hacer click en ellas
 var starLabels = document.querySelectorAll('.stars label');
 var selectedRating = document.getElementById('selected-rating');
@@ -153,8 +153,9 @@ document.getElementById('comment').value = '';
 ratingInput.value = '0';
 selectedRating.textContent = '0';
 starLabels.forEach(label => {
-    label.classList.remove('fas');
-    label.classList.add('fa-regular');
+    label.classList.remove('fa-star');
+    label.classList.add('fa-star-empty');
 });
 })
-})
+
+
