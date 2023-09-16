@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       // pido que me de el url de productos y el tipo de extension 
   ); 
 
-  function getProductDetails() {
+
   
       let product = respondeID.data;
           // Pido los datos del json en este caso los datos de productos
@@ -75,8 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               showImage();
           });
       });
-    } getProductDetails();
-
+    
 // cambio de estrellas al hacer click en ellas
 var starLabels = document.querySelectorAll('.stars label');
 var selectedRating = document.getElementById('selected-rating');
@@ -145,17 +144,8 @@ if (user) {
   comentariosDiv.appendChild(newComment);
 
 } else {  // Usuario no registrado
-    const newComment = document.createElement('div');
-    newComment.classList.add('comentario');
-    newComment.innerHTML = `
-      <strong>Usuario no registrado</strong> - ${new Date().toLocaleString()}<br>
-      Puntuación: ${rating} ${message}<br>
-      Comentario: ${comment}
-    `;
+    alert('Debes estar registrado para realizar comentarios');
   
-    // Agrega el nuevo comentario a la lista de comentarios existentes
-    const comentariosDiv = document.getElementById('comentarios');
-    comentariosDiv.appendChild(newComment);
 }
 
 // Limpia el formulario después del envío 
