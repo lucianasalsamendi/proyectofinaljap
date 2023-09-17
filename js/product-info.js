@@ -82,6 +82,7 @@ fetch(Comments_URL)
         comments.forEach(comentario => {
             const comentarioElement = document.createElement('li');
             // intentar hacer los score a star const stars = nombre_function(comentario.score)
+            
             comentarioElement.innerHTML = `
                 <p><strong>${comentario.user}</strong> ${comentario.dateTime} - ${comentario.score}</p>
                 <p><strong>Comentario:</strong> ${comentario.description}</p>
@@ -93,7 +94,8 @@ fetch(Comments_URL)
     .catch(error => {
         console.error('Error al obtener comentarios:', error);
     });
-    }) 
+    
+}) 
 
 
 // cambio de estrellas al hacer click en ellas
