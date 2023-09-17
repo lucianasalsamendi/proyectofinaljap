@@ -72,7 +72,30 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
       });
 
-    }) 
+      // Hacer una solicitud a la API
+const Comments_URL = `https://japceibal.github.io/emercado-api/products_comments/${productID}.json`;
+fetch(Comments_URL)
+    .then(response => response.json())
+    .then(comments => {
+        // Iterar a través de los comentarios y mostrarlos en la página
+        const comentariosDiv = document.getElementById('comment-list');
+        comments.forEach(comentario => {
+            const comentarioElement = document.createElement('li');
+            // intentar hacer los score a star const stars = nombre_function(comentario.score)
+            
+            comentarioElement.innerHTML = `
+                <p><strong>${comentario.user}</strong> ${comentario.dateTime} - ${comentario.score}</p>
+                <p><strong>Comentario:</strong> ${comentario.description}</p>
+               
+            `;
+            comentariosDiv.appendChild(comentarioElement);
+        });
+    })
+    .catch(error => {
+        console.error('Error al obtener comentarios:', error);
+    });
+    
+}) 
 
 
 // cambio de estrellas al hacer click en ellas
