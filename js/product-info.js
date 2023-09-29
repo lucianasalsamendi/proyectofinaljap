@@ -87,12 +87,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   const productID = localStorage.getItem("Product");
   const productInfo = document.getElementById("product-info");
+
   const respondeID = await getJSONData(
       PRODUCT_INFO_URL + productID + EXT_TYPE
       // Aprovecho que ya estan los datos en init y 
       // pido que me de el url de productos y el tipo de extension 
   ); 
-
       let product = respondeID.data;
           // Pido los datos del json en este caso los datos de productos
 
@@ -135,10 +135,33 @@ document.addEventListener("DOMContentLoaded", async () => {
           </div>
         </div>
       </div>
+      <div class="productosRelacionados"> 
+      <h2 class="titulo">Productos Relacionados</h2>
+      <div id="carouselExampleControls" class="carousel slide">
+      <div class="carousel-inner">
+        <div data-product-id="${product.relatedProducts[0].id}" class="carousel-item active ">
+        <h5>${product.relatedProducts[0].name}</h5>
+          <img src="${product.relatedProducts[0].image}" class="d-block w-17" alt="Productos relacionados">
+        </div>
+        <div data-product-id="${product.relatedProducts[1].id}" class="carousel-item">
+        <h5>${product.relatedProducts[1].name}</h5>
+          <img src="${product.relatedProducts[1].image}" class="d-block w-17" alt="productosRelacionados">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
       `
       const imageContainer = document.getElementById("image");
       const imagenes = product.images;
       
+    // mostramos productos relacionados//
 
       //Aca me carga cada imagen del indice
       imagenes.forEach((image, index) => {
@@ -152,10 +175,31 @@ document.addEventListener("DOMContentLoaded", async () => {
           // Creo un evento que al hacer click me muestre el contenido interno
           // de cada producto
           img.addEventListener("click", () =>{
-              indiceImage = index;
+              indiceImage = item.getAttribute(id)
               showImage();
           });
       });
+
+
+      // carucel
+
+      
+      const carouselItems = document.querySelectorAll('.carousel-item');
+
+      carouselItems.forEach(item => {
+        item.addEventListener('click', () => {
+          // Obtener el ID del producto relacionado desde el atributo data-product-id
+          let productoId = item.getAttribute('data-product-id');
+      
+          // Guardar el ID del producto en localStorage o en otra ubicación, según tus necesidades
+          localStorage.setItem('Product', productoId);
+      
+          // Redirigir la página a una URL que incluya el ID del producto
+          window.location.href = `/product?id=${productoId}`;
+        });
+      });
+      
+
 
       // Hacer una solicitud a la API
 const Comments_URL = `https://japceibal.github.io/emercado-api/products_comments/${productID}.json`;
@@ -251,7 +295,7 @@ if (user) {
   comentariosDiv.appendChild(newComment);
 
 } else {  // Usuario no registrado
-    alert('Debes estar registrado para realizar comentarios');
+    alert('Debes estar registrado para realizar comen tarios');
   
 }
 

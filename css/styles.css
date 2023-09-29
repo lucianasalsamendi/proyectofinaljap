@@ -442,5 +442,17 @@ img {
   margin: 0;
 }
 
+/* carusel boostrap*/
+#carouselExampleControls{
+  width: 400px;
+
+}
+.productosRelacionados{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5%;
+} 
 
 
