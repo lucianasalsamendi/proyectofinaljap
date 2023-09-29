@@ -13,17 +13,20 @@ nav a {
   text-decoration: none;
 }
 
-#logoutBtn, #userDisplay, #profileBtn{
+#userDisplay {
   color: #cacaca;
   text-decoration: none;
+  padding-right: 0;
+  padding-left: 0;
 }
 
-#logoutBtn:hover {
-  color: #fff;
+
+#logoutBtn {
+  color: #000000;
 }
 
-#profileBtn:hover {
-  color: #fff;
+#profileBtn {
+  color: #000000;
 }
 
 .bd-placeholder-img {
