@@ -85,8 +85,8 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
   
-  const productID = localStorage.getItem("Product");
-  const productInfo = document.getElementById("product-info");
+  let productID = localStorage.getItem("Product");
+  let productInfo = document.getElementById("product-info");
 
   const respondeID = await getJSONData(
       PRODUCT_INFO_URL + productID + EXT_TYPE
@@ -184,18 +184,20 @@ document.addEventListener("DOMContentLoaded", async () => {
       // carucel
 
       
-      const carouselItems = document.querySelectorAll('.carousel-item');
+      let carouselItems = document.querySelectorAll('.carousel-item');
 
       carouselItems.forEach(item => {
         item.addEventListener('click', () => {
           // Obtener el ID del producto relacionado desde el atributo data-product-id
-          let productoId = item.getAttribute('data-product-id');
+           productId = item.getAttribute('data-product-id');
       
           // Guardar el ID del producto en localStorage o en otra ubicación, según tus necesidades
-          localStorage.setItem('Product', productoId);
+          productInfo = localStorage.setItem('Product', productId);
       
           // Redirigir la página a una URL que incluya el ID del producto
-          window.location.href = `/product?id=${productoId}`;
+          window.location.href = `/product?id=${productId}`;
+          window.location.reload()
+
         });
       });
       
