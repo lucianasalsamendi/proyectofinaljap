@@ -1,9 +1,4 @@
-.jumbotron,
-.card-body,
-.container,
-.site-header {
-  font-family: 'Zerdana', serif !important;
-}
+
 
 .jumbotron .display-4 {
   font-weight: bold;
@@ -348,9 +343,9 @@ img {
 
 #informacion{
   margin-top: 3rem;
-  font-family: cursive;
+  /*font-family: cursive;*/
   font-size: 20px;
-  background-color: #aa9696b6; 
+  background-color: #c4b6b6b6; 
   padding: 10px; 
   border: 1px solid #ccc; 
   border-radius: 5px
@@ -369,7 +364,7 @@ img {
   border: none;
   border-radius: 5px; /* Esquinas redondeadas */
   cursor: pointer;
-  font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
+  /*font-family: Arial, sans-serif;  Cambia la fuente según tus preferencias */
   font-size: 16px; /* Tamaño de fuente */
   text-align: center;
   text-decoration: none;
@@ -381,7 +376,7 @@ img {
 }
 
 .titulo{
-  font-family: "Times New Roman", Times, serif;
+  /*font-family: "Times New Roman", Times, serif;*/
   font-size: 3rem; 
   font-weight: bold;
   color: rgba(240, 144, 1, 1);
@@ -397,7 +392,7 @@ img {
   border-radius: 5px; 
   width: 40%; 
   margin: 0 auto;
-  font-family: cursive;
+  /*font-family: cursive;*/
   flex: 1;
   
 }
@@ -433,7 +428,7 @@ img {
   border: 1px solid #ccc; 
   padding: 10px; 
   background-color: #f9f9f900; 
-  font-family: cursive;
+  /*font-family: cursive;*/
   border-radius: 5px; 
   width: 100%;
   align-items: 50%;
@@ -441,7 +436,7 @@ img {
 
 /* Estilo para el encabezado de cada comentario (nombre de usuario y fecha) */
 #comment-list li p:first-child {
-  font-weight: bold;
+  /*font-weight: bold;*/
   margin: 0;
 }
 
