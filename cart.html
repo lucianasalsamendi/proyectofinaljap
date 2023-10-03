@@ -31,16 +31,170 @@
           </li>
           <li class="nav-item">
           </li>
+          <div>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Menú
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <button class="btn btn-link" id="profileBtn">Perfil</button>
+                <button class="btn btn-link" id="logoutBtn">Cerrar sesión</button>
+            </ul>
+            </li>
+        </div>
         </ul>
       </div>
     </div>
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="text-center p-4">
+      <h2>Mi carrito</h2>
+
+<div id ="conteinerProduct"></div>
+
+
+
+      <p class="lead">Para finalizar la compra deberás completar los siguientes datos</p>
       </div>
-    </div>
+      <div class="row justify-content-md-center">
+      <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Datos del comprador</h4>
+          <form class="needs-validation" id="sell-info">
+          
+              <div class="row">
+              <div class="col-md-6 mb-3">
+              <label for="Name">Nombre y Apellido</label>
+              <input type="text" class="form-control" id="nombreComprador" value="" name="nombreComprador">
+              <div class="invalid-feedback">
+                  Ingresa un nombre
+              </div>
+              </div>
+          </div>
+          
+          <div class="row">
+              <div class="col-md-6 mb-3">
+              <label for="Name">Dirección</label>
+              <input type="text" class="form-control" id="direccionComprador" value="" name="direccionComprador">
+              <div class="invalid-feedback">
+                  Ingresa una dirección
+              </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-3 mb-3">
+              <label for="Name">Celular</label>
+              <input type="text" class="form-control" id="celularComprador" value="" name="celularComprador">
+              <div class="invalid-feedback">
+                  Ingresa un numero de contacto
+              </div>
+              </div>
+          </div>
+
+
+          <div class="row">
+              <div class="col-md-3 mb-3">
+              <label for="cedulaComprador">Cédula</label>
+              <input type="number" name="cedulaComprador" class="form-control" id="cedulaComprador" placeholder="" required="" value=""
+                  min="0">
+              <div class="invalid-feedback">
+                  Debe ingresar su número de cédula
+              </div>
+              </div>
+              
+              <h4 class="mb-3">Dirección del envío</h4>   
+
+              <div class="row">
+                  <div class="col-md-6 mb-3">
+                  <label for="Name">Calle</label>
+                  <input type="text" class="form-control" id="calleComprador" value="" name="calleComprador">
+                  <div class="invalid-feedback">
+                      Ingresa una calle
+                  </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-2 mb-3">
+                      <label for="Name">Número</label>
+                      <input type="text" class="form-control" id="numeroComprador" value="" name="numeroComprador">
+                      <div class="invalid-feedback">
+                          Ingresa un numero
+                      </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-6 mb-3">
+                          <label for="Name">Esquina</label>
+                          <input type="text" class="form-control" id="esquinaComprador" value="" name="esquinaComprador">
+                          <div class="invalid-feedback">
+                              Ingresa una esquina
+                          </div>
+                          </div>
+
+                          <form>
+                              <label for="tipoVivienda" style="margin-bottom: 10px;" >Tipo de vivienda:</label>
+                              <ul>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipoVivienda" id="casa" value="casa">
+                                    <label class="form-check-label" for="casa">
+                                      Casa
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipoVivienda" id="apartamento" value="apartamento">
+                                    <label class="form-check-label" for="apartamento">
+                                      Apartamento
+                                    </label>
+                                  </div>
+                              </ul>
+                            </form>
+                            
+                          <br>
+                          <br>
+                          <h4 class="mb-3">Datos del envío</h4>   
+                      
+                            <div class="col-md-4 mb-3">
+                                <label for="horarioEntrega" style="margin-bottom: 10px;">Horario de entrega</label>
+                                <select name="horarioEntrega" class="form-select custom-select d-block w-100" id="horarioEntrega" required>
+                                  <option value="" hidden selected>Seleccionar franja horaria</option>
+                                  <option>9:00 a 13:00 </option>
+                                  <option>15:00 a 19:00</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                  Ingresa una franja horaria
+                                </div>
+                              </div>
+                            </div>
+
+                            <form>
+                              <label for="tipoDeEnvio" style="margin-bottom: 10px;">Tipo de envío:</label>
+                              <ul>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="envioPremium" id="envioPremium" value="envioPremium">
+                                    <label class="form-check-label" for="envioPremium">
+                                      Premium 2 a 5 días (15%)
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="envioExpres" id="envioExpres" value="envioExpres">
+                                    <label class="form-check-label" for="envioExpres">
+                                      Expres 5 a 8 días (7%)
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                      <input class="form-check-input" type="radio" name="envioStandar" id="envioStandar" value="envioStandar">
+                                      <label class="form-check-label" for="envioStandar">
+                                        Standar 12 a 15 días (5%)
+                                      </label>
+                                    </div>
+                              </ul>
+                            </form>
+
+          <div id="btnComprar">
+          <button class="btn btn-primary btn-lg" type="submit">Comprar</button>
+          </div>
+    
   </main>
   <footer class="text-muted">
     <div class="container">
