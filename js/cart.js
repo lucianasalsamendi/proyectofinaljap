@@ -17,7 +17,9 @@ fetch(URL_userID)
                 const cartData = document.getElementById("cart-data");
                 cartData.innerHTML = "";
                 for (const article of articles) {
-                    cartData.innerHTML += `<div class="row">
+                    cartData.innerHTML +=
+                    `
+                    <div class="row">
                         <div class="">
                             <div class ="col-2">
                             <img src="${article.image}" class="img-thumbnail width=1px alt="${article.name}"
