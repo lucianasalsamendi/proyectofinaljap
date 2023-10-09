@@ -1,3 +1,5 @@
+
+
 /*!
  * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
@@ -310,4 +312,5 @@ starLabels.forEach(label => {
     label.classList.add('fa-star-empty');
 });
 })
+
 
