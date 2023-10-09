@@ -19,7 +19,7 @@ fetch(URL_userID)
                 articles.forEach(product => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td><img src="${product.image}" alt="${product.name}" id="imgcart" width="100"></td>
+                        <td><img src="${product.image}" alt="${product.name}" class="imgcart" width="100"></td>
                         <td>${product.name}</td>
                         <td>${product.currency}  ${product.unitCost}</td>
                         <td> <label for="cantidad"></label>
