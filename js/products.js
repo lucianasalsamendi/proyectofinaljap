@@ -1,6 +1,8 @@
+
 let productsarray = [];
 
 document.addEventListener('DOMContentLoaded', function () {
+  
   const id = localStorage.getItem('catID');
   const Categorias_URL = "https://japceibal.github.io/emercado-api/cats_products/" + id + ".json";
   fetch(Categorias_URL)
@@ -204,3 +206,4 @@ function ordenarPorRelevancia() {
 })();
 
 /*Aca termina dark and light*/
+

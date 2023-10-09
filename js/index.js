@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const userDisplay = document.getElementById("userDisplay");
     const logoutBtn = document.getElementById("logoutBtn");
     const profileBtn = document.getElementById("profileBtn");
+    const carrito = document.getElementById("carrito");
 
     if (guardado || noguardado) {
         let user = guardado || noguardado;
@@ -36,7 +37,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
         profileBtn.addEventListener("click", function() {
             window.location.href = "my-profile.html";
-        })
+          
+          })
+        
+          carrito.addEventListener("click", function(){
+            window.location.href ="cart.html";
+          })
+        
 });
 
 /*!
