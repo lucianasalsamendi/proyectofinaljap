@@ -43,6 +43,7 @@ fetch(URL_userID)
                 console.error('Error:', error);
             });
 
+            
 /*!
  * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
@@ -123,4 +124,27 @@ fetch(URL_userID)
     });
   })();
   
+<<<<<<< Updated upstream
   /*Aca termina dark and light*/
+=======
+  /*Aca termina dark and light*/
+
+  // Ejecutar una función después de 2000 milisegundos (2 segundos)
+setTimeout(function() {
+
+  const carrito = [];
+ // Obtener el elemento con el id 'btnCarrito'
+  const btnCarrito = document.getElementById('btnCarrito');
+
+  // Agregar un evento de clic al elemento
+  btnCarrito.addEventListener('click', () => {
+    Swal.fire(
+      'Felicidades!',
+      'Ha sido agregado al carrito con éxito.',
+      'success'
+    )
+  });
+
+}, 1000);
+
+>>>>>>> Stashed changes

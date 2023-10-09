@@ -111,8 +111,30 @@
   </nav>
   <main>
     <h2 style="text-align: center;">Carrito de compras</h2> <br>
+<<<<<<< Updated upstream
     <h4>Articulos a comprar</h4>
     <div id ="cart-data"></div>
+=======
+    <h4 class="container">Artículos a comprar</h4><br>
+<div class="row text-center">
+    <table>
+      <thead class="container">
+          <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Costo</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+          </tr>
+      </thead>
+      <tbody id ="cart-data">
+          <!-- Los datos se llenarán aquí -->
+      </tbody>
+  </table>
+  <hr>
+
+</div>
+>>>>>>> Stashed changes
     <div class="container">
       <div class="text-center p-4">
       
@@ -146,7 +168,7 @@
           <div class="row">
               <div class="col-md-3 mb-3">
               <label for="Name">Celular</label>
-              <input type="text" class="form-control" id="celularComprador" value="" name="celularComprador">
+              <input type="number" class="form-control" id="celularComprador" value="" name="celularComprador" required>
               <div class="invalid-feedback">
                   Ingresa un numero de contacto
               </div>
@@ -157,8 +179,7 @@
           <div class="row">
               <div class="col-md-3 mb-3">
               <label for="cedulaComprador">Cédula</label>
-              <input type="number" name="cedulaComprador" class="form-control" id="cedulaComprador" placeholder="" required="" value=""
-                  min="0">
+              <input type="number" name="cedulaComprador" class="form-control" id="cedulaComprador" placeholder="" value="number" required min="0">
               <div class="invalid-feedback">
                   Debe ingresar su número de cédula
               </div>
@@ -178,7 +199,7 @@
                   <div class="row">
                       <div class="col-md-2 mb-3">
                       <label for="Name">Número</label>
-                      <input type="text" class="form-control" id="numeroComprador" value="" name="numeroComprador">
+                      <input type="number" class="form-control" id="numeroComprador" value="" name="numeroComprador" required>
                       <div class="invalid-feedback">
                           Ingresa un numero
                       </div>
@@ -194,7 +215,7 @@
                           </div>
 
                           <form>
-                              <label for="tipoVivienda" style="margin-bottom: 10px;" >Tipo de vivienda:</label>
+                              <label for="tipoVivienda" style="margin-bottom: 10px;">Tipo de vivienda:</label>
                               <ul>
                                   <div class="form-check">
                                     <input class="form-check-input" type="radio" name="tipoVivienda" id="casa" value="casa">
@@ -204,9 +225,8 @@
                                   </div>
                                   <div class="form-check">
                                     <input class="form-check-input" type="radio" name="tipoVivienda" id="apartamento" value="apartamento">
-                                    <label class="form-check-label" for="apartamento">
-                                      Apartamento
-                                    </label>
+                                    <label class="form-check-label" for="apartamento">Apartamento</label>
+                                    
                                   </div>
                               </ul>
                             </form>
