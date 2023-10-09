@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
 
-      // carucel
+      // carrusel
 
       
       let carouselItems = document.querySelectorAll('.carousel-item');
