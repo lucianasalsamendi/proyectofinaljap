@@ -456,6 +456,11 @@ img {
   cursor: pointer;
 }
 
+
+.estrellas-amarillas{
+color: yellow;
+}
+
 .image{
   display: flex;
   justify-content: center;
@@ -477,3 +482,4 @@ img {
 #comment{
  width: 70%;
 }
+

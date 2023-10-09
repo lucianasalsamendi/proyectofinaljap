@@ -236,7 +236,7 @@ function convertirPuntuacionAEstrellas(score) {
   for (let i = 0; i < score; i++) {
     estrellas += '★'; // Agregar una estrella por cada punto
   }
-  return estrellas;
+  return `<span class="estrellas-amarillas">${estrellas}</span>`;
 }
 // cambio de estrellas al hacer click en ellas
 var starLabels = document.querySelectorAll('.stars label');
