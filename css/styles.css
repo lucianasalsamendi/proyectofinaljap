@@ -457,3 +457,29 @@ img {
 }
 
 
+.estrellas-amarillas{
+color: yellow;
+}
+
+.image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+/* imagenes de product-info */
+.image-grid{
+  width: 35%; /* Ancho de la imagen de fondo */ 
+  margin-right: 20px;
+  margin-top: 20px;
+  border: 2px solid #000; /* Borde negro */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+#informacion{
+  width: 75%;
+}
+#comment{
+ width: 70%;
+}
+
