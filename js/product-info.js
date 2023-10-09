@@ -215,9 +215,10 @@ fetch(Comments_URL)
         comments.forEach(comentario => {
             const comentarioElement = document.createElement('li');
             // intentar hacer los score a star const stars = nombre_function(comentario.score)
-            
+            const estrellas = convertirPuntuacionAEstrellas(comentario.score);
+
             comentarioElement.innerHTML = `
-                <p><strong>${comentario.user}</strong> ${comentario.dateTime} - ${comentario.score}</p>
+                <p><strong>${comentario.user}</strong> ${comentario.dateTime} - ${estrellas}</p>
                 <p><strong>Comentario:</strong> ${comentario.description}</p>
                
             `;
@@ -230,7 +231,13 @@ fetch(Comments_URL)
     
 }) 
 
-
+function convertirPuntuacionAEstrellas(score) {
+  let estrellas = '';
+  for (let i = 0; i < score; i++) {
+    estrellas += '★'; // Agregar una estrella por cada punto
+  }
+  return estrellas;
+}
 // cambio de estrellas al hacer click en ellas
 var starLabels = document.querySelectorAll('.stars label');
 var selectedRating = document.getElementById('selected-rating');
