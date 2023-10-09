@@ -16,28 +16,19 @@ fetch(URL_userID)
                 const articles = data.articles;
                 const cartData = document.getElementById("cart-data");
                 cartData.innerHTML = "";
-                for (const article of articles) {
-                    cartData.innerHTML +=
-                    `
-                    <div class="row">
-                        <div class="">
-                            <div class ="col-2">
-                            <img src="${article.image}" class="img-thumbnail width=1px alt="${article.name}"
-                        </div>
-                        <div class ="">
-                           ${article.name}
-                        </div>
-                        <div class=""
-                            <label for="cantidad"></label>
-                            <input type="number" value="${article.count}" min="1" step="1" id="cantidad">
-                        </div>
-                         <div class ="">
-                            ${article.unitCost} ${article.currency}
-                        </div>
-                        </div>
-                            </div>
+                articles.forEach(product => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><img src="${product.image}" alt="${product.name}" id="imgcart" width="100"></td>
+                        <td>${product.name}</td>
+                        <td>${product.currency}  ${product.unitCost}</td>
+                        <td> <label for="cantidad"></label>
+                        <input type="number" value="${product.count}" min="1" step="1" id="cantidad"></td>
+                        <td>${product.currency}  ${product.unitCost}</td>
+                        
                     `;
-                }
+                    cartData.appendChild(row);
+                });
             })
             .catch(error => {
                 console.error('Error:', error);
