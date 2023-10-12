@@ -180,7 +180,46 @@ document.addEventListener("DOMContentLoaded", async () => {
               indiceImage = item.getAttribute(id)
               showImage();
           });
-      });
+          
+});
+
+   // Agregar al carrito
+   const btnCarrito = document.getElementById('btnCarrito');
+   btnCarrito.addEventListener('click', () => {
+       // Obtén el carrito actual desde el localStorage
+       let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+       // Crea un objeto con los datos del producto actual
+       const producto = {
+           id: product.id,
+           name: product.name,
+           price: product.cost,
+           quantity: 1
+       };
+
+       // Comprueba si el producto ya está en el carrito
+       const productoExistente = carrito.find(item => item.id === producto.id);
+
+       if (productoExistente) {
+           // Si el producto ya existe en el carrito, incrementa la cantidad.
+           productoExistente.quantity += 1;
+       } else {
+           // Si el producto no está en el carrito, agrégalo.
+           carrito.push(producto);
+       }
+
+       // Guarda el carrito actualizado en el localStorage
+       localStorage.setItem('carrito', JSON.stringify(carrito));
+
+       // Notifica al usuario que el producto se agregó al carrito
+       Swal.fire(
+           'Felicidades!',
+           'Ha sido agregido al carrito con éxito.',
+           'success'
+       );
+   });
+
+});
 
 
 
@@ -230,7 +269,6 @@ fetch(Comments_URL)
         console.error('Error al obtener comentarios:', error);
     });
     
-}) 
 
 function convertirPuntuacionAEstrellas(score) {
   let estrellas = '';
