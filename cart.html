@@ -45,7 +45,12 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="cart.html">Mi carrito</a>
           </li>
+
+          <li class="nav-item">
+          </li>
+
           <div>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,9 +58,14 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="my-profile.html">Perfil</a></li>
+
               <li><a class="dropdown-item" href="cart.html">Mi Carrito</a></li>
               <hr>
               <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+
+              <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+              <li><a class="dropdown-item" href="cart.html">Mi Carrito</a></li>
+
             </ul>
             </li>
         </div>
@@ -110,6 +120,7 @@
   <main>
     <h2 style="text-align: center;">Carrito de compras</h2> <br>
 
+
     <div id ="cart-data"></div>
 
     <h4 class="container">Artículos a comprar</h4><br>
@@ -117,6 +128,11 @@
     <h4 class="container">Articulos a comprar</h4><br>
 
 <div class="row text-center">
+
+    <h4 class="container" style="text-align: center;">Articulos a comprar</h4><br>
+
+    <div class="row text-center">
+
     <table>
       <thead class="container">
           <tr>
@@ -251,25 +267,62 @@
                               <label for="tipoDeEnvio" style="margin-bottom: 10px;">Tipo de envío:</label>
                               <ul>
                                   <div class="form-check">
+
                                     <input class="form-check-input" type="radio" name="envioPremium" id="envioPremium" value="envioPremium">
+
+                                    <input class="form-check-input" type="radio" name="envio" id="envioPremium" value="envioPremium">
+
                                     <label class="form-check-label" for="envioPremium">
                                       Premium 2 a 5 días (15%)
                                     </label>
                                   </div>
                                   <div class="form-check">
+
                                     <input class="form-check-input" type="radio" name="envioExpres" id="envioExpres" value="envioExpres">
+
+                                    <input class="form-check-input" type="radio" name="envio" id="envioExpres" value="envioExpres">
+
                                     <label class="form-check-label" for="envioExpres">
                                       Expres 5 a 8 días (7%)
                                     </label>
                                   </div>
                                   <div class="form-check">
+
                                       <input class="form-check-input" type="radio" name="envioStandar" id="envioStandar" value="envioStandar">
+
+                                      <input class="form-check-input" type="radio" name="envio" id="envioStandar" value="envioStandar">
+
                                       <label class="form-check-label" for="envioStandar">
                                         Standar 12 a 15 días (5%)
                                       </label>
                                     </div>
                               </ul>
+
                             </form>
+
+                              <h5>Costos</h5>
+      <div class="row g-3">
+        <ul class="list-group" id="costos">
+          <li class="list-group-item"><b>Subtotal</b><span class="row"></span>
+            <span class="row">
+              <p class="col-7">Costo unitario del producto por cantidad</p>
+            </span>
+            <p class="text-end"> USD <span id="subT"></span></p>
+          </li>
+          <li class="list-group-item"><b>Costo de envío</b><span class="row"></span>
+            <span class="row">
+              <p class="col-7">Según el tipo de envío</p>
+            </span>
+            <p class="text-end"> USD <span id="costo"></span></p>
+          </li>
+          <li class="list-group-item"><b>Total</b><span class="row"></span>
+            <b>
+              <p class="text-end"> USD <span id="total"></span></p>
+            </b>
+          </li>
+        
+          </form>
+
 
           <div id="btnComprar">
           <button class="btn btn-primary btn-lg" type="submit">Comprar</button>

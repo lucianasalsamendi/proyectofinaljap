@@ -1,9 +1,4 @@
-.jumbotron,
-.card-body,
-.container,
-.site-header {
-  font-family: 'Zerdana', serif !important;
-}
+
 
 .jumbotron .display-4 {
   font-weight: bold;
@@ -11,6 +6,22 @@
 
 nav a {
   text-decoration: none;
+}
+
+#userDisplay {
+  color: #cacaca;
+  text-decoration: none;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+
+#logoutBtn {
+  color: #000000;
+}
+
+#profileBtn {
+  color: #000000;
 }
 
 .bd-placeholder-img {
@@ -202,7 +213,7 @@ html,
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: #f5f5f500;
 }
 
 .form-signin {
@@ -235,4 +246,243 @@ html,
 .text-muted {
   width: 100%;
 
-}}
+}
+
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+   
+  }
+  
+  .buttons-container {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+
+    .button {
+      float: right;
+      width:50% ;
+      height: 100%;
+      padding: 8px 16px;
+      background-color: #32a0b8;
+      color: rgb(70, 66, 66);
+      border: none;
+      cursor: pointer;
+      margin-right: 10%;
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+    
+    .right-align {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }}
+  
+    .buttons-container button {
+      margin-right: 10px; /* Ajusta el valor según el espacio que desees entre los botones */
+  }
+
+
+
+#buscador {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  margin-right: 5px
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  max-width: 100%; 
+  max-height: 100%; 
+    
+}
+
+/* Productos comentarios */
+
+/* Estilo general de la sección de comentarios */
+#name {
+  text-align: center;
+  background-color: #ffffff5d; /* Fondo blanco */
+  color: #000; /* Texto negro */
+  padding: 20px;
+  margin: 20px;
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000; /* Texto negro */
+  padding: 20px;
+  margin: 20px;
+  flex-direction: column;
+}
+img {
+  width: 400px; /* Ancho de la imagen de fondo */ 
+  margin-right: 20px;
+  margin-top: 20px;
+  border: 2px solid #000; /* Borde negro */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+#informacion{
+  margin-top: 3rem;
+  /*font-family: cursive;*/
+  font-size: 20px;
+  background-color: #c4b6b6b6; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px
+
+}
+.botonCarrito{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnCarro{
+  background-color: rgba(240, 144, 1, 1);
+  color: #fff; /* Texto blanco */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px; /* Esquinas redondeadas */
+  cursor: pointer;
+  /*font-family: Arial, sans-serif;  Cambia la fuente según tus preferencias */
+  font-size: 16px; /* Tamaño de fuente */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+.btnCarro:hover {
+  background-color: rgba(200, 120, 0, 1); /* Cambia el color al pasar el mouse */
+}
+
+.titulo{
+  /*font-family: "Times New Roman", Times, serif;*/
+  font-size: 3rem; 
+  font-weight: bold;
+  color: rgba(240, 144, 1, 1);
+  text-align: center;
+  margin: 10px ;
+}
+/*comentario y estrellas*/
+
+.containerComentario {
+  background-color: #f0f0f000; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  width: 40%; 
+  margin: 0 auto;
+  /*font-family: cursive;*/
+  flex: 1;
+  
+}
+
+.stars {
+  display: inline-block;
+}
+.stars label {
+  font-size: 30px;
+  cursor: pointer;
+}
+.fa-star-empty::before {
+  content: "\2606"; /* Estrella vacía */
+  color: rgba(107, 107, 4, 0.788);
+}
+.fa-star-filled::before {
+  content: "\2605"; /* Estrella llena */
+  color: rgba(107, 107, 4, 0.788);
+}
+
+/* Estilo para el contenedor de comentarios */
+#comment-list {
+  list-style-type: none; 
+  padding: 0; 
+  margin: 0; 
+  flex: 1;
+  
+}
+
+/* Estilo para cada comentario */
+#comment-list li {
+  margin-bottom: 20px; 
+  border: 1px solid #ccc; 
+  padding: 10px; 
+  background-color: #f9f9f900; 
+  /*font-family: cursive;*/
+  border-radius: 5px; 
+  width: 100%;
+  align-items: 50%;
+}
+
+/* Estilo para el encabezado de cada comentario (nombre de usuario y fecha) */
+#comment-list li p:first-child {
+  /*font-weight: bold;*/
+  margin: 0;
+}
+
+/* carusel boostrap*/
+#carouselExampleControls{
+  width: 400px;
+
+}
+.productosRelacionados{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5%;
+} 
+.carousel-item:hover{
+  cursor: pointer;
+}
+
+
+.estrellas-amarillas{
+color: yellow;
+}
+
+.image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+/* imagenes de product-info */
+.image-grid{
+  width: 35%; /* Ancho de la imagen de fondo */ 
+  margin-right: 20px;
+  margin-top: 20px;
+  border: 2px solid #000; /* Borde negro */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+#informacion{
+  width: 75%;
+}
+#comment{
+ width: 70%;
+}
+
+.img-fluid {
+  width: 100px;
+}
