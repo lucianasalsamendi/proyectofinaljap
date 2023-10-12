@@ -111,14 +111,9 @@
   </nav>
   <main>
     <h2 style="text-align: center;">Carrito de compras</h2> <br>
+    <h4 class="container" style="text-align: center;">Articulos a comprar</h4><br>
 
-    <div id ="cart-data"></div>
-
-    <h4 class="container">Artículos a comprar</h4><br>
-
-    <h4 class="container">Articulos a comprar</h4><br>
-
-<div class="row text-center">
+    <div class="row text-center">
     <table>
       <thead class="container">
           <tr>
@@ -271,7 +266,28 @@
                                       </label>
                                     </div>
                               </ul>
-                            </form>
+                              <h5>Costos</h5>
+      <div class="row g-3">
+        <ul class="list-group" id="costos">
+          <li class="list-group-item"><b>Subtotal</b><span class="row"></span>
+            <span class="row">
+              <p class="col-7">Costo unitario del producto por cantidad</p>
+            </span>
+            <p class="text-end"> USD <span id="subT"></span></p>
+          </li>
+          <li class="list-group-item"><b>Costo de envío</b><span class="row"></span>
+            <span class="row">
+              <p class="col-7">Según el tipo de envío</p>
+            </span>
+            <p class="text-end"> USD <span id="costo"></span></p>
+          </li>
+          <li class="list-group-item"><b>Total</b><span class="row"></span>
+            <b>
+              <p class="text-end"> USD <span id="total"></span></p>
+            </b>
+          </li>
+        
+          </form>
 
           <div id="btnComprar">
           <button class="btn btn-primary btn-lg" type="submit">Comprar</button>

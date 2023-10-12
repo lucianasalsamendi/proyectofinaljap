@@ -1,40 +1,29 @@
 // URL de la API
-const URL_userID = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
+const CARTURL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 
+document.addEventListener('DOMContentLoaded', async function () {
+  const listado = document.getElementById('cart-data');
+  const listadoInfoCart = await getJSONData(CARTURL);
 
+  listadoInfoCart.data.articles.forEach(function (cart) {
+    listado.innerHTML += getHTML(cart)
+    subTotal (cart.unitCost)
+  })
 
-// Realiza una solicitud Fetch a la API
-fetch(URL_userID)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('La solicitud no fue exitosa');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Procesa los datos y muestra en pantalla
-                const articles = data.articles;
-                const cartData = document.getElementById("cart-data");
-                cartData.innerHTML = "";
-                articles.forEach(product => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td><img src="${product.image}" alt="${product.name}" class="imgcart" width="100"></td>
-                        <td>${product.name}</td>
-                        <td>${product.currency}  ${product.unitCost}</td>
-                        <td> <label for="cantidad"></label>
-                        <input type="number" value="${product.count}" min="1" step="1" id="cantidad"></td>
-                        <td>${product.currency}  ${product.unitCost}</td>
-                        
-                    `;
-                    cartData.appendChild(row);
-                });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+});
 
-            
+function getHTML(cart) {
+    return `<tr>
+    <th scope="row"><img class="img-fluid" width="60" height="60"src="${cart.image}" alt=""></th>
+    <td><p>${cart.name}</p></td>
+    <td>${cart.currency} ${cart.unitCost}</td> 
+    <td><input id="cantidad" type="number" min="1" max="100" value="${cart.count}" oninput="subTotal(${cart.unitCost})"></td>
+    <td><strong> ${cart.currency}<span id="multiplicacion">  ${cart.unitCost * cart.count}</span></strong></td>
+    <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+  </svg><td>
+    </tr>`;
+};
 /*!
  * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
@@ -117,7 +106,7 @@ fetch(URL_userID)
   
   /*Aca termina dark and light*/
 
-
+  
   // Ejecutar una función después de 2000 milisegundos (2 segundos)
 setTimeout(function() {
 
@@ -135,4 +124,68 @@ setTimeout(function() {
   });
 
 }, 1000);
+
+
+
+const costo = document.getElementById('costo');
+const total = document.getElementById('total');
+const premium = document.getElementById('envioPremium');
+const express = document.getElementById('envioExpres');
+const standard = document.getElementById('envioStandar');
+let porcentaje = "5"
+
+function subTotal(precio) {
+  const cantidadCart = document.getElementById('cantidad').value
+  const multiplicacionCart = document.getElementById('multiplicacion')
+  multiplicacionCart.innerHTML = cantidadCart * precio
+  document.getElementById("subT").innerHTML = cantidadCart * precio
+  if (porcentaje > 0)
+  costo.innerHTML = calculoEnvio (porcentaje)
+  if (costo.textContent == 0) {
+    total.innerHTML = subT.textContent
+  }
+  else {
+    total.innerHTML = costoTotal ().toString ();
+  }
+}
+
+function calculoEnvio (porcentaje){
+  if (porcentaje == 5){
+    return subT.textContent * 0.05
+  }
+  if (porcentaje == 7){
+    return subT.textContent * 0.07
+  }
+  if (porcentaje == 15){
+    return subT.textContent * 0.15
+  }
+}
+
+function costoTotal () {
+  var precio = parseInt(subT.textContent)
+  var porcentajePorPrecio = parseInt (costo.textContent)
+  return precio + porcentajePorPrecio
+}
+
+premium.addEventListener ('click', function(){
+  if (premium.checked) {
+  porcentaje = 15
+  costo.innerHTML= calculoEnvio (porcentaje)
+  total.innerHTML = costoTotal ().toString();
+  }
+})
+
+express.addEventListener ('click', function() {
+  if (express.checked) {
+  porcentaje= 7
+  costo.innerHTML= calculoEnvio (porcentaje)
+  }
+})
+
+standard.addEventListener ('click', function() {
+  if (standard.checked) {
+  porcentaje= 5
+  costo.innerHTML= calculoEnvio (porcentaje)
+  }
+})
 
