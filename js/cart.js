@@ -34,6 +34,7 @@ fetch(URL_userID)
                 console.error('Error:', error);
             });
 
+            
 /*!
  * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
@@ -116,6 +117,7 @@ fetch(URL_userID)
   
   /*Aca termina dark and light*/
 
+
   // Ejecutar una función después de 2000 milisegundos (2 segundos)
 setTimeout(function() {
 
@@ -133,3 +135,4 @@ setTimeout(function() {
   });
 
 }, 1000);
+
