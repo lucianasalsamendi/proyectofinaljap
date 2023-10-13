@@ -121,17 +121,22 @@ const standard = document.getElementById('envioStandar');
 let porcentaje = "5"
 
 function subTotal(precio, cantidad, index) {
+  // Calcula el subtotal para este elemento
   const multiplicacionCart = document.getElementById(`multiplicacion_${index}`);
   multiplicacionCart.innerHTML = precio * cantidad;
 
-  // Calculate subtotals for all items
+  // Calcula la suma de todos los subtotales
   const subtotalElements = document.querySelectorAll('[id^="multiplicacion_"]');
   let totalSubtotal = 0;
   subtotalElements.forEach((element) => {
     totalSubtotal += parseInt(element.textContent);
   });
 
-  // Update the total cost based on shipping method
+  // Actualiza el elemento HTML con el subtotal total
+  const subtotalTotalElement = document.getElementById("subT");
+  subtotalTotalElement.innerHTML = totalSubtotal;
+
+  // Actualiza el total basado en el envío
   if (porcentaje > 0) {
     costo.innerHTML = calculoEnvio(porcentaje);
   }
@@ -143,49 +148,43 @@ function subTotal(precio, cantidad, index) {
   }
 }
 
-
-
-
-
-function calculoEnvio (porcentaje){
-  if (porcentaje == 5){
-    return subT.textContent * 0.05
+  function calculoEnvio(porcentaje) {
+    return subT.textContent * (porcentaje / 100);
   }
-  if (porcentaje == 7){
-    return subT.textContent * 0.07
+  
+  function costoTotal(subTotal) {
+    var precio = parseInt(subTotal);
+    var porcentajePorPrecio = parseInt(costo.textContent);
+    return precio + porcentajePorPrecio;
   }
-  if (porcentaje == 15){
-    return subT.textContent * 0.15
-  }
-}
-
-function costoTotal () {
-  var precio = parseInt(subT.textContent)
-  var porcentajePorPrecio = parseInt (costo.textContent)
-  return precio + porcentajePorPrecio
-}
-
-premium.addEventListener ('click', function(){
-  if (premium.checked) {
-  porcentaje = 15
-  costo.innerHTML= calculoEnvio (porcentaje)
-  total.innerHTML = costoTotal ().toString();
-  }
-})
-
-express.addEventListener ('click', function() {
-  if (express.checked) {
-  porcentaje= 7
-  costo.innerHTML= calculoEnvio (porcentaje)
-  }
-})
-
-standard.addEventListener ('click', function() {
-  if (standard.checked) {
-  porcentaje= 5
-  costo.innerHTML= calculoEnvio (porcentaje)
-  }
-})
+  
+  premium.addEventListener('click', function () {
+    if (premium.checked) {
+      porcentaje = 15;
+      costo.innerHTML = calculoEnvio(porcentaje);
+      total.innerHTML = costoTotal(parseInt(total.textContent)).toString();
+    }
+  });
+  
+  express.addEventListener('click', function () {
+    if (express.checked) {
+      porcentaje = 7;
+      costo.innerHTML = calculoEnvio(porcentaje);
+      total.innerHTML = costoTotal(parseInt(total.textContent)).toString();
+    }
+  });
+  
+  standard.addEventListener('click', function () {
+    if (standard.checked) {
+      porcentaje = 5;
+      costo.innerHTML = calculoEnvio(porcentaje);
+    }
+  });
+  
+  
+  
+  
+  
 
 
 
