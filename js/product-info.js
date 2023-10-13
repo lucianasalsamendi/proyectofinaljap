@@ -182,70 +182,41 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
           
 });
+// Agregar al carrito
+const btnCarrito = document.getElementById('btnCarrito');
+btnCarrito.addEventListener('click', () => {
+    // Obtén el carrito actual desde el localStorage
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-   // Agregar al carrito
-   const btnCarrito = document.getElementById('btnCarrito');
-   btnCarrito.addEventListener('click', () => {
-       // Obtén el carrito actual desde el localStorage
-       let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    // Crea un objeto con los datos del producto actual
+    const producto = {
+        id: product.id,
+        name: product.name,
+        price: product.cost,
+        quantity: 1
+    };
 
-       // Crea un objeto con los datos del producto actual
-       const producto = {
-           id: product.id,
-           name: product.name,
-           price: product.cost,
-           quantity: 1
-       };
+    // Comprueba si el producto ya está en el carrito
+    const productoExistente = carrito.find(item => item.id === producto.id);
 
-       // Comprueba si el producto ya está en el carrito
-       const productoExistente = carrito.find(item => item.id === producto.id);
+    if (productoExistente) {
+        // Si el producto ya existe en el carrito, incrementa la cantidad.
+        productoExistente.quantity += 1;
+    } else {
+        // Si el producto no está en el carrito, agrégalo.
+        carrito.push(producto);
+    }
 
-       if (productoExistente) {
-           // Si el producto ya existe en el carrito, incrementa la cantidad.
-           productoExistente.quantity += 1;
-       } else {
-           // Si el producto no está en el carrito, agrégalo.
-           carrito.push(producto);
-       }
+    // Guarda el carrito actualizado en el localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 
-       // Guarda el carrito actualizado en el localStorage
-       localStorage.setItem('carrito', JSON.stringify(carrito));
-
-       // Notifica al usuario que el producto se agregó al carrito
-       Swal.fire(
-           'Felicidades!',
-           'Ha sido agregido al carrito con éxito.',
-           'success'
-       );
-   });
-
+    // Notifica al usuario que el producto se agregó al carrito
+    Swal.fire(
+        'Felicidades!',
+        'Ha sido agregido al carrito con éxito.',
+        'success'
+    );
 });
-
-
-
-      // carrusel
-
-      
-      let carouselItems = document.querySelectorAll('.carousel-item');
-
-      carouselItems.forEach(item => {
-        item.addEventListener('click', () => {
-          // Obtener el ID del producto relacionado desde el atributo data-product-id
-           productId = item.getAttribute('data-product-id');
-      
-          // Guardar el ID del producto en localStorage o en otra ubicación, según tus necesidades
-          productInfo = localStorage.setItem('Product', productId);
-      
-          // Redirigir la página a una URL que incluya el ID del producto
-          window.location.href = `/product?id=${productId}`;
-          window.location.reload()
-
-        });
-      });
-      
-
-
-      // Hacer una solicitud a la API
 const Comments_URL = `https://japceibal.github.io/emercado-api/products_comments/${productID}.json`;
 fetch(Comments_URL)
     .then(response => response.json())
@@ -277,6 +248,33 @@ function convertirPuntuacionAEstrellas(score) {
   }
   return `<span class="estrellas-amarillas">${estrellas}</span>`;
 }
+
+});
+
+      // carrusel
+
+      
+      let carouselItems = document.querySelectorAll('.carousel-item');
+
+      carouselItems.forEach(item => {
+        item.addEventListener('click', () => {
+          // Obtener el ID del producto relacionado desde el atributo data-product-id
+           productId = item.getAttribute('data-product-id');
+      
+          // Guardar el ID del producto en localStorage o en otra ubicación, según tus necesidades
+          productInfo = localStorage.setItem('Product', productId);
+      
+          // Redirigir la página a una URL que incluya el ID del producto
+          window.location.href = `/product?id=${productId}`;
+          window.location.reload()
+
+        });
+      });
+      
+
+
+// Hacer una solicitud a la API
+
 // cambio de estrellas al hacer click en ellas
 var starLabels = document.querySelectorAll('.stars label');
 var selectedRating = document.getElementById('selected-rating');
@@ -360,5 +358,4 @@ starLabels.forEach(label => {
 });
 })
 
-
-
+   
