@@ -1,5 +1,3 @@
-
-
 .jumbotron .display-4 {
   font-weight: bold;
 }
@@ -13,15 +11,6 @@ nav a {
   text-decoration: none;
   padding-right: 0;
   padding-left: 0;
-}
-
-
-#logoutBtn {
-  color: #000000;
-}
-
-#profileBtn {
-  color: #000000;
 }
 
 .bd-placeholder-img {
@@ -79,7 +68,7 @@ nav a {
 }
 
 footer {
-  padding-top: 3rem;
+  padding-top: 5rem;
   padding-bottom: 3rem;
 }
 
@@ -302,7 +291,6 @@ html,
 .logo {
   width: 100%;
   height: 100%;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -335,8 +323,6 @@ html,
 }
 img {
   width: 400px; /* Ancho de la imagen de fondo */ 
-  margin-right: 20px;
-  margin-top: 20px;
   border: 2px solid #000; /* Borde negro */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
 }
@@ -483,6 +469,6 @@ color: yellow;
  width: 70%;
 }
 
-.img-fluid {
+.imgcart{
   width: 100px;
 }

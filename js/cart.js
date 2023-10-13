@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     listado.innerHTML += getHTML(cart)
     subTotal (cart.unitCost)
   })
-
 });
 
 function getHTML(cart) {
@@ -105,27 +104,6 @@ function getHTML(cart) {
   })();
   
   /*Aca termina dark and light*/
-
-  
-  // Ejecutar una función después de 2000 milisegundos (2 segundos)
-setTimeout(function() {
-
-  const carrito = [];
- // Obtener el elemento con el id 'btnCarrito'
-  const btnCarrito = document.getElementById('btnCarrito');
-
-  // Agregar un evento de clic al elemento
-  btnCarrito.addEventListener('click', () => {
-    Swal.fire(
-      'Felicidades!',
-      'Ha sido agregado al carrito con éxito.',
-      'success'
-    )
-  });
-
-}, 1000);
-
-
 
 const costo = document.getElementById('costo');
 const total = document.getElementById('total');
