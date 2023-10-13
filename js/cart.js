@@ -178,6 +178,7 @@ function subTotal(precio, cantidad, index) {
     if (standard.checked) {
       porcentaje = 5;
       costo.innerHTML = calculoEnvio(porcentaje);
+      total.innerHTML = costoTotal(parseInt(total.textContent)).toString();
     }
   });
   
