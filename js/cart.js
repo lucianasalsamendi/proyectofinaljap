@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 function getHTML(cart, index) {
   return `<tr>
-      <th scope="row"><img class="img-fluid" width="60" height="60" src="${cart.image}" alt=""></th>
+      <td><img class="img-fluid" width="60" height="60" src="${cart.image}" alt=""></td>
       <td><p>${cart.name}</p></td>
       <td>${cart.currency} ${cart.unitCost}</td> 
       <td><input id="cantidad_${index}" type="number" min="1" max="100" value="${cart.count}" oninput="subTotal(${cart.unitCost}, this.value, ${index})"></td>
