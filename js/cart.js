@@ -148,46 +148,30 @@ function subTotal(precio, cantidad, index) {
   }
 }
 
-  function calculoEnvio(porcentaje) {
-    return subT.textContent * (porcentaje / 100);
+function calculoEnvio(porcentaje, subTotal) {
+  return (subTotal * porcentaje) / 100;
+}
+
+function costoTotal(subTotal, porcentajeEnvio) {
+  return subTotal + porcentajeEnvio;
+}
+
+function calcularCostoEnvio() {
+  var subTotal = parseFloat(subT.textContent);
+  var porcentajeEnvio = 0;
+
+  if (premium.checked) {
+    porcentajeEnvio = 15;
+  } else if (express.checked) {
+    porcentajeEnvio = 7;
+  } else if (standard.checked) {
+    porcentajeEnvio = 5;
   }
-  
-  function costoTotal(subTotal) {
-    var precio = parseInt(subTotal);
-    var porcentajePorPrecio = parseInt(costo.textContent);
-    return precio + porcentajePorPrecio;
-  }
-  
-  premium.addEventListener('click', function () {
-    if (premium.checked) {
-      porcentaje = 15;
-      costo.innerHTML = calculoEnvio(porcentaje);
-      total.innerHTML = costoTotal(parseInt(total.textContent)).toString();
-    }
-  });
-  
-  express.addEventListener('click', function () {
-    if (express.checked) {
-      porcentaje = 7;
-      costo.innerHTML = calculoEnvio(porcentaje);
-      total.innerHTML = costoTotal(parseInt(total.textContent)).toString();
-    }
-  });
-  
-  standard.addEventListener('click', function () {
-    if (standard.checked) {
-      porcentaje = 5;
-      costo.innerHTML = calculoEnvio(porcentaje);
-      total.innerHTML = costoTotal(parseInt(total.textContent)).toString();
-    }
-  });
-  
-  
-  
-  
-  
 
+  costo.innerHTML = calculoEnvio(porcentajeEnvio, subTotal).toFixed(0); 
+  total.innerHTML = costoTotal(subTotal, parseFloat(costo.textContent)).toFixed(0); 
+}
 
-
-
-
+premium.addEventListener('click', calcularCostoEnvio);
+express.addEventListener('click', calcularCostoEnvio);
+standard.addEventListener('click', calcularCostoEnvio);
