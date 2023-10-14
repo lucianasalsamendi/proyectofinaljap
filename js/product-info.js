@@ -197,7 +197,6 @@ btnCarrito.addEventListener('click', () => {
         count: 1,
         currency: product.currency,
     };
-
     // Comprueba si el producto ya está en el carrito
     const productoExistente = carrito.find(item => item.id === producto.id);
 

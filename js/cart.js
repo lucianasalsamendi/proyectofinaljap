@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   cartItems.forEach(function (cart, index) {
     listado.innerHTML += getHTML(cart, index);
-    subTotal(cart.unitCost, cart.count, index); // Pass quantity and index
+    subTotal(cart.unitCost, cart.count, index);
   });
 
   listadoInfoCart.data.articles.forEach(function (cart) {
