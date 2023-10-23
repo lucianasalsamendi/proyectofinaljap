@@ -46,7 +46,32 @@
       </div>
     </div>
   </nav>
+<<<<<<< Updated upstream
   <main>
+=======
+  <main><br>
+    <h2 style="text-align: center;">Carrito de compras</h2> <br>
+    <h4 class="container">Artículos a comprar</h4><br>
+
+   <div class="row text-center">
+   <table>
+      <thead class="container">
+          <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Costo</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+          </tr>
+      </thead>
+      <tbody id ="cart-data">
+          <!-- Los datos se llenarán aquí -->
+      </tbody>
+  </table>
+  <br><hr>
+
+</div>
+>>>>>>> Stashed changes
     <div class="container">
       <div class="text-center p-4">
       <h2>Mi carrito</h2>
@@ -190,9 +215,90 @@
                                     </div>
                               </ul>
                             </form>
+<<<<<<< Updated upstream
 
           <div id="btnComprar">
           <button class="btn btn-primary btn-lg" type="submit">Comprar</button>
+=======
+                            <br> <hr> <br>
+                              <h5>Costos</h5>
+      <div class="row g-3">
+        <ul class="list-group" id="costos">
+          <li class="list-group-item"><b>Subtotal</b><span class="row"></span>
+            <span class="row">
+              <p class="col-7">Costo unitario del producto por cantidad</p>
+            </span>
+            <p class="text-end"> USD <span id="subT"></span></p>
+          </li>
+          <li class="list-group-item"><b>Costo de envío</b><span class="row"></span>
+            <span class="row">
+              <p class="col-7">Según el tipo de envío</p>
+            </span>
+            <p class="text-end"> USD <span id="costo"></span></p>
+          </li>
+          <li class="list-group-item"><b>Total</b><span class="row"></span>
+            <b>
+              <p class="text-end"> USD <span id="total"></span></p>
+            </b>
+          </li>
+        
+          </form>
+            <hr><br>
+            <h5>Forma de pago</h5>
+          <br>
+
+          <!-- Button trigger modal -->
+          <p id="metodoDePago"> No ha seleccionado   
+            <a href="#" class="link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                   Seleccionar
+            </a>
+        </p>
+        
+          
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Forma de pago</h5>
+    
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="formaPago" id="tarjetaCredito" value="tarjetaCredito">
+            <label class="form-check-label" for="tarjetaCredito">Tarjeta de Crédito</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="formaPago" id="transferenciaBancaria" value="transferenciaBancaria">
+            <label class="form-check-label" for="transferenciaBancaria">Transferencia Bancaria</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button id="confirmarPago" type="button" class="btn btn-primary">Confirmar Pago</button>
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+          
+          
+            <br>
+          <div id="btnComprar col-md-6">
+          <button class="btn btn-primary btn-lg" type="submit">Finalizar compra</button>
+>>>>>>> Stashed changes
           </div>
     
   </main>
