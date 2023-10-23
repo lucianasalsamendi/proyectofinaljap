@@ -472,3 +472,7 @@ color: yellow;
 .img-fluid{
   width: 100px;
 }
+
+.bi-trash-fill {
+  cursor: pointer;
+}

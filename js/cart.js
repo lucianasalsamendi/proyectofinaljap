@@ -14,6 +14,25 @@ document.addEventListener('DOMContentLoaded', async function () {
   listadoInfoCart.data.articles.forEach(function (cart) {
     listado.innerHTML += getHTML(cart);
   });
+
+  //eliminar elemento de mi carrito
+const elementToDelete = document.querySelectorAll('.bi-trash-fill');
+elementToDelete.forEach(function (element){
+  element.addEventListener ('click', function (event){
+    const itemId = event.target.getAttribute('product');
+    removeFromCart (itemId);
+    const parentElement = event.target.closest('tr');
+    if (parentElement){
+      parentElement.remove();
+    }
+    
+    });
+});
+
+//actualiza carrito
+function removeFromCart(itemId) {
+  localStorage.removeItem(itemId);
+}
 });
 
 function getHTML(cart, index) {
@@ -175,3 +194,4 @@ function calcularCostoEnvio() {
 premium.addEventListener('click', calcularCostoEnvio);
 express.addEventListener('click', calcularCostoEnvio);
 standard.addEventListener('click', calcularCostoEnvio);
+
