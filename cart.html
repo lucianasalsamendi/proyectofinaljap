@@ -149,7 +149,7 @@
               <label for="Name">Nombre y Apellido</label>
               <input type="text" class="form-control" id="nombreComprador" value="" name="nombreComprador" required>
               <div class="invalid-feedback">
-                  Ingresa un nombre
+                  Ingrese su nombre
               </div>
               </div>
           </div>
@@ -191,7 +191,7 @@
                   <label for="Name">Calle</label>
                   <input type="text" class="form-control" id="calleComprador" value="" name="calleComprador" required>
                   <div class="invalid-feedback">
-                      Ingresa una calle
+                      Ingresa una calle de entraga
                   </div>
                   </div>
 
@@ -200,7 +200,7 @@
                       <label for="Name">Número</label>
                       <input type="number" class="form-control" id="numeroComprador" value="" name="numeroComprador" required>
                       <div class="invalid-feedback">
-                          Ingresa un numero
+                          Ingresa el numero de la vivienda
                       </div>
                       </div>
 
@@ -209,7 +209,7 @@
                           <label for="Name">Esquina</label>
                           <input type="text" class="form-control" id="esquinaComprador" value="" name="esquinaComprador" required>
                           <div class="invalid-feedback">
-                              Ingresa una esquina
+                              Ingrese mel nombre de la esquina
                           </div>
                           </div>
 
@@ -225,7 +225,9 @@
                                   <div class="form-check">
                                     <input class="form-check-input" type="radio" name="tipoVivienda" id="apartamento" value="apartamento" required>
                                     <label class="form-check-label" for="apartamento">Apartamento</label>
-                                    
+                                    <div class="invalid-feedback">
+                                      Elija una opcion de vivienda
+                                  </div>
                                   </div>
                               </ul>
                            
@@ -265,13 +267,15 @@
                                     </label>
                                   </div>
                                   <div class="form-check">
-
-
                                     <input class="form-check-input" type="radio" name="envio" id="envioStandar" value="envioStandar" required>
                                     <label class="form-check-label" for="envioStandar">
                                         Standar 12 a 15 días (5%)
                                       </label>
+                                      <div class="invalid-feedback">
+                                      Elija una opcion de envio
+                                  </div>
                                     </div>
+                                    
                               </ul>
 
                             </form>
