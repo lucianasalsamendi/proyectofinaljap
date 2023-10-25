@@ -214,3 +214,40 @@ standard.addEventListener('click', calcularCostoEnvio);
     }, false)
   })
 })()
+
+document.getElementById("btnComprar").addEventListener("click", function() {
+  // Llama a SweetAlert cuando se hace clic en el botón
+  const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-danger'
+  },
+  buttonsStyling: false
+})
+
+swalWithBootstrapButtons.fire({
+  title: 'Estas seguro de finalizar tu compra?',
+  text: "",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonText: 'Confirmar',
+  cancelButtonText: 'Cancelar!',
+  reverseButtons: true
+}).then((result) => {
+  if (result.isConfirmed) {
+    swalWithBootstrapButtons.fire(
+      'Finalizada',
+      'Tu compra ha sido finalizada con exito!',
+      'success'
+    )
+  } else if (
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    swalWithBootstrapButtons.fire(
+      'Cancelado',
+      'Tu compra ha sido cancelada!',
+      'error'
+    )
+  }
+})
+  });
