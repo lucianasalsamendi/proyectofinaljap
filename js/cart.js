@@ -14,6 +14,25 @@ document.addEventListener('DOMContentLoaded', async function () {
   listadoInfoCart.data.articles.forEach(function (cart) {
     listado.innerHTML += getHTML(cart);
   });
+
+  //eliminar elemento de mi carrito
+const elementToDelete = document.querySelectorAll('.bi-trash-fill');
+elementToDelete.forEach(function (element){
+  element.addEventListener ('click', function (event){
+    const itemId = event.target.getAttribute('product');
+    removeFromCart (itemId);
+    const parentElement = event.target.closest('tr');
+    if (parentElement){
+      parentElement.remove();
+    }
+    
+    });
+});
+
+//actualiza carrito
+function removeFromCart(itemId) {
+  localStorage.removeItem(itemId);
+}
 });
 
 function getHTML(cart, index) {
@@ -176,6 +195,7 @@ premium.addEventListener('click', calcularCostoEnvio);
 express.addEventListener('click', calcularCostoEnvio);
 standard.addEventListener('click', calcularCostoEnvio);
 
+
 document.addEventListener('DOMContentLoaded', async function () {
 
   // Evento para guardar la forma de pago
@@ -206,9 +226,63 @@ document.addEventListener('DOMContentLoaded', async function () {
           transferenciaBancariaDiv.style.display = 'block';
         }
       });
-    
-      
     });
-    
   });
 });
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+
+document.getElementById("btnComprar").addEventListener("click", function() {
+  // Llama a SweetAlert cuando se hace clic en el botón
+  const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-danger'
+  },
+  buttonsStyling: false
+})
+
+swalWithBootstrapButtons.fire({
+  title: 'Estas seguro de finalizar tu compra?',
+  text: "",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonText: 'Confirmar',
+  cancelButtonText: 'Cancelar!',
+  reverseButtons: true
+}).then((result) => {
+  if (result.isConfirmed) {
+    swalWithBootstrapButtons.fire(
+      'Finalizada',
+      'Tu compra ha sido finalizada con exito!',
+      'success'
+    )
+  } else if (
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    swalWithBootstrapButtons.fire(
+      'Cancelado',
+      'Tu compra ha sido cancelada!',
+      'error'
+    )
+  }
+})
+  });

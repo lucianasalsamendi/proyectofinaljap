@@ -142,14 +142,14 @@
       <div class="row justify-content-md-center">
       <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Datos del comprador</h4>
-          <form class="needs-validation" id="sell-info">
+          <form class="needs-validation " id="sell-info" novalidate>
           
               <div class="row">
               <div class="col-md-6 mb-3">
               <label for="Name">Nombre y Apellido</label>
-              <input type="text" class="form-control" id="nombreComprador" value="" name="nombreComprador">
+              <input type="text" class="form-control" id="nombreComprador" value="" name="nombreComprador" required>
               <div class="invalid-feedback">
-                  Ingresa un nombre
+                  Ingrese su nombre
               </div>
               </div>
           </div>
@@ -157,7 +157,7 @@
           <div class="row">
               <div class="col-md-6 mb-3">
               <label for="Name">Dirección</label>
-              <input type="text" class="form-control" id="direccionComprador" value="" name="direccionComprador">
+              <input type="text" class="form-control" id="direccionComprador" value="" name="direccionComprador" required>
               <div class="invalid-feedback">
                   Ingresa una dirección
               </div>
@@ -178,7 +178,7 @@
           <div class="row">
               <div class="col-md-3 mb-3">
               <label for="cedulaComprador">Cédula</label>
-              <input type="number" name="cedulaComprador" class="form-control" id="cedulaComprador" placeholder="" value="" required min="0">
+              <input type="number" name="cedulaComprador" class="form-control" id="cedulaComprador" placeholder="" value="" required min="0" required>
               <div class="invalid-feedback">
                   Debe ingresar su número de cédula
               </div>
@@ -189,9 +189,9 @@
               <div class="row">
                   <div class="col-md-6 mb-3">
                   <label for="Name">Calle</label>
-                  <input type="text" class="form-control" id="calleComprador" value="" name="calleComprador">
+                  <input type="text" class="form-control" id="calleComprador" value="" name="calleComprador" required>
                   <div class="invalid-feedback">
-                      Ingresa una calle
+                      Ingresa una calle de entraga
                   </div>
                   </div>
 
@@ -200,35 +200,37 @@
                       <label for="Name">Número</label>
                       <input type="number" class="form-control" id="numeroComprador" value="" name="numeroComprador" required>
                       <div class="invalid-feedback">
-                          Ingresa un numero
+                          Ingresa el numero de la vivienda
                       </div>
                       </div>
 
                       <div class="row">
                           <div class="col-md-6 mb-3">
                           <label for="Name">Esquina</label>
-                          <input type="text" class="form-control" id="esquinaComprador" value="" name="esquinaComprador">
+                          <input type="text" class="form-control" id="esquinaComprador" value="" name="esquinaComprador" required>
                           <div class="invalid-feedback">
-                              Ingresa una esquina
+                              Ingrese mel nombre de la esquina
                           </div>
                           </div>
 
-                          <form>
+                         
                               <label for="tipoVivienda" style="margin-bottom: 10px;">Tipo de vivienda:</label>
                               <ul>
                                   <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipoVivienda" id="casa" value="casa">
+                                    <input class="form-check-input" type="radio" name="tipoVivienda" id="casa" value="casa" required>
                                     <label class="form-check-label" for="casa">
                                       Casa
                                     </label>
                                   </div>
                                   <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipoVivienda" id="apartamento" value="apartamento">
+                                    <input class="form-check-input" type="radio" name="tipoVivienda" id="apartamento" value="apartamento" required>
                                     <label class="form-check-label" for="apartamento">Apartamento</label>
-                                    
+                                    <div class="invalid-feedback">
+                                      Elija una opcion de vivienda
+                                  </div>
                                   </div>
                               </ul>
-                            </form>
+                           
                             
                           <br>
                           <br>
@@ -247,31 +249,33 @@
                               </div>
                             </div>
 
-                            <form>
+                            
                               <label for="tipoDeEnvio" style="margin-bottom: 10px;">Tipo de envío:</label>
                               <ul>
                                   <div class="form-check">
 
-                                     <input class="form-check-input" type="radio" name="envio" id="envioPremium" value="envioPremium">
+                                     <input class="form-check-input" type="radio" name="envio" id="envioPremium" value="envioPremium" required>
                                     <label class="form-check-label" for="envioPremium">
                                       Premium 2 a 5 días (15%)
                                     </label>
                                   </div>
                                   <div class="form-check">
 
-                                    <input class="form-check-input" type="radio" name="envio" id="envioExpres" value="envioExpres">
+                                    <input class="form-check-input" type="radio" name="envio" id="envioExpres" value="envioExpres" required>
                                     <label class="form-check-label" for="envioExpres">
                                       Expres 5 a 8 días (7%)
                                     </label>
                                   </div>
                                   <div class="form-check">
-
-
-                                    <input class="form-check-input" type="radio" name="envio" id="envioStandar" value="envioStandar">
+                                    <input class="form-check-input" type="radio" name="envio" id="envioStandar" value="envioStandar" required>
                                     <label class="form-check-label" for="envioStandar">
                                         Standar 12 a 15 días (5%)
                                       </label>
+                                      <div class="invalid-feedback">
+                                      Elija una opcion de envio
+                                  </div>
                                     </div>
+                                    
                               </ul>
 
                             </form>
@@ -298,9 +302,8 @@
           </li>
         
           </form>
-
-          <!-- Agregar un botón para abrir el modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">
+ <!-- Agregar un botón para abrir el modal -->
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">
   Forma de Pago
 </button>
 
@@ -367,6 +370,10 @@
           <div id="btnComprar">
           <button class="btn btn-primary btn-lg" type="submit">Comprar</button>
           </div>
+
+          <div id="btnComprar">
+          <button class="btn btn-primary btn-lg" type="submit">Comprar</button>
+          </div>
     
   </main>
   <footer class="text-muted">
@@ -388,6 +395,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
