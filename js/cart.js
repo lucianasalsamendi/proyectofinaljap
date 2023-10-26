@@ -225,10 +225,7 @@ document.addEventListener('DOMContentLoaded', async function () {
           // Mostrar los campos de transferencia bancaria
           transferenciaBancariaDiv.style.display = 'block';
         }
-      });
-    });
-  });
-});
+      
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
@@ -286,3 +283,7 @@ swalWithBootstrapButtons.fire({
   }
 })
   });
+});
+});
+});
+});
