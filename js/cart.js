@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const listadoInfoCart = await getJSONData(CARTURL);
   const cartItems = JSON.parse(localStorage.getItem("carrito")) || [];
 
+
   cartItems.forEach(function (cart, index) {
     listado.innerHTML += getHTML(cart, index);
     subTotal(cart.unitCost, cart.count, index);
@@ -16,43 +17,38 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
   //eliminar elemento de mi carrito
-  const elementToDelete = document.querySelectorAll(".bi-trash-fill");
-  elementToDelete.forEach(function (element) {
-    element.addEventListener("click", function (event) {
-      const itemId = event.target.getAttribute("product");
-      removeFromCart(itemId);
-      const parentElement = event.target.closest("tr");
-      if (parentElement) {
-        parentElement.remove();
-      }
+const elementToDelete = document.querySelectorAll('.bi-trash-fill');
+elementToDelete.forEach(function (element){
+  element.addEventListener ('click', function (event){
+    const itemId = event.target.getAttribute('product');
+    removeFromCart (itemId);
+    const parentElement = event.target.closest('tr');
+    if (parentElement){
+      parentElement.remove();
+    }
+    
     });
-  });
+});
 
-  //actualiza carrito
-  function removeFromCart(itemId) {
-    localStorage.removeItem(itemId);
-  }
+//actualiza carrito
+function removeFromCart(itemId) {
+  localStorage.removeItem(itemId);
+}
 });
 
 function getHTML(cart, index) {
   return `<tr>
-      <td><img class="img-fluid" width="60" height="60" src="${
-        cart.image
-      }" alt=""></td>
+      <td><img class="img-fluid" width="60" height="60" src="${cart.image}" alt=""></td>
       <td><p>${cart.name}</p></td>
       <td>${cart.currency} ${cart.unitCost}</td> 
-      <td><input id="cantidad_${index}" type="number" min="1" max="100" value="${
-    cart.count
-  }" oninput="subTotal(${cart.unitCost}, this.value, ${index})"></td>
-      <td><strong> ${cart.currency}<span id="multiplicacion_${index}">  ${
-    cart.unitCost * cart.count
-  }</span></strong></td>
+      <td><input id="cantidad_${index}" type="number" min="1" max="100" value="${cart.count}" oninput="subTotal(${cart.unitCost}, this.value, ${index})"></td>
+      <td><strong> ${cart.currency}<span id="multiplicacion_${index}">  ${cart.unitCost * cart.count}</span></strong></td>
+
       <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
       <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
     </svg></td>
   </tr>`;
 }
-
 /*!
  * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
@@ -60,82 +56,74 @@ function getHTML(cart, index) {
  */
 
 (() => {
-  "use strict";
 
-  const getStoredTheme = () => localStorage.getItem("theme");
-  const setStoredTheme = (theme) => localStorage.setItem("theme", theme);
+  'use strict';
+
+  const getStoredTheme = () => localStorage.getItem('theme');
+  const setStoredTheme = theme => localStorage.setItem('theme', theme);
+
 
   const getPreferredTheme = () => {
     const storedTheme = getStoredTheme();
     if (storedTheme) {
       return storedTheme;
     }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
 
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  };
-
-  const setTheme = (theme) => {
-    if (
-      theme === "auto" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      document.documentElement.setAttribute("data-bs-theme", "dark");
+  const setTheme = theme => {
+    if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-bs-theme', 'dark');
     } else {
-      document.documentElement.setAttribute("data-bs-theme", theme);
+      document.documentElement.setAttribute('data-bs-theme', theme);
     }
-  };
+  }
+
 
   setTheme(getPreferredTheme());
 
   const showActiveTheme = (theme, focus = false) => {
-    const themeSwitcher = document.querySelector("#bd-theme");
+  const themeSwitcher = document.querySelector('#bd-theme');
+
 
     if (!themeSwitcher) {
       return;
     }
+    const themeSwitcherText = document.querySelector('#bd-theme-text');
+    const activeThemeIcon = document.querySelector('.theme-icon-active use');
+    const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`);
+    const svgOfActiveBtn = btnToActive.querySelector('svg use').getAttribute('href');
 
-    const themeSwitcherText = document.querySelector("#bd-theme-text");
-    const activeThemeIcon = document.querySelector(".theme-icon-active use");
-    const btnToActive = document.querySelector(
-      `[data-bs-theme-value="${theme}"]`
-    );
-    const svgOfActiveBtn = btnToActive
-      .querySelector("svg use")
-      .getAttribute("href");
-
-    document.querySelectorAll("[data-bs-theme-value]").forEach((element) => {
-      element.classList.remove("active");
-      element.setAttribute("aria-pressed", "false");
+    document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+      element.classList.remove('active');
+      element.setAttribute('aria-pressed', 'false');
     });
 
-    btnToActive.classList.add("active");
-    btnToActive.setAttribute("aria-pressed", "true");
-    activeThemeIcon.setAttribute("href", svgOfActiveBtn);
+    btnToActive.classList.add('active');
+    btnToActive.setAttribute('aria-pressed', 'true');
+    activeThemeIcon.setAttribute('href', svgOfActiveBtn);
     const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`;
-    themeSwitcher.setAttribute("aria-label", themeSwitcherLabel);
+    themeSwitcher.setAttribute('aria-label', themeSwitcherLabel);
+
 
     if (focus) {
       themeSwitcher.focus();
     }
-  };
+  }
 
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", () => {
-      const storedTheme = getStoredTheme();
-      if (storedTheme !== "light" && storedTheme !== "dark") {
-        setTheme(getPreferredTheme());
-      }
-    });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    const storedTheme = getStoredTheme();
+    if (storedTheme !== 'light' && storedTheme !== 'dark') {
+      setTheme(getPreferredTheme());
+    }
+  });
 
-  window.addEventListener("DOMContentLoaded", () => {
+  window.addEventListener('DOMContentLoaded', () => {
     showActiveTheme(getPreferredTheme());
 
-    document.querySelectorAll("[data-bs-theme-value]").forEach((toggle) => {
-      toggle.addEventListener("click", () => {
-        const theme = toggle.getAttribute("data-bs-theme-value");
+    document.querySelectorAll('[data-bs-theme-value]').forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const theme = toggle.getAttribute('data-bs-theme-value');
         setStoredTheme(theme);
         setTheme(theme);
         showActiveTheme(theme, true);
@@ -145,13 +133,13 @@ function getHTML(cart, index) {
 })();
 
 /*Aca termina dark and light*/
+const costo = document.getElementById('costo');
+const total = document.getElementById('total');
+const premium = document.getElementById('envioPremium');
+const express = document.getElementById('envioExpres');
+const standard = document.getElementById('envioStandar');
+let porcentaje = "5"
 
-const costo = document.getElementById("costo");
-const total = document.getElementById("total");
-const premium = document.getElementById("envioPremium");
-const express = document.getElementById("envioExpres");
-const standard = document.getElementById("envioStandar");
-let porcentaje = "5";
 
 function subTotal(precio, cantidad, index) {
   // Calcula el subtotal para este elemento
@@ -200,7 +188,40 @@ function calcularCostoEnvio() {
   } else if (standard.checked) {
     porcentajeEnvio = 5;
   }
+  costo.innerHTML = calculoEnvio(porcentajeEnvio, subTotal).toFixed(0); 
+  total.innerHTML = costoTotal(subTotal, parseFloat(costo.textContent)).toFixed(0); 
+}
 
+premium.addEventListener('click', calcularCostoEnvio);
+express.addEventListener('click', calcularCostoEnvio);
+standard.addEventListener('click', calcularCostoEnvio);
+
+
+document.addEventListener('DOMContentLoaded', async function () {
+
+  // Evento para guardar la forma de pago
+  document.getElementById('guardarFormaPago').addEventListener('click', function () {
+    const formadepago = document.getElementById('formadepago').value;
+    const metodo = document.getElementById('metodo').value;
+
+    // Para agregar más campos según las necesidades
+
+    console.log('Forma de Pago: ' + formadepago);
+    console.log('Método: ' + metodo);
+    
+      const methodSelect = document.getElementById('formadepago');
+      const transferenciaBancariaDiv = document.getElementById('transferenciaBancaria');
+    
+      methodSelect.addEventListener('change', function () {
+        const selectedMethod = methodSelect.value;
+    
+        if (selectedMethod === 'tarjetacredito') {
+          // Ocultar los campos de transferencia bancaria
+          transferenciaBancariaDiv.style.display = 'none';
+        } else if (selectedMethod === 'transferenciabancaria') {
+          // Mostrar los campos de transferencia bancaria
+          transferenciaBancariaDiv.style.display = 'block';
+        }
   costo.innerHTML = calculoEnvio(porcentajeEnvio, subTotal).toFixed(0);
   total.innerHTML = costoTotal(subTotal, parseFloat(costo.textContent)).toFixed(
     0
