@@ -1,10 +1,3 @@
-.jumbotron,
-.card-body,
-.container,
-.site-header {
-  font-family: 'Zerdana', serif !important;
-}
-
 .jumbotron .display-4 {
   font-weight: bold;
 }
@@ -13,17 +6,11 @@ nav a {
   text-decoration: none;
 }
 
-#logoutBtn, #userDisplay, #profileBtn{
+#userDisplay {
   color: #cacaca;
   text-decoration: none;
-}
-
-#logoutBtn:hover {
-  color: #fff;
-}
-
-#profileBtn:hover {
-  color: #fff;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .bd-placeholder-img {
@@ -81,7 +68,7 @@ nav a {
 }
 
 footer {
-  padding-top: 3rem;
+  padding-top: 5rem;
   padding-bottom: 3rem;
 }
 
@@ -215,7 +202,7 @@ html,
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: #f5f5f500;
 }
 
 .form-signin {
@@ -304,7 +291,6 @@ html,
 .logo {
   width: 100%;
   height: 100%;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -320,7 +306,7 @@ html,
 /* Estilo general de la sección de comentarios */
 #name {
   text-align: center;
-  background-color: #fff; /* Fondo blanco */
+  background-color: #ffffff5d; /* Fondo blanco */
   color: #000; /* Texto negro */
   padding: 20px;
   margin: 20px;
@@ -337,16 +323,19 @@ html,
 }
 img {
   width: 400px; /* Ancho de la imagen de fondo */ 
-  margin-right: 20px;
-  margin-top: 20px;
   border: 2px solid #000; /* Borde negro */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
 }
 
 #informacion{
   margin-top: 3rem;
-  font-family: Helvetica Neue;
-  font-size: 20px ;
+  /*font-family: cursive;*/
+  font-size: 20px;
+  background-color: #c4b6b6b6; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px
+
 }
 .botonCarrito{
   display: flex;
@@ -361,7 +350,7 @@ img {
   border: none;
   border-radius: 5px; /* Esquinas redondeadas */
   cursor: pointer;
-  font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
+  /*font-family: Arial, sans-serif;  Cambia la fuente según tus preferencias */
   font-size: 16px; /* Tamaño de fuente */
   text-align: center;
   text-decoration: none;
@@ -373,7 +362,7 @@ img {
 }
 
 .titulo{
-  font-family: "Times New Roman", Times, serif;
+  /*font-family: "Times New Roman", Times, serif;*/
   font-size: 3rem; 
   font-weight: bold;
   color: rgba(240, 144, 1, 1);
@@ -383,14 +372,15 @@ img {
 /*comentario y estrellas*/
 
 .containerComentario {
-  background-color: #f0f0f0; 
+  background-color: #f0f0f000; 
   padding: 10px; 
   border: 1px solid #ccc; 
   border-radius: 5px; 
   width: 40%; 
-  margin: 20px;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  font-family: cursive
+  margin: 0 auto;
+  /*font-family: cursive;*/
+  flex: 1;
+  
 }
 
 .stars {
@@ -407,4 +397,82 @@ img {
 .fa-star-filled::before {
   content: "\2605"; /* Estrella llena */
   color: rgba(107, 107, 4, 0.788);
+}
+
+/* Estilo para el contenedor de comentarios */
+#comment-list {
+  list-style-type: none; 
+  padding: 0; 
+  margin: 0; 
+  flex: 1;
+  
+}
+
+/* Estilo para cada comentario */
+#comment-list li {
+  margin-bottom: 20px; 
+  border: 1px solid #ccc; 
+  padding: 10px; 
+  background-color: #f9f9f900; 
+  /*font-family: cursive;*/
+  border-radius: 5px; 
+  width: 100%;
+  align-items: 50%;
+}
+
+/* Estilo para el encabezado de cada comentario (nombre de usuario y fecha) */
+#comment-list li p:first-child {
+  /*font-weight: bold;*/
+  margin: 0;
+}
+
+/* carusel boostrap*/
+#carouselExampleControls{
+  width: 400px;
+
+}
+.productosRelacionados{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5%;
+} 
+.carousel-item:hover{
+  cursor: pointer;
+}
+
+
+.estrellas-amarillas{
+color: yellow;
+}
+
+.image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+/* imagenes de product-info */
+.image-grid{
+  width: 35%; /* Ancho de la imagen de fondo */ 
+  margin-right: 20px;
+  margin-top: 20px;
+  border: 2px solid #000; /* Borde negro */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+#informacion{
+  width: 75%;
+}
+#comment{
+ width: 70%;
+}
+
+.img-fluid{
+  width: 100px;
+}
+
+.bi-trash-fill {
+  cursor: pointer;
 }
