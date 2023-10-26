@@ -207,10 +207,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     console.log('Forma de Pago: ' + formadepago);
     console.log('Método: ' + metodo);
-
-    // Enviar los datos al servidor
-
-    document.addEventListener('DOMContentLoaded', async function () {
     
       const methodSelect = document.getElementById('formadepago');
       const transferenciaBancariaDiv = document.getElementById('transferenciaBancaria');
@@ -283,7 +279,6 @@ swalWithBootstrapButtons.fire({
   }
 })
   });
-});
 });
 });
 });
