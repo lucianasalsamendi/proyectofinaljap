@@ -1,39 +1,44 @@
 // URL de la API
 const CARTURL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 
-document.addEventListener("DOMContentLoaded", async function () {
-  const listado = document.getElementById("cart-data");
+document.addEventListener('DOMContentLoaded', async function () {
+  const listado = document.getElementById('cart-data');
   const listadoInfoCart = await getJSONData(CARTURL);
-  const cartItems = JSON.parse(localStorage.getItem("carrito")) || [];
 
+  const cartItems = JSON.parse(localStorage.getItem('carrito')) || [];
 
-  cartItems.forEach(function (cart, index) {
-    listado.innerHTML += getHTML(cart, index);
-    subTotal(cart.unitCost, cart.count, index);
-  });
-
-  listadoInfoCart.data.articles.forEach(function (cart) {
-    listado.innerHTML += getHTML(cart);
-  });
-
-  //eliminar elemento de mi carrito
-const elementToDelete = document.querySelectorAll('.bi-trash-fill');
-elementToDelete.forEach(function (element){
-  element.addEventListener ('click', function (event){
-    const itemId = event.target.getAttribute('product');
-    removeFromCart (itemId);
-    const parentElement = event.target.closest('tr');
-    if (parentElement){
-      parentElement.remove();
+  function removeItemFromCarrito(itemId) {
+    const index = cartItems.findIndex(item => item.id === itemId);
+    if (index !== -1) {
+      cartItems.splice(index, 1);
+      localStorage.setItem('carrito', JSON.stringify(cartItems));
+      displayCarritoItems(); 
     }
-    
-    });
-});
+  }
 
-//actualiza carrito
-function removeFromCart(itemId) {
-  localStorage.removeItem(itemId);
-}
+
+  function displayCarritoItems() {
+    listado.innerHTML = ''; 
+
+    cartItems.forEach((cart, index) => {
+      listado.innerHTML += getHTML(cart, index);
+      subTotal(cart.unitCost, cart.count, index);
+    });
+
+    listadoInfoCart.data.articles.forEach(function (cart) {
+      listado.innerHTML += getHTML(cart);
+    });
+
+    const deleteButtons = document.querySelectorAll('.bi-trash-fill');
+    deleteButtons.forEach((button, index) => {
+      button.addEventListener('click', function () {
+        const itemId = cartItems[index].id;
+        removeItemFromCarrito(itemId);
+      });
+    });
+  }
+
+  displayCarritoItems();
 });
 
 function getHTML(cart, index) {
@@ -43,7 +48,6 @@ function getHTML(cart, index) {
       <td>${cart.currency} ${cart.unitCost}</td> 
       <td><input id="cantidad_${index}" type="number" min="1" max="100" value="${cart.count}" oninput="subTotal(${cart.unitCost}, this.value, ${index})"></td>
       <td><strong> ${cart.currency}<span id="multiplicacion_${index}">  ${cart.unitCost * cart.count}</span></strong></td>
-
       <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
       <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
     </svg></td>
