@@ -237,14 +237,25 @@ express.addEventListener("click", calcularCostoEnvio);
 standard.addEventListener("click", calcularCostoEnvio);
   })})
 
+  function mostrarAlerta(tipo, mensaje) {
+    
+    alertContainer.innerHTML = `
+      <div class="alert alert-${tipo} alert-dismissible fade show" role="alert">
+        ${mensaje}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+      </div>
+    `;
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("sell-info");
     const formPago = document.getElementById("formadepago-form")
-  carthtml= "./cart.html"
+    let carthtml = "./index.html"
     form.addEventListener("submit", function (event) {
       if (!form.checkValidity() && !formPago.checkValidity()) {
         event.preventDefault();
         event.stopPropagation();
+        //mostrarBootstrapAlert('danger', 'Por favor, rellena todos los campos requeridos.');
   //alert("no anda")
         // Mostrar una alerta SweetAlert en caso de campos requeridos vacíos
         Swal.fire({
@@ -253,13 +264,14 @@ standard.addEventListener("click", calcularCostoEnvio);
           icon: "error",
         });
       } else {
-        //alert("enviado")
+        //mostrarBootstrapAlert('success', 'Tu compra ha sido procesada con éxito.');
+        alert("Comprado")
          // Mostrar una alerta SweetAlert en caso de envío exitoso
       Swal.fire({
         title: "Compra Finalizada",
         text: "Tu compra ha sido procesada con éxito.",
         icon: "success",
-        showConfirmButton: false, // Ocultar el botón de confirmación
+        showConfirmButton: true, // Ocultar el botón de confirmación
       });
 
       // Esperar durante unos segundos antes de redirigir al carrito
@@ -273,6 +285,8 @@ standard.addEventListener("click", calcularCostoEnvio);
     });
   });
 
+  
+//PRUEBAS VALIODACION
 //Codigo de boostrap para los inputs validos y no validos
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 /*(() => {
@@ -292,4 +306,17 @@ standard.addEventListener("click", calcularCostoEnvio);
       form.classList.add('was-validated')
     }, false)
   })
-})()*/
+})()
+
+const alertContainer = document.getElementById('alert-container');
+function mostrarBootstrapAlert(tipo, mensaje) {
+    const alertDiv = document.createElement("div");
+    alertDiv.classList.add("alert", `alert-${tipo}`);
+    alertDiv.role = "alert";
+    alertDiv.textContent = mensaje;
+    
+    alertContainer.innerHTML = ""; // Limpiar el contenedor de alertas existentes
+    alertContainer.appendChild(alertDiv);
+}
+*/
+
