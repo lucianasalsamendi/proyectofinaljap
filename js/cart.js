@@ -226,56 +226,66 @@ document.addEventListener('DOMContentLoaded', async function () {
   total.innerHTML = costoTotal(subTotal, parseFloat(costo.textContent)).toFixed(
     0
   );
-}
+})
 
 premium.addEventListener("click", calcularCostoEnvio);
 express.addEventListener("click", calcularCostoEnvio);
 standard.addEventListener("click", calcularCostoEnvio);
+  })})
 
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("sell-info");
+    const formPago = document.getElementById("formadepago-form")
+  
+    form.addEventListener("submit", function (event) {
+      if (!form.checkValidity() && !formPago.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+  //alert("no anda")
+        // Mostrar una alerta SweetAlert en caso de campos requeridos vacíos
+        Swal.fire({
+          title: "Error",
+          text: "Por favor, rellena todos los campos requeridos.",
+          icon: "error",
+        });
+      } else {
+        //alert("enviado")
+         // Mostrar una alerta SweetAlert en caso de envío exitoso
+      Swal.fire({
+        title: "Compra Finalizada",
+        text: "Tu compra ha sido procesada con éxito.",
+        icon: "success",
+        showConfirmButton: false, // Ocultar el botón de confirmación
+      });
+
+      // Esperar durante unos segundos antes de redirigir al carrito
+      setTimeout(function () {
+        // Cambiar la URL a la página del carrito
+        window.location.href = "URL_DE_TU_PAGINA_DE_CARRITO";
+      }, 5000); // 5000 ms = 5 segundos (puedes ajustar el tiempo)
+    }
+  
+      form.classList.add("was-validated");
+    });
+  });
+
+//Codigo de boostrap para los inputs validos y no validos
 // Example starter JavaScript for disabling form submissions if there are invalid fields
-(() => {
-  "use strict";
+/*(() => {
+  'use strict'
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll(".needs-validation");
+  const forms = document.querySelectorAll('.needs-validation')
 
   // Loop over them and prevent submission
-  Array.from(forms).forEach((form) => {
-    form.addEventListener(
-      "submit",
-      (event) => {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
 
-        form.classList.add("was-validated");
-      },
-      false
-    );
-  });
-})();
-
-//ValidarForm
-document.getElementById("sell-info").addEventListener("submit", event => {
-    if (!myValidations() || !this.checkValidity()) {
-// Llama a SweetAlert cuando se hace clic en el botón
-const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: "btn btn-success",
-    cancelButton: "btn btn-danger",
-  },
-  buttonsStyling: false,
-});
-
-swalWithBootstrapButtons
-  .fire({
-    title: "Finalizada",
-    icon: "success",
+      form.classList.add('was-validated')
+    }, false)
   })
-    event.preventDefault();
-    event.stopPropagation();
-}
-document.body.classList.add("was-validated");
-["change","input"].forEach(ev => {document.body.addEventListener(ev, myValidations) })
-});
+})()*/
