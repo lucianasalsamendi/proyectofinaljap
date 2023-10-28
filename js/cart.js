@@ -236,7 +236,7 @@ standard.addEventListener("click", calcularCostoEnvio);
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("sell-info");
     const formPago = document.getElementById("formadepago-form")
-  
+  carthtml= "./cart.html"
     form.addEventListener("submit", function (event) {
       if (!form.checkValidity() && !formPago.checkValidity()) {
         event.preventDefault();
@@ -261,8 +261,8 @@ standard.addEventListener("click", calcularCostoEnvio);
       // Esperar durante unos segundos antes de redirigir al carrito
       setTimeout(function () {
         // Cambiar la URL a la página del carrito
-        window.location.href = "URL_DE_TU_PAGINA_DE_CARRITO";
-      }, 5000); // 5000 ms = 5 segundos (puedes ajustar el tiempo)
+        window.location.href = carthtml;
+      }, 5000); // 5000 ms = 5 segundos
     }
   
       form.classList.add("was-validated");
