@@ -237,16 +237,6 @@ express.addEventListener("click", calcularCostoEnvio);
 standard.addEventListener("click", calcularCostoEnvio);
   })})
 
-  function mostrarAlerta(tipo, mensaje) {
-    
-    alertContainer.innerHTML = `
-      <div class="alert alert-${tipo} alert-dismissible fade show" role="alert">
-        ${mensaje}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-      </div>
-    `;
-  }
-
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("sell-info");
     const formPago = document.getElementById("formadepago-form")
@@ -318,5 +308,15 @@ function mostrarBootstrapAlert(tipo, mensaje) {
     alertContainer.innerHTML = ""; // Limpiar el contenedor de alertas existentes
     alertContainer.appendChild(alertDiv);
 }
+
+ function mostrarAlerta(tipo, mensaje) {
+    
+    alertContainer.innerHTML = `
+      <div class="alert alert-${tipo} alert-dismissible fade show" role="alert">
+        ${mensaje}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+      </div>
+    `;
+  }
 */
 
