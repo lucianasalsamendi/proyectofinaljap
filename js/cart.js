@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
   guardarFormaPagoBtn.addEventListener('click', function () {
     let formaDePagoSeleccionada = '';
 
+
     if (tarjetaRadio.checked) {
       formaDePagoSeleccionada = "Tarjeta de Crédito";
     } else if (transferenciaRadio.checked) {
@@ -223,6 +224,13 @@ document.addEventListener('DOMContentLoaded', function () {
     formaDePagoSelect.innerText = formaDePagoSeleccionada;
   });
 });
+
+
+  costo.innerHTML = calculoEnvio(porcentajeEnvio, subTotal).toFixed(0);
+  total.innerHTML = costoTotal(subTotal, parseFloat(costo.textContent)).toFixed(
+    0
+  );
+
 
 premium.addEventListener("click", calcularCostoEnvio);
 express.addEventListener("click", calcularCostoEnvio);
@@ -309,4 +317,4 @@ function mostrarBootstrapAlert(tipo, mensaje) {
       </div>
     `;
   }
-*/
+
