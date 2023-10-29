@@ -1,39 +1,44 @@
 // URL de la API
 const CARTURL = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 
-document.addEventListener("DOMContentLoaded", async function () {
-  const listado = document.getElementById("cart-data");
+document.addEventListener('DOMContentLoaded', async function () {
+  const listado = document.getElementById('cart-data');
   const listadoInfoCart = await getJSONData(CARTURL);
-  const cartItems = JSON.parse(localStorage.getItem("carrito")) || [];
 
+  const cartItems = JSON.parse(localStorage.getItem('carrito')) || [];
 
-  cartItems.forEach(function (cart, index) {
-    listado.innerHTML += getHTML(cart, index);
-    subTotal(cart.unitCost, cart.count, index);
-  });
-
-  listadoInfoCart.data.articles.forEach(function (cart) {
-    listado.innerHTML += getHTML(cart);
-  });
-
-  //eliminar elemento de mi carrito
-const elementToDelete = document.querySelectorAll('.bi-trash-fill');
-elementToDelete.forEach(function (element){
-  element.addEventListener ('click', function (event){
-    const itemId = event.target.getAttribute('product');
-    removeFromCart (itemId);
-    const parentElement = event.target.closest('tr');
-    if (parentElement){
-      parentElement.remove();
+  function removeItemFromCarrito(itemId) {
+    const index = cartItems.findIndex(item => item.id === itemId);
+    if (index !== -1) {
+      cartItems.splice(index, 1);
+      localStorage.setItem('carrito', JSON.stringify(cartItems));
+      displayCarritoItems(); 
     }
-    
-    });
-});
+  }
 
-//actualiza carrito
-function removeFromCart(itemId) {
-  localStorage.removeItem(itemId);
-}
+
+  function displayCarritoItems() {
+    listado.innerHTML = ''; 
+
+    cartItems.forEach((cart, index) => {
+      listado.innerHTML += getHTML(cart, index);
+      subTotal(cart.unitCost, cart.count, index);
+    });
+
+    listadoInfoCart.data.articles.forEach(function (cart) {
+      listado.innerHTML += getHTML(cart);
+    });
+
+    const deleteButtons = document.querySelectorAll('.bi-trash-fill');
+    deleteButtons.forEach((button, index) => {
+      button.addEventListener('click', function () {
+        const itemId = cartItems[index].id;
+        removeItemFromCarrito(itemId);
+      });
+    });
+  }
+
+  displayCarritoItems();
 });
 
 function getHTML(cart, index) {
@@ -43,7 +48,6 @@ function getHTML(cart, index) {
       <td>${cart.currency} ${cart.unitCost}</td> 
       <td><input id="cantidad_${index}" type="number" min="1" max="100" value="${cart.count}" oninput="subTotal(${cart.unitCost}, this.value, ${index})"></td>
       <td><strong> ${cart.currency}<span id="multiplicacion_${index}">  ${cart.unitCost * cart.count}</span></strong></td>
-
       <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
       <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
     </svg></td>
@@ -197,7 +201,7 @@ express.addEventListener('click', calcularCostoEnvio);
 standard.addEventListener('click', calcularCostoEnvio);
 
 
-document.addEventListener('DOMContentLoaded', async function () {
+/*document.addEventListener('DOMContentLoaded', async function () {
 
   // Evento para guardar la forma de pago
   document.getElementById('guardarFormaPago').addEventListener('click', function () {
@@ -226,56 +230,119 @@ document.addEventListener('DOMContentLoaded', async function () {
   total.innerHTML = costoTotal(subTotal, parseFloat(costo.textContent)).toFixed(
     0
   );
-}
+})*/
+ 
+//Modifica el botón forma de pago al metodo seleccionado 
+
+document.addEventListener('DOMContentLoaded', function () {
+  const tarjetaRadio = document.getElementById('tarjeta');
+  const transferenciaRadio = document.getElementById('transferencia');
+  const guardarFormaPagoBtn = document.getElementById('guardarFormaPago');
+  const formaDePagoSelect = document.getElementById('formadepago');
+
+  guardarFormaPagoBtn.addEventListener('click', function () {
+    let formaDePagoSeleccionada = '';
+
+    if (tarjetaRadio.checked) {
+      formaDePagoSeleccionada = "Tarjeta de Crédito";
+    } else if (transferenciaRadio.checked) {
+      formaDePagoSeleccionada = "Transferencia Bancaria";
+    }
+
+    // Actualiza el texto del botón "Forma de Pago"
+    formaDePagoSelect.innerText = formaDePagoSeleccionada;
+  });
+});
+
+
+
+
+
 
 premium.addEventListener("click", calcularCostoEnvio);
 express.addEventListener("click", calcularCostoEnvio);
 standard.addEventListener("click", calcularCostoEnvio);
+  
 
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("sell-info");
+    const formPago = document.getElementById("formadepago-form")
+    let carthtml = "./index.html"
+    form.addEventListener("submit", function (event) {
+      if (!form.checkValidity() && !formPago.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+        //mostrarBootstrapAlert('danger', 'Por favor, rellena todos los campos requeridos.');
+  //alert("no anda")
+        // Mostrar una alerta SweetAlert en caso de campos requeridos vacíos
+        Swal.fire({
+          title: "Error",
+          text: "Por favor, rellena todos los campos requeridos.",
+          icon: "error",
+        });
+      } else {
+        //mostrarBootstrapAlert('success', 'Tu compra ha sido procesada con éxito.');
+        alert("Comprado")
+         // Mostrar una alerta SweetAlert en caso de envío exitoso
+      Swal.fire({
+        title: "Compra Finalizada",
+        text: "Tu compra ha sido procesada con éxito.",
+        icon: "success",
+        showConfirmButton: true, // Ocultar el botón de confirmación
+      });
+
+      // Esperar durante unos segundos antes de redirigir al carrito
+      setTimeout(function () {
+        // Cambiar la URL a la página del carrito
+        window.location.href = carthtml;
+      }, 5000); // 5000 ms = 5 segundos
+    }
+  
+      form.classList.add("was-validated");
+    });
+  });
+
+  
+//PRUEBAS VALIODACION
+//Codigo de boostrap para los inputs validos y no validos
 // Example starter JavaScript for disabling form submissions if there are invalid fields
-(() => {
-  "use strict";
+/*(() => {
+  'use strict'
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll(".needs-validation");
+  const forms = document.querySelectorAll('.needs-validation')
 
   // Loop over them and prevent submission
-  Array.from(forms).forEach((form) => {
-    form.addEventListener(
-      "submit",
-      (event) => {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
 
-        form.classList.add("was-validated");
-      },
-      false
-    );
-  });
-})();
-
-//ValidarForm
-document.getElementById("sell-info").addEventListener("submit", event => {
-    if (!myValidations() || !this.checkValidity()) {
-// Llama a SweetAlert cuando se hace clic en el botón
-const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: "btn btn-success",
-    cancelButton: "btn btn-danger",
-  },
-  buttonsStyling: false,
-});
-
-swalWithBootstrapButtons
-  .fire({
-    title: "Finalizada",
-    icon: "success",
+      form.classList.add('was-validated')
+    }, false)
   })
-    event.preventDefault();
-    event.stopPropagation();
+})()
+
+const alertContainer = document.getElementById('alert-container');
+function mostrarBootstrapAlert(tipo, mensaje) {
+    const alertDiv = document.createElement("div");
+    alertDiv.classList.add("alert", `alert-${tipo}`);
+    alertDiv.role = "alert";
+    alertDiv.textContent = mensaje;
+    
+    alertContainer.innerHTML = ""; // Limpiar el contenedor de alertas existentes
+    alertContainer.appendChild(alertDiv);
 }
-document.body.classList.add("was-validated");
-["change","input"].forEach(ev => {document.body.addEventListener(ev, myValidations) })
-});
+
+ function mostrarAlerta(tipo, mensaje) {
+    
+    alertContainer.innerHTML = `
+      <div class="alert alert-${tipo} alert-dismissible fade show" role="alert">
+        ${mensaje}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+      </div>
+    `;
+  }
+*/

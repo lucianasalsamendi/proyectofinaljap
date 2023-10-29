@@ -134,7 +134,8 @@
   <hr>
 
 </div>
-    <div class="container">
+
+<div class="container">
       <div class="text-center p-4">
       
       <p class="lead">Para finalizar la compra deberás completar los siguientes datos</p>
@@ -142,7 +143,7 @@
       <div class="row justify-content-md-center">
       <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Datos del comprador</h4>
-          <form class="needs-validation " id="sell-info" novalidate>
+  <form class="needs-validation " id="sell-info" novalidate>
           
               <div class="row">
               <div class="col-md-6 mb-3">
@@ -179,7 +180,7 @@
               <div class="col-md-3 mb-3">
               <label for="cedulaComprador">Cédula</label>
 
-              <input type="number" name="cedulaComprador" class="form-control" id="cedulaComprador" placeholder="" value="" pattern="[0-9]{10}" required>
+              <input type="number" name="cedulaComprador" class="form-control" id="cedulaComprador" placeholder="" value="" min="1" pattern="[0-9]{10}" required>
               <div class="invalid-feedback">
                   Debe ingresar su número de cédula
               </div>
@@ -199,7 +200,7 @@
                   <div class="row">
                       <div class="col-md-2 mb-3">
                       <label for="Name">Número</label>
-                      <input type="number" class="form-control" id="numeroComprador" value="" name="numeroComprador" pattern="[0-9]{10}" required>
+                      <input type="number" class="form-control" id="numeroComprador" value="" name="numeroComprador" min="1" pattern="[0-9]{10}" required>
                       <div class="invalid-feedback">
                           Ingresa el numero de la vivienda
                       </div>
@@ -276,12 +277,11 @@
                                       Elija una opcion de envio
                                   </div>
                                     </div>
-                                    
-                              </ul>
+                               </ul>
 
-                            </form>
+  </form>
 
-                              <h5>Costos</h5>
+    <h5>Costos</h5>
       <div class="row g-3">
         <ul class="list-group" id="costos">
           <li class="list-group-item"><b>Subtotal</b><span class="row"></span>
@@ -301,11 +301,12 @@
               <p class="text-end"> USD <span id="total"></span></p>
             </b>
           </li>
+          <br>
 
-        
-          </form>
- <!-- Agregar un botón para abrir el modal -->
- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">
+
+          
+<!-- Agregar un botón para abrir el modal -->
+<button type="button" id="formadepago" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">
   Forma de Pago
 </button>
 
@@ -315,52 +316,64 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="paymentModalLabel">Forma de Pago</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        
       </div>
       <div class="modal-body">
-        <form id="formadepago-form">
-          <div class="mb-3">
-            <label for="formadepago">Forma de Pago</label>
-            <select class="form-select" id="formadepago" name="formadepago">
-              <option value="tarjeta">Tarjeta de Crédito</option>
-              <option value="transferencia">Transferencia Bancaria</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="metodo">Método</label>
-            <input type="text" class="form-control" id="metodo" name="metodo">
-          </div>
-          <div class="mb-3">
-            <label for="titular">Titular</label>
-            <input type="text" class="form-control" id="titular" name="titular">
-          </div>
-          <div class="mb-3">
-            <label for="numtarjeta">Número de Tarjeta</label>
-            <input type="text" class="form-control" id="numtarjeta" name="numtarjeta">
-          </div>
-          <div class="mb-3">
-            <label for="banco">Banco</label>
-            <input type="text" class="form-control" id="banco" name="banco">
-          </div>
-          <div class="mb-3">
-            <label for="numcuenta">Número de Cuenta</label>
-            <input type="text" class="form-control" id="numcuenta" name="numcuenta">
-          </div>
+        <form id="formadepago-form" class="" novalidate>
+
+
+            <!-- Opción de Tarjeta de Crédito -->
+            <div class="mb-3">
+              <input type="radio" id="tarjeta" name="paymentMethod" value="tarjeta"> 
+              <label for="tarjeta">Tarjeta de Crédito</label>
+            </div>
+
+            <!-- Campos relacionados a Tarjeta de Crédito -->
+            <div class="mb-3">
+              <label for="titular">Titular</label>
+              <input type="text" class="form-control" id="titular" name="titular" required>
+              <div class="invalid-feedback">
+                Ingresa titular
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="numtarjeta">Número de Tarjeta</label>
+              <input type="number" class="form-control" id="numtarjeta" name="numtarjeta" required>
+              <div class="invalid-feedback">
+                Ingresa numero de tarjeta
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="banco">Banco</label>
+              <input type="text" class="form-control" id="banco" name="banco" required>
+              <div class="invalid-feedback">
+                Ingresa banco
+              </div>
+            </div>
+            <!-- Fin Campos relacionados a Tarjeta de Crédito -->
+
+            <!-- Opción de Transferencia Bancaria -->
+            <div class="mb-3">
+              <input type="radio" id="transferencia" name="paymentMethod" value="transferencia"> 
+              <label for="transferencia">Transferencia Bancaria</label>
+            </div>
+
+            <!-- Campos relacionados a Transferencia Bancaria -->
+            <div class="mb-3">
+              <label for="numcuenta">Número de Cuenta</label>
+              <input type="number" class="form-control" id="numcuenta" name="numcuenta" required>
+              <div class="invalid-feedback">
+                Ingresa numero de cuenta
+              </div>
+            </div>
+            <!-- Fin Campos relacionados a Transferencia Bancaria -->
+
+          </fieldset>
+          <!-- Fin Grupo de opciones de pago -->
+
         </form>
       </div>
-      <div id="transferenciaBancaria" style="display: none;">
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="banco">Banco</label>
-            <input type="text" class="form-control" id="banco" name="banco">
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="numeroCuenta">Número de Cuenta</label>
-            <input type="text" class="form-control" id="numeroCuenta" name="numeroCuenta">
-          </div>
-        </div>
-      </div>
-      
+      <br>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" id="guardarFormaPago">Guardar</button>
@@ -368,10 +381,13 @@
     </div>
   </div>
 </div>
+
+<br>
           <div id="btnComprar">
           <button class="btn btn-primary btn-lg" type="submit">Comprar</button>
+          <div id="alert-container"></div>
           </div>
-
+          
         
     
   </main>
