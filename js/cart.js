@@ -228,7 +228,6 @@ premium.addEventListener("click", calcularCostoEnvio);
 express.addEventListener("click", calcularCostoEnvio);
 standard.addEventListener("click", calcularCostoEnvio);
   
-
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("sell-info");
     const formPago = document.getElementById("formadepago-form")
