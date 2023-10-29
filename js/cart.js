@@ -224,11 +224,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-
-
-
-
-
 premium.addEventListener("click", calcularCostoEnvio);
 express.addEventListener("click", calcularCostoEnvio);
 standard.addEventListener("click", calcularCostoEnvio);
