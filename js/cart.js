@@ -201,41 +201,42 @@ express.addEventListener('click', calcularCostoEnvio);
 standard.addEventListener('click', calcularCostoEnvio);
 
 
-document.addEventListener('DOMContentLoaded', async function () {
+ 
+//Modifica el botón forma de pago al metodo seleccionado 
 
-  // Evento para guardar la forma de pago
-  document.getElementById('guardarFormaPago').addEventListener('click', function () {
-    const formadepago = document.getElementById('formadepago').value;
-    const metodo = document.getElementById('metodo').value;
+document.addEventListener('DOMContentLoaded', function () {
+  const tarjetaRadio = document.getElementById('tarjeta');
+  const transferenciaRadio = document.getElementById('transferencia');
+  const guardarFormaPagoBtn = document.getElementById('guardarFormaPago');
+  const formaDePagoSelect = document.getElementById('formadepago');
 
-    // Para agregar más campos según las necesidades
+  guardarFormaPagoBtn.addEventListener('click', function () {
+    let formaDePagoSeleccionada = '';
 
-    console.log('Forma de Pago: ' + formadepago);
-    console.log('Método: ' + metodo);
-    
-      const methodSelect = document.getElementById('formadepago');
-      const transferenciaBancariaDiv = document.getElementById('transferenciaBancaria');
-    
-      methodSelect.addEventListener('change', function () {
-        const selectedMethod = methodSelect.value;
-    
-        if (selectedMethod === 'tarjetacredito') {
-          // Ocultar los campos de transferencia bancaria
-          transferenciaBancariaDiv.style.display = 'none';
-        } else if (selectedMethod === 'transferenciabancaria') {
-          // Mostrar los campos de transferencia bancaria
-          transferenciaBancariaDiv.style.display = 'block';
-        }
+
+    if (tarjetaRadio.checked) {
+      formaDePagoSeleccionada = "Tarjeta de Crédito";
+    } else if (transferenciaRadio.checked) {
+      formaDePagoSeleccionada = "Transferencia Bancaria";
+    }
+
+    // Actualiza el texto del botón "Forma de Pago"
+    formaDePagoSelect.innerText = formaDePagoSeleccionada;
+  });
+});
+
+
   costo.innerHTML = calculoEnvio(porcentajeEnvio, subTotal).toFixed(0);
   total.innerHTML = costoTotal(subTotal, parseFloat(costo.textContent)).toFixed(
     0
   );
-})
+
 
 premium.addEventListener("click", calcularCostoEnvio);
 express.addEventListener("click", calcularCostoEnvio);
 standard.addEventListener("click", calcularCostoEnvio);
-  })})
+
+
 
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("sell-info");
@@ -318,5 +319,4 @@ function mostrarBootstrapAlert(tipo, mensaje) {
       </div>
     `;
   }
-*/
 

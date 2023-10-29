@@ -301,9 +301,13 @@
               <p class="text-end"> USD <span id="total"></span></p>
             </b>
           </li>
- <!-- Agregar un botón para abrir el modal -->
- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">
-  Forma de Pago
+
+          <br> 
+
+
+          
+<!-- Agregar un botón para abrir el modal -->
+<button type="button" id="formadepago" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">
 </button>
 
 <!-- Modal para seleccionar la forma de pago -->
@@ -312,10 +316,64 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="paymentModalLabel">Forma de Pago</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        
       </div>
       <div class="modal-body">
         <form id="formadepago-form" class="" novalidate>
+
+            <!-- Opción de Tarjeta de Crédito -->
+            <div class="mb-3">
+              <input type="radio" id="tarjeta" name="paymentMethod" value="tarjeta"> 
+              <label for="tarjeta">Tarjeta de Crédito</label>
+            </div>
+
+            <!-- Campos relacionados a Tarjeta de Crédito -->
+            <div class="mb-3">
+              <label for="titular">Titular</label>
+              <input type="text" class="form-control" id="titular" name="titular" required>
+              <div class="invalid-feedback">
+                Ingresa titular
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="numtarjeta">Número de Tarjeta</label>
+              <input type="number" class="form-control" id="numtarjeta" name="numtarjeta" required>
+              <div class="invalid-feedback">
+                Ingresa numero de tarjeta
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="banco">Banco</label>
+              <input type="text" class="form-control" id="banco" name="banco" required>
+              <div class="invalid-feedback">
+                Ingresa banco
+              </div>
+            </div>
+            <!-- Fin Campos relacionados a Tarjeta de Crédito -->
+
+            <!-- Opción de Transferencia Bancaria -->
+            <div class="mb-3">
+              <input type="radio" id="transferencia" name="paymentMethod" value="transferencia"> 
+              <label for="transferencia">Transferencia Bancaria</label>
+            </div>
+
+            <!-- Campos relacionados a Transferencia Bancaria -->
+            <div class="mb-3">
+              <label for="numcuenta">Número de Cuenta</label>
+              <input type="number" class="form-control" id="numcuenta" name="numcuenta" required>
+              <div class="invalid-feedback">
+                Ingresa numero de cuenta
+              </div>
+            </div>
+            <!-- Fin Campos relacionados a Transferencia Bancaria -->
+
+          </fieldset>
+          <!-- Fin Grupo de opciones de pago -->
+
+        </form>
+      </div>
+      <br>
+
           <div class="mb-3">
             <label for="formadepago">Forma de Pago</label>
             <select class="form-select" id="formadepago" name="formadepago" required>
@@ -376,6 +434,7 @@
         </div>
       </div>
       
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" id="guardarFormaPago">Guardar</button>
@@ -383,6 +442,8 @@
     </div>
   </div>
 </div>
+
+<br>
           <div id="btnComprar">
           <button class="btn btn-primary btn-lg" type="submit">Comprar</button>
           <div id="alert-container"></div>
