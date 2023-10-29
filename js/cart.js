@@ -201,6 +201,36 @@ express.addEventListener('click', calcularCostoEnvio);
 standard.addEventListener('click', calcularCostoEnvio);
 
 
+/*document.addEventListener('DOMContentLoaded', async function () {
+
+  // Evento para guardar la forma de pago
+  document.getElementById('guardarFormaPago').addEventListener('click', function () {
+    const formadepago = document.getElementById('formadepago').value;
+    const metodo = document.getElementById('metodo').value;
+
+    // Para agregar más campos según las necesidades
+
+    console.log('Forma de Pago: ' + formadepago);
+    console.log('Método: ' + metodo);
+    
+      const methodSelect = document.getElementById('formadepago');
+      const transferenciaBancariaDiv = document.getElementById('transferenciaBancaria');
+    
+      methodSelect.addEventListener('change', function () {
+        const selectedMethod = methodSelect.value;
+    
+        if (selectedMethod === 'tarjetacredito') {
+          // Ocultar los campos de transferencia bancaria
+          transferenciaBancariaDiv.style.display = 'none';
+        } else if (selectedMethod === 'transferenciabancaria') {
+          // Mostrar los campos de transferencia bancaria
+          transferenciaBancariaDiv.style.display = 'block';
+        }
+  costo.innerHTML = calculoEnvio(porcentajeEnvio, subTotal).toFixed(0);
+  total.innerHTML = costoTotal(subTotal, parseFloat(costo.textContent)).toFixed(
+    0
+  );
+})*/
  
 //Modifica el botón forma de pago al metodo seleccionado 
 
@@ -212,7 +242,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   guardarFormaPagoBtn.addEventListener('click', function () {
     let formaDePagoSeleccionada = '';
-
 
     if (tarjetaRadio.checked) {
       formaDePagoSeleccionada = "Tarjeta de Crédito";
@@ -226,16 +255,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-  costo.innerHTML = calculoEnvio(porcentajeEnvio, subTotal).toFixed(0);
-  total.innerHTML = costoTotal(subTotal, parseFloat(costo.textContent)).toFixed(
-    0
-  );
+
+
 
 
 premium.addEventListener("click", calcularCostoEnvio);
 express.addEventListener("click", calcularCostoEnvio);
 standard.addEventListener("click", calcularCostoEnvio);
   
+
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("sell-info");
     const formPago = document.getElementById("formadepago-form")
@@ -317,4 +345,4 @@ function mostrarBootstrapAlert(tipo, mensaje) {
       </div>
     `;
   }
-
+*/
