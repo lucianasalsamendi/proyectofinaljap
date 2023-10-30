@@ -214,7 +214,7 @@ btnCarrito.addEventListener('click', () => {
     // Notifica al usuario que el producto se agregó al carrito
     Swal.fire(
         'Felicidades!',
-        'Ha sido agregido al carrito con éxito.',
+        'Ha sido agregado al carrito con éxito.',
         'success'
     );
 });
