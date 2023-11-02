@@ -128,6 +128,9 @@
       <div class="mt-5">
         <h2 class="display-5">Perfil</h2>
       </div>
+      <div>
+        <img id="imagen-preview" src="imagen-perfil.png" alt="Imagen de perfil" style="max-width: 100px; max-height: 100px;">
+      </div>
       <!-- div del grid -->
       <form class="row g-3 needs-validation" novalidate>
       <!--  primera columna -->
@@ -153,6 +156,13 @@
             E-mail es obligatorio
           </div>
         </div>
+        <div class="form-floating mb-3">
+          <input type="tel" class="form-control" id="floatingInput" tabindex="6" placeholder="Telefono de contacto" required>
+          <label for="floatingInput" class="form-label">Telefono de contacto*</label>
+          <div class="invalid-feedback">
+            Telefono es obligatorio
+          </div>
+        </div>
       </div>
 
       <!-- segunda columna -->
@@ -166,19 +176,14 @@
           <label for="floatingInput" class="form-label">Segundo Apellido</label>
         </div>
         <div class="form-group mb-3">
-          <input type="file" class="form-control-file" id="imagen" accept="image/*">
+          <input type="file" class="form-control-file" id="imagen" accept="image/*" tabindex="7">
         </div>
-        <div class="form-floating mb-3">
-          <input type="tel" class="form-control" id="floatingInput" tabindex="6" placeholder="Telefono de contacto" required>
-          <label for="floatingInput" class="form-label">Telefono de contacto*</label>
-          <div class="invalid-feedback">
-            Telefono es obligatorio
-          </div>
-        </div>
+      </div>
+      </div>
       </div>
 
       <div class="mt-5 ">
-        <button type="submit" class="btn btn-primary" tabindex="7" >Guardar Cambios</button>
+        <button type="submit" class="btn btn-primary" tabindex="8" >Guardar Cambios</button>
       </div>
     </div>
 
