@@ -124,4 +124,40 @@ document.addEventListener("keyindex", function(event) {
     })
   })()
 
+
+  function displayImage() {
+    const selectedImage = document.getElementById("selectedImage");
+    const imagenInput = document.getElementById("imagenInput");
+    const imagenPerfilDiv = document.getElementById("imagenPerfil");
+  
+    if (imagenInput.files && imagenInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        selectedImage.src = e.target.result;
+        // Show the image
+        selectedImage.style.display = "block";
+  
+        const imageDataURL = e.target.result;
+        localStorage.setItem("selectedImage", imageDataURL);
+  
+        // Hide the SVG when an image is selected
+        imagenPerfilDiv.querySelector("svg").style.display = "none";
+      };
+  
+      reader.readAsDataURL(imagenInput.files[0]);
+    }
+  }
+  
+  window.onload = function() {
+    const selectedImage = document.getElementById("selectedImage");
+    const storedImageDataURL = localStorage.getItem("selectedImage");
+    const imagenPerfilDiv = document.getElementById("imagenPerfil");
+  
+    if (storedImageDataURL) {
+      selectedImage.src = storedImageDataURL;
+      // Show the image
+      selectedImage.style.display = "block";
+      imagenPerfilDiv.querySelector("svg").style.display = "none";
+    }
+  };
   
