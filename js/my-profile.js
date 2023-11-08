@@ -125,3 +125,44 @@ document.addEventListener("keyindex", function(event) {
   })()
 
   
+    // Función para cargar los datos desde el localStorage y llenar los campos
+    function cargarDatos() {
+        const nombre = localStorage.getItem('nombre');
+        const apellido = localStorage.getItem('apellido');
+        const email = localStorage.getItem('email');
+        const telefono = localStorage.getItem('telefono');
+
+        if (nombre) {
+            document.getElementById('nombre').value = nombre;
+        }
+        if (apellido) {
+            document.getElementById('apellido').value = apellido;
+        }
+        if (email) {
+            document.getElementById('email').value = email;
+        }
+        if (telefono) {
+            document.getElementById('telefono').value = telefono;
+        }
+    }
+
+    // Función para guardar los datos en el localStorage cuando se envía el formulario
+    function guardarDatos() {
+      const nombre = document.getElementById('nombre').value;
+      const apellido = document.getElementById('apellido').value;
+      const email = document.getElementById('email').value;
+      const telefono = document.getElementById('telefono').value;
+  
+      localStorage.setItem('nombre', nombre);
+      localStorage.setItem('apellido', apellido);
+      localStorage.setItem('email', email);
+      localStorage.setItem('telefono', telefono);
+  }
+  
+
+    // Llama a la función cargarDatos cuando se carga la página
+    cargarDatos();
+
+
+
+  
