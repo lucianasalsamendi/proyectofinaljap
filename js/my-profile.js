@@ -41,3 +41,15 @@ document.addEventListener("keyindex", function(event) {
       }, false)
     })
   })()
+
+  // traer el mail para el input
+  const inputGmail = document.getElementById('inputMail')
+  const gmail = localStorage.getItem('user');
+
+  console.log(gmail);
+
+function llenarMail (){
+  inputGmail.value = gmail;
+}
+llenarMail();
+
