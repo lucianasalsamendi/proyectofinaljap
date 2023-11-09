@@ -146,55 +146,55 @@
       <!--  primera columna -->
       <div class="mt-5 col-md">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingInput" tabindex="1" placeholder="Nombre" required>
-          <label for="floatingInput" class="form-label">Nombre*</label>
-          <div class="invalid-feedback">
-            Nombre es obligatorio
-          </div>
+            <input type="text" class="form-control " id="nombre" tabindex="1" placeholder="Nombre" required>
+            <label for="floatingInput" class="form-label">Nombre*</label>
+            <div class="invalid-feedback">
+              Nombre es obligatorio
+            </div>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingInput" tabindex="3" placeholder="Apellido" required>
-          <label for="floatingInput" class="form-label">Apellido*</label>
-          <div class="invalid-feedback">
-            Apellido es obligatorio
-          </div>
+            <input type="text" class="form-control " id="apellido" tabindex="3" placeholder="Apellido" required>
+            <label for="floatingInput" class="form-label">Apellido*</label>
+            <div class="invalid-feedback">
+              Apellido es obligatorio
+            </div>
         </div>
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" tabindex="5" placeholder="E-mail" required>
-          <label for="floatingInput" class="form-label">E-mail*</label>
-          <div class="invalid-feedback">
-            E-mail es obligatorio
-          </div>
+            <input type="email" class="form-control " id="inputMail" tabindex="5" placeholder="E-mail" required>
+            <label for="floatingInput" class="form-label" id="mail">E-mail*</label>
+            <div class="invalid-feedback">
+              E-mail es obligatorio
+            </div>
         </div>
         <div class="form-floating mb-3">
-          <input type="tel" class="form-control" id="floatingInput" tabindex="6" placeholder="Telefono de contacto" required>
-          <label for="floatingInput" class="form-label">Telefono de contacto*</label>
-          <div class="invalid-feedback">
-            Telefono es obligatorio
-          </div>
-           <div class="mt-5 ">
-            <button type="submit" class="btn btn-primary" tabindex="8" >Guardar Cambios</button>
-          </div>
+            <input type="tel" class="form-control" id="tel" tabindex="6" placeholder="Telefono de contacto" required>
+            <label for="floatingInput" class="form-label">Telefono de contacto*</label>
+            <div class="invalid-feedback">
+              Telefono es obligatorio
+            </div>
+
         </div>
       </div>
 
       <!-- segunda columna -->
       <div class="mt-5 col-md">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingInput" tabindex="2" placeholder="Segundo Nombre">
-          <label for="floatingInput" class="form-label">Segundo Nombre</label>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="segundoNombre"  tabindex="2" placeholder="Segundo Nombre">
+            <label for="floatingInput" class="form-label">Segundo Nombre</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="segundoApellido" tabindex="4" placeholder=" Segundo Apellido">
+            <label for="floatingInput" class="form-label">Segundo Apellido</label>
+          </div>
+          <div class="form-group mb-3">
+            <input type="file" class="form-control-file" id="selectImagen" accept="image/*" tabindex="7">
+          </div>
         </div>
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingInput" tabindex="4" placeholder=" Segundo Apellido">
-          <label for="floatingInput" class="form-label">Segundo Apellido</label>
-        </div>
-        <div class="form-group mb-3">
-          <input type="file" class="form-control-file" id="imagen" accept="image/*" tabindex="7">
-        </div>
-      </div>
-      </div>
+      <div class="mt-5 ">
+        <button type="submit" class="btn btn-primary" tabindex="8" id="btnGuardar" >Guardar Cambios</button>
       </div>
     </div>
+  </div>
 
  
   </form>

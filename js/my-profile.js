@@ -124,7 +124,6 @@ document.addEventListener("keyindex", function(event) {
     })
   })()
 
-
   function displayImage() {
     const selectedImage = document.getElementById("selectedImage");
     const imagenInput = document.getElementById("imagenInput");
@@ -196,9 +195,16 @@ document.addEventListener("keyindex", function(event) {
   }
   
 
-    // Llama a la función cargarDatos cuando se carga la página
+  // Llama a la función cargarDatos cuando se carga la página
     cargarDatos();
 
+  // traer el mail para el input
+  const inputGmail = document.getElementById('inputMail')
+  const gmail = localStorage.getItem('user');
 
+  console.log(gmail);
 
-  
+function llenarMail (){
+  inputGmail.value = gmail;
+}
+llenarMail();
