@@ -1,10 +1,9 @@
 //El código (document.addEventListener) asegura que el contenido de la página HTML se haya cargado completamente antes de ejecutar el código JavaScript.
-  //Se obtiene una referencia al elemento de botón de inicio de sesión con el ID "login" en el DOM.
-    //Se agrega un escuchador de eventos al botón de inicio de sesión que espera el evento de clic.
+//Se obtiene una referencia al elemento de botón de inicio de sesión con el ID "login" en el DOM.
+//Se agrega un escuchador de eventos al botón de inicio de sesión que espera el evento de clic.
 document.addEventListener("DOMContentLoaded", function () {
-
   const btn = document.getElementById("login");
-  
+
   btn.addEventListener("click", function () {
     //Se obtiene el valor ingresado por el usuario en el campo de entrada con el ID "floatingInput" y se almacena en la variable user.
     const user = document.getElementById("floatingInput").value;
@@ -39,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const isSessionActive = localStorage.setItem("user", user);
-  
-  // Redirigir según la condición
-  if (!isSessionActive) {
-    window.location.href = 'login.html';
-  }
+
+// Redirigir según la condición
+if (!isSessionActive) {
+  window.location.href = "login.html";
+}
