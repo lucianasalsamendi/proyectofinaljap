@@ -1,5 +1,3 @@
-
-
 /*!
  * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
@@ -7,98 +5,105 @@
  */
 
 (() => {
-    'use strict';
-  
-    const getStoredTheme = () => localStorage.getItem('theme');
-    const setStoredTheme = theme => localStorage.setItem('theme', theme);
-  
-    const getPreferredTheme = () => {
+  "use strict";
+
+  const getStoredTheme = () => localStorage.getItem("theme");
+  const setStoredTheme = (theme) => localStorage.setItem("theme", theme);
+
+  const getPreferredTheme = () => {
+    const storedTheme = getStoredTheme();
+    if (storedTheme) {
+      return storedTheme;
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+
+  const setTheme = (theme) => {
+    if (
+      theme === "auto" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      document.documentElement.setAttribute("data-bs-theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-bs-theme", theme);
+    }
+  };
+
+  setTheme(getPreferredTheme());
+
+  const showActiveTheme = (theme, focus = false) => {
+    const themeSwitcher = document.querySelector("#bd-theme");
+
+    if (!themeSwitcher) {
+      return;
+    }
+
+    const themeSwitcherText = document.querySelector("#bd-theme-text");
+    const activeThemeIcon = document.querySelector(".theme-icon-active use");
+    const btnToActive = document.querySelector(
+      `[data-bs-theme-value="${theme}"]`
+    );
+    const svgOfActiveBtn = btnToActive
+      .querySelector("svg use")
+      .getAttribute("href");
+
+    document.querySelectorAll("[data-bs-theme-value]").forEach((element) => {
+      element.classList.remove("active");
+      element.setAttribute("aria-pressed", "false");
+    });
+
+    btnToActive.classList.add("active");
+    btnToActive.setAttribute("aria-pressed", "true");
+    activeThemeIcon.setAttribute("href", svgOfActiveBtn);
+    const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`;
+    themeSwitcher.setAttribute("aria-label", themeSwitcherLabel);
+
+    if (focus) {
+      themeSwitcher.focus();
+    }
+  };
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", () => {
       const storedTheme = getStoredTheme();
-      if (storedTheme) {
-        return storedTheme;
-      }
-  
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-  
-    const setTheme = theme => {
-      if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-bs-theme', 'dark');
-      } else {
-        document.documentElement.setAttribute('data-bs-theme', theme);
-      }
-    }
-  
-    setTheme(getPreferredTheme());
-  
-    const showActiveTheme = (theme, focus = false) => {
-      const themeSwitcher = document.querySelector('#bd-theme');
-  
-      if (!themeSwitcher) {
-        return;
-      }
-  
-      const themeSwitcherText = document.querySelector('#bd-theme-text');
-      const activeThemeIcon = document.querySelector('.theme-icon-active use');
-      const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`);
-      const svgOfActiveBtn = btnToActive.querySelector('svg use').getAttribute('href');
-  
-      document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
-        element.classList.remove('active');
-        element.setAttribute('aria-pressed', 'false');
-      });
-  
-      btnToActive.classList.add('active');
-      btnToActive.setAttribute('aria-pressed', 'true');
-      activeThemeIcon.setAttribute('href', svgOfActiveBtn);
-      const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`;
-      themeSwitcher.setAttribute('aria-label', themeSwitcherLabel);
-  
-      if (focus) {
-        themeSwitcher.focus();
-      }
-    }
-  
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-      const storedTheme = getStoredTheme();
-      if (storedTheme !== 'light' && storedTheme !== 'dark') {
+      if (storedTheme !== "light" && storedTheme !== "dark") {
         setTheme(getPreferredTheme());
       }
     });
-  
-    window.addEventListener('DOMContentLoaded', () => {
-      showActiveTheme(getPreferredTheme());
-  
-      document.querySelectorAll('[data-bs-theme-value]').forEach(toggle => {
-        toggle.addEventListener('click', () => {
-          const theme = toggle.getAttribute('data-bs-theme-value');
-          setStoredTheme(theme);
-          setTheme(theme);
-          showActiveTheme(theme, true);
-        });
+
+  window.addEventListener("DOMContentLoaded", () => {
+    showActiveTheme(getPreferredTheme());
+
+    document.querySelectorAll("[data-bs-theme-value]").forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const theme = toggle.getAttribute("data-bs-theme-value");
+        setStoredTheme(theme);
+        setTheme(theme);
+        showActiveTheme(theme, true);
       });
     });
-  })();
-  
-  /*Aca termina dark and light*/
+  });
+})();
 
-
-
+/*Aca termina dark and light*/
 
 document.addEventListener("DOMContentLoaded", async () => {
-  
   let productID = localStorage.getItem("Product");
   let productInfo = document.getElementById("product-info");
 
   const respondeID = await getJSONData(
-      PRODUCT_INFO_URL + productID + EXT_TYPE
-      // Aprovecho que ya estan los datos en init y 
-      // pido que me de el url de productos y el tipo de extension 
-  ); 
-      let product = respondeID.data;
-          // Pido los datos del json en este caso los datos de productos
+    PRODUCT_INFO_URL + productID + EXT_TYPE
+    // Aprovecho que ya estan los datos en init y
+    // pido que me de el url de productos y el tipo de extension
+  );
+  let product = respondeID.data;
+  // Pido los datos del json en este caso los datos de productos
 
-          productInfo.innerHTML = `
+  productInfo.innerHTML = `
           <div id="name">
           <h1 class="titulo">${product.name}<h1>
           </div>
@@ -159,204 +164,194 @@ document.addEventListener("DOMContentLoaded", async () => {
         <span class="visually-hidden">Siguiente</span>
       </button>
     </div>
-      `
-      const imageContainer = document.getElementById("image");
-      const imagenes = product.images;
-      
-    // mostramos productos relacionados//
+      `;
+  const imageContainer = document.getElementById("image");
+  const imagenes = product.images;
 
-      //Aca me carga cada imagen del indice
-      imagenes.forEach((image, index) => {
-          let indiceImage = 0;
-          let img = document.createElement("img");
-          img.src = image;
-          img.id = `image-${index}`;
-          img.classList.add("image-grid");
-          imageContainer.appendChild(img);
+  // mostramos productos relacionados//
 
-          // Creo un evento que al hacer click me muestre el contenido interno
-          // de cada producto
-          img.addEventListener("click", () =>{
-              indiceImage = item.getAttribute(id)
-              showImage();
-          });
-          
-});
-// Agregar al carrito
-const btnCarrito = document.getElementById('btnCarrito');
-btnCarrito.addEventListener('click', () => {
+  //Aca me carga cada imagen del indice
+  imagenes.forEach((image, index) => {
+    let indiceImage = 0;
+    let img = document.createElement("img");
+    img.src = image;
+    img.id = `image-${index}`;
+    img.classList.add("image-grid");
+    imageContainer.appendChild(img);
+
+    // Creo un evento que al hacer click me muestre el contenido interno
+    // de cada producto
+    img.addEventListener("click", () => {
+      indiceImage = item.getAttribute(id);
+      showImage();
+    });
+  });
+  // Agregar al carrito
+  const btnCarrito = document.getElementById("btnCarrito");
+  btnCarrito.addEventListener("click", () => {
     // Obtén el carrito actual desde el localStorage
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     // Crea un objeto con los datos del producto actual
     const producto = {
-        image: product.image,
-        id: product.id,
-        name: product.name,
-        unitCost: product.cost,
-        count: 1,
-        currency: product.currency,
+      image: product.image,
+      id: product.id,
+      name: product.name,
+      unitCost: product.cost,
+      count: 1,
+      currency: product.currency,
     };
     // Comprueba si el producto ya está en el carrito
-    const productoExistente = carrito.find(item => item.id === producto.id);
+    const productoExistente = carrito.find((item) => item.id === producto.id);
 
     if (productoExistente) {
-        // Si el producto ya existe en el carrito, incrementa la cantidad.
-        productoExistente.quantity += 1;
+      // Si el producto ya existe en el carrito, incrementa la cantidad.
+      productoExistente.quantity += 1;
     } else {
-        // Si el producto no está en el carrito, agrégalo.
-        carrito.push(producto);
+      // Si el producto no está en el carrito, agrégalo.
+      carrito.push(producto);
     }
 
     // Guarda el carrito actualizado en el localStorage
-    localStorage.setItem('carrito', JSON.stringify(carrito));
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 
     // Notifica al usuario que el producto se agregó al carrito
     Swal.fire(
-        'Felicidades!',
-        'Ha sido agregado al carrito con éxito.',
-        'success'
+      "Felicidades!",
+      "Ha sido agregado al carrito con éxito.",
+      "success"
     );
-});
-const Comments_URL = `https://japceibal.github.io/emercado-api/products_comments/${productID}.json`;
-fetch(Comments_URL)
-    .then(response => response.json())
-    .then(comments => {
-        // Iterar a través de los comentarios y mostrarlos en la página
-        const comentariosDiv = document.getElementById('comment-list');
-        comments.forEach(comentario => {
-            const comentarioElement = document.createElement('li');
-            // intentar hacer los score a star const stars = nombre_function(comentario.score)
-            const estrellas = convertirPuntuacionAEstrellas(comentario.score);
+  });
+  const Comments_URL = `https://japceibal.github.io/emercado-api/products_comments/${productID}.json`;
+  fetch(Comments_URL)
+    .then((response) => response.json())
+    .then((comments) => {
+      // Iterar a través de los comentarios y mostrarlos en la página
+      const comentariosDiv = document.getElementById("comment-list");
+      comments.forEach((comentario) => {
+        const comentarioElement = document.createElement("li");
+        // intentar hacer los score a star const stars = nombre_function(comentario.score)
+        const estrellas = convertirPuntuacionAEstrellas(comentario.score);
 
-            comentarioElement.innerHTML = `
+        comentarioElement.innerHTML = `
                 <p><strong>${comentario.user}</strong> ${comentario.dateTime} - ${estrellas}</p>
                 <p><strong>Comentario:</strong> ${comentario.description}</p>
                
             `;
-            comentariosDiv.appendChild(comentarioElement);
-        });
+        comentariosDiv.appendChild(comentarioElement);
+      });
     })
-    .catch(error => {
-        console.error('Error al obtener comentarios:', error);
+    .catch((error) => {
+      console.error("Error al obtener comentarios:", error);
     });
-    
 
-function convertirPuntuacionAEstrellas(score) {
-  let estrellas = '';
-  for (let i = 0; i < score; i++) {
-    estrellas += '★'; // Agregar una estrella por cada punto
+  function convertirPuntuacionAEstrellas(score) {
+    let estrellas = "";
+    for (let i = 0; i < score; i++) {
+      estrellas += "★"; // Agregar una estrella por cada punto
+    }
+    return `<span class="estrellas-amarillas">${estrellas}</span>`;
   }
-  return `<span class="estrellas-amarillas">${estrellas}</span>`;
-}
-
 });
 
-      // carrusel
+// carrusel
 
-      
-      let carouselItems = document.querySelectorAll('.carousel-item');
+let carouselItems = document.querySelectorAll(".carousel-item");
 
-      carouselItems.forEach(item => {
-        item.addEventListener('click', () => {
-          // Obtener el ID del producto relacionado desde el atributo data-product-id
-           productId = item.getAttribute('data-product-id');
-      
-          // Guardar el ID del producto en localStorage o en otra ubicación, según tus necesidades
-          productInfo = localStorage.setItem('Product', productId);
-      
-          // Redirigir la página a una URL que incluya el ID del producto
-          window.location.href = `/product?id=${productId}`;
-          window.location.reload()
+carouselItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    // Obtener el ID del producto relacionado desde el atributo data-product-id
+    productId = item.getAttribute("data-product-id");
 
-        });
-      });
-      
+    // Guardar el ID del producto en localStorage o en otra ubicación, según tus necesidades
+    productInfo = localStorage.setItem("Product", productId);
 
+    // Redirigir la página a una URL que incluya el ID del producto
+    window.location.href = `/product?id=${productId}`;
+    window.location.reload();
+  });
+});
 
 // Hacer una solicitud a la API
 
 // cambio de estrellas al hacer click en ellas
-var starLabels = document.querySelectorAll('.stars label');
-var selectedRating = document.getElementById('selected-rating');
-var ratingInput = document.getElementById('rating');
+var starLabels = document.querySelectorAll(".stars label");
+var selectedRating = document.getElementById("selected-rating");
+var ratingInput = document.getElementById("rating");
 
 starLabels.forEach((label, index) => {
-    label.addEventListener('click', () => {
-        // Cambiar la clase para mostrar la estrella llena o vacía
-        for (let i = 0; i < starLabels.length; i++) {
-            if (i <= index) {
-                starLabels[i].classList.add('fas', 'fa-star-filled');
-                starLabels[i].classList.remove('fa-star-empty');
-            } else {
-                starLabels[i].classList.add('fa-star-empty');
-                starLabels[i].classList.remove('fas', 'fa-star-filled');
-            }
-        }
-
-        // Actualizar el valor 
-        ratingInput.value = index + 1;
-
-        // Actualizar el número de estrellas seleccionadas
-        selectedRating.textContent = index + 1;
-
-        });
-    });
-
-// envío del formulario al servidor
-document.getElementById('comment-form').addEventListener('submit', function(event) {
-event.preventDefault(); // Evitar el envío del formulario por defecto
-
-    // Obtener los valores del comentario y la puntuación
-    var comment = document.getElementById('comment').value;
-    var rating = ratingInput.value;
-
-    
-    let message = '';
-    if (rating >= 5) {
-        message = '¡Extraordinario!';
-    }else if (rating >= 4) {
-        message = '¡Excelente Producto!';
-    } else if (rating >= 3) {
-        message = 'Buen producto';
-    } else if (rating >= 2) {
-        message = 'Aceptable';
-    } else if (rating >= 1) {
-        message = 'Malo';
+  label.addEventListener("click", () => {
+    // Cambiar la clase para mostrar la estrella llena o vacía
+    for (let i = 0; i < starLabels.length; i++) {
+      if (i <= index) {
+        starLabels[i].classList.add("fas", "fa-star-filled");
+        starLabels[i].classList.remove("fa-star-empty");
+      } else {
+        starLabels[i].classList.add("fa-star-empty");
+        starLabels[i].classList.remove("fas", "fa-star-filled");
+      }
     }
 
-// Mostrar el mensaje
-document.getElementById('message').textContent = message;
+    // Actualizar el valor
+    ratingInput.value = index + 1;
 
-const user = localStorage.getItem('user');
-// Comprobar si el nombre de usuario existe en localStorage
-if (user) {
-  // Crear un nuevo comentario con la puntuación
-  const newComment = document.createElement('div');
-  newComment.classList.add('comentario');
-  newComment.innerHTML = `
+    // Actualizar el número de estrellas seleccionadas
+    selectedRating.textContent = index + 1;
+  });
+});
+
+// envío del formulario al servidor
+document
+  .getElementById("comment-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Evitar el envío del formulario por defecto
+
+    // Obtener los valores del comentario y la puntuación
+    var comment = document.getElementById("comment").value;
+    var rating = ratingInput.value;
+
+    let message = "";
+    if (rating >= 5) {
+      message = "¡Extraordinario!";
+    } else if (rating >= 4) {
+      message = "¡Excelente Producto!";
+    } else if (rating >= 3) {
+      message = "Buen producto";
+    } else if (rating >= 2) {
+      message = "Aceptable";
+    } else if (rating >= 1) {
+      message = "Malo";
+    }
+
+    // Mostrar el mensaje
+    document.getElementById("message").textContent = message;
+
+    const user = localStorage.getItem("user");
+    // Comprobar si el nombre de usuario existe en localStorage
+    if (user) {
+      // Crear un nuevo comentario con la puntuación
+      const newComment = document.createElement("div");
+      newComment.classList.add("comentario");
+      newComment.innerHTML = `
     <strong>${user}</strong> - ${new Date().toLocaleString()}<br>
     Puntuación: ${rating} ${message}<br>
     Comentario:${comment}
   `;
 
-  // Agrega el nuevo comentario a la lista de comentarios existentes
-  const comentariosDiv = document.getElementById('comentarios');
-  comentariosDiv.appendChild(newComment);
+      // Agrega el nuevo comentario a la lista de comentarios existentes
+      const comentariosDiv = document.getElementById("comentarios");
+      comentariosDiv.appendChild(newComment);
+    } else {
+      // Usuario no registrado
+      alert("Debes estar registrado para realizar comen tarios");
+    }
 
-} else {  // Usuario no registrado
-    alert('Debes estar registrado para realizar comen tarios');
-  
-}
-
-// Limpia el formulario después del envío 
-document.getElementById('comment').value = '';
-ratingInput.value = '0';
-selectedRating.textContent = '0';
-starLabels.forEach(label => {
-    label.classList.remove('fa-star');
-    label.classList.add('fa-star-empty');
-});
-})
-
-   
+    // Limpia el formulario después del envío
+    document.getElementById("comment").value = "";
+    ratingInput.value = "0";
+    selectedRating.textContent = "0";
+    starLabels.forEach((label) => {
+      label.classList.remove("fa-star");
+      label.classList.add("fa-star-empty");
+    });
+  });
