@@ -132,9 +132,128 @@ document.addEventListener("keyindex", function (event) {
           event.stopPropagation();
         }
 
+
         form.classList.add("was-validated");
       },
       false
     );
   });
 })();
+
+  function displayImage() {
+    const selectedImage = document.getElementById("selectedImage");
+    const imagenInput = document.getElementById("imagenInput");
+    const imagenPerfilDiv = document.getElementById("imagenPerfil");
+  
+    if (imagenInput.files && imagenInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        selectedImage.src = e.target.result;
+        // Show the image
+        selectedImage.style.display = "block";
+  
+        const imageDataURL = e.target.result;
+        localStorage.setItem("selectedImage", imageDataURL);
+  
+        // Hide the SVG when an image is selected
+        imagenPerfilDiv.querySelector("svg").style.display = "none";
+      };
+  
+      reader.readAsDataURL(imagenInput.files[0]);
+    }
+  }
+  
+  window.onload = function() {
+    const selectedImage = document.getElementById("selectedImage");
+    const storedImageDataURL = localStorage.getItem("selectedImage");
+    const imagenPerfilDiv = document.getElementById("imagenPerfil");
+  
+    if (storedImageDataURL) {
+      selectedImage.src = storedImageDataURL;
+      // Show the image
+      selectedImage.style.display = "block";
+      imagenPerfilDiv.querySelector("svg").style.display = "none";
+    }
+  };
+  
+    // Función para cargar los datos desde el localStorage y llenar los campos
+    function cargarDatos() {
+        const nombre = localStorage.getItem('nombre');
+        const apellido = localStorage.getItem('apellido');
+        const email = localStorage.getItem('email');
+        const telefono = localStorage.getItem('telefono');
+
+        if (nombre) {
+            document.getElementById('nombre').value = nombre;
+        }
+        if (apellido) {
+            document.getElementById('apellido').value = apellido;
+        }
+        if (email) {
+            document.getElementById('email').value = email;
+        }
+        if (telefono) {
+            document.getElementById('telefono').value = telefono;
+        }
+    }
+
+    // Función para guardar los datos en el localStorage cuando se envía el formulario
+    function guardarDatos() {
+      const nombre = document.getElementById('nombre').value;
+      const apellido = document.getElementById('apellido').value;
+      const email = document.getElementById('email').value;
+      const telefono = document.getElementById('telefono').value;
+  
+      localStorage.setItem('nombre', nombre);
+      localStorage.setItem('apellido', apellido);
+      localStorage.setItem('email', email);
+      localStorage.setItem('telefono', telefono);
+  }
+  
+
+  // Llama a la función cargarDatos cuando se carga la página
+    cargarDatos();
+
+  // traer el mail para el input
+  const inputGmail = document.getElementById('inputMail')
+  const gmail = localStorage.getItem('user');
+
+  function llenarMail (){
+    inputGmail.value = gmail;
+  }
+  llenarMail();
+
+  // cambiar imagen de perfil 
+  const fileInput = document.getElementById('fileInput');
+  const imagenGuardada = document.getElementById('imagenGuardada');
+  
+  fileInput.addEventListener('change', function () {
+    const file = fileInput.files[0];
+  
+    if (file) {
+      const reader = new FileReader();
+     
+      reader.onload = function (e) {
+        localStorage.setItem('imagenGuardada', e.target.result);
+        imagenGuardada.src = e.target.result;
+ 
+      };
+  
+      reader.readAsDataURL(file);
+    }
+  });
+  
+  function cargarImagenGuardada() {
+    const base64Image = localStorage.getItem('imagenGuardada');
+
+
+    if (base64Image) {
+      imagenGuardada.src = base64Image;
+
+    }
+  }
+
+  
+  // Llamar a esta función para cargar la imagen guardada al cargar la página
+  cargarImagenGuardada();
+
