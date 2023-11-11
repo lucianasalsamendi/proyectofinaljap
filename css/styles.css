@@ -321,7 +321,7 @@ html,
   margin: 20px;
   flex-direction: column;
 }
-img {
+.imgCarucel{
   width: 400px; /* Ancho de la imagen de fondo */ 
   border: 2px solid #000; /* Borde negro */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
@@ -477,17 +477,18 @@ color: yellow;
   cursor: pointer;
 }
 
-#imagenPerfil {
-  width: 80px; /* Set a fixed width for the div */
-  height: 80px; /* Set a fixed height for the div */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
 
 #selectedImage {
   max-width: 100%; /* Make the image responsive within the div */
   max-height: 100%; /* Make the image responsive within the div */
+}
+
+#imagenGuardada{
+  width: 120px;
+  height: 100px;
+}
+
+.containerImagenes{
+  display: flex;
+  justify-content: space-between;
 }

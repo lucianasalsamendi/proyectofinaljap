@@ -148,11 +148,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       <div class="carousel-inner">
         <div data-product-id="${product.relatedProducts[0].id}" class="carousel-item active ">
         <h5>${product.relatedProducts[0].name}</h5>
-          <img src="${product.relatedProducts[0].image}" class="d-block w-17" alt="Productos relacionados">
+          <img src="${product.relatedProducts[0].image}" class="d-block w-17 imgCarucel" alt="Productos relacionados">
         </div>
         <div data-product-id="${product.relatedProducts[1].id}" class="carousel-item">
         <h5>${product.relatedProducts[1].name}</h5>
-          <img src="${product.relatedProducts[1].image}" class="d-block w-17" alt="productosRelacionados">
+          <img src="${product.relatedProducts[1].image}" class="d-block w-17 imgCarucel" alt="productosRelacionados">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
