@@ -221,32 +221,3 @@ function llenarMail() {
 }
 llenarMail();
 
-// cambiar imagen de perfil
-const fileInput = document.getElementById("fileInput");
-const imagenGuardada = document.getElementById("imagenGuardada");
-
-fileInput.addEventListener("change", function () {
-  const file = fileInput.files[0];
-
-  if (file) {
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-      localStorage.setItem("imagenGuardada", e.target.result);
-      imagenGuardada.src = e.target.result;
-    };
-
-    reader.readAsDataURL(file);
-  }
-});
-
-function cargarImagenGuardada() {
-  const base64Image = localStorage.getItem("imagenGuardada");
-
-  if (base64Image) {
-    imagenGuardada.src = base64Image;
-  }
-}
-
-// Llamar a esta función para cargar la imagen guardada al cargar la página
-cargarImagenGuardada();
