@@ -140,7 +140,7 @@
 
       </div>
       <!-- div del grid -->
-    <form class="row g-3 needs-validation" novalidate>
+    <form class="row g-3 needs-validation" id="formularioPerfil"  novalidate>
       <!--  primera columna -->
       <div class="mt-5 col-md">
         <div class="form-floating mb-3">
@@ -189,27 +189,31 @@
               <input type="file" id="fileInput" accept="image/*">
               <button type="button" onclick="guardarImagen()">Guardar Imagen</button>
             </form>
-
+          <div class="mt-5 ">
+            <button type="submit" class="btn btn-primary " tabindex="8" id="liveToastBtn" data-bs-dismiss="toast">Guardar Cambios</button>
+          </div>
+          <!-- alerta al costado -->
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OSIgaGVpZ2h0PSI0OSIgdmlld0JveD0iMCAwIDI0IDI0Ij48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0yNCAwdjI0SDBWMGgyNFpNMTIuNTk0IDIzLjI1OGwtLjAxMi4wMDJsLS4wNzEuMDM1bC0uMDIuMDA0bC0uMDE0LS4wMDRsLS4wNzEtLjAzNmMtLjAxLS4wMDMtLjAxOSAwLS4wMjQuMDA2bC0uMDA0LjAxbC0uMDE3LjQyOGwuMDA1LjAybC4wMS4wMTNsLjEwNC4wNzRsLjAxNS4wMDRsLjAxMi0uMDA0bC4xMDQtLjA3NGwuMDEyLS4wMTZsLjAwNC0uMDE3bC0uMDE3LS40MjdjLS4wMDItLjAxLS4wMDktLjAxNy0uMDE2LS4wMThabS4yNjQtLjExM2wtLjAxNC4wMDJsLS4xODQuMDkzbC0uMDEuMDFsLS4wMDMuMDExbC4wMTguNDNsLjAwNS4wMTJsLjAwOC4wMDhsLjIwMS4wOTJjLjAxMi4wMDQuMDIzIDAgLjAyOS0uMDA4bC4wMDQtLjAxNGwtLjAzNC0uNjE0Yy0uMDAzLS4wMTItLjAxLS4wMi0uMDItLjAyMlptLS43MTUuMDAyYS4wMjMuMDIzIDAgMCAwLS4wMjcuMDA2bC0uMDA2LjAxNGwtLjAzNC42MTRjMCAuMDEyLjAwNy4wMi4wMTcuMDI0bC4wMTUtLjAwMmwuMjAxLS4wOTNsLjAxLS4wMDhsLjAwMy0uMDExbC4wMTgtLjQzbC0uMDAzLS4wMTJsLS4wMS0uMDFsLS4xODQtLjA5MloiLz48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMTIgMmM1LjUyMyAwIDEwIDQuNDc3IDEwIDEwcy00LjQ3NyAxMC0xMCAxMFMyIDE3LjUyMyAyIDEyUzYuNDc3IDIgMTIgMlptMS45ODQgMTIuMjVjLS41My40NjgtMS4yMjMuNzUtMS45ODQuNzVhMi45ODUgMi45ODUgMCAwIDEtMS45ODQtLjc1YTEgMSAwIDEgMC0xLjMyNCAxLjVBNC45ODcgNC45ODcgMCAwIDAgMTIgMTdhNC45ODQgNC45ODQgMCAwIDAgMy4zMDgtMS4yNWExIDEgMCAwIDAtMS4zMjQtMS41Wk04LjUgOGMtMS4wODcgMC0xLjk1OC42OC0yLjM5NCAxLjU1MmExIDEgMCAwIDAgMS43My45OTdsLjA1OC0uMTAxYy4xNjItLjMyNC40MS0uNDQ4LjYwNi0uNDQ4Yy4xNyAwIC4zODIuMDk1LjU0MS4zMzZsLjA2NS4xMTJhMSAxIDAgMCAwIDEuNzg4LS44OTZDMTAuNDU3IDguNjggOS41ODcgOCA4LjUgOFptNyAwYy0xLjA4NyAwLTEuOTU3LjY4LTIuMzk0IDEuNTUyYTEgMSAwIDAgMCAxLjczLjk5N2wuMDU4LS4xMDFjLjE2Mi0uMzI0LjQxLS40NDguNjA2LS40NDhjLjE3IDAgLjM4Mi4wOTUuNTQxLjMzNmwuMDY1LjExMmExIDEgMCAxIDAgMS43ODgtLjg5NkMxNy40NTggOC42OCAxNi41ODcgOCAxNS41IDhaIi8+PC9nPjwvc3ZnPg==" class="rounded me-2" alt="icono toostas">
+                <strong class="me-auto">Jovenes a progrmar</strong>
+                <small>11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+                Los datos fueron guardados con exito
+              </div>
+            </div>
+          </div>
           </div>
         </div>
-      <div class="mt-5 ">
-        <button type="submit" class="btn btn-primary" tabindex="8" id="btnGuardar" >Guardar Cambios</button>
-      </div>
+
     </div>
   </div>
 
  
   </form>
-
-  <form class="row g-3 needs-validation" novalidate onsubmit="guardarDatos()">
-    <div class="col-md">
-
-  
-
-
-    
-
-    </form>
       
   </div>
   </main>
