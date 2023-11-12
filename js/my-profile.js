@@ -189,10 +189,10 @@ function cargarDatos() {
     document.getElementById("apellido").value = apellido;
   }
   if (email) {
-    document.getElementById("email").value = email;
+    document.getElementById("mail").value = email;
   }
   if (telefono) {
-    document.getElementById("telefono").value = telefono;
+    document.getElementById("tel").value = telefono;
   }
 }
 
@@ -200,12 +200,11 @@ function cargarDatos() {
 function guardarDatos() {
   const nombre = document.getElementById("nombre").value;
   const apellido = document.getElementById("apellido").value;
-  const email = document.getElementById("email").value;
-  const telefono = document.getElementById("telefono").value;
+  const email = document.getElementById("mail").value;
+  const telefono = document.getElementById("tel").value;
 
   localStorage.setItem("nombre", nombre);
   localStorage.setItem("apellido", apellido);
-  localStorage.setItem("email", email);
   localStorage.setItem("telefono", telefono);
 }
 
@@ -220,4 +219,33 @@ function llenarMail() {
   inputGmail.value = gmail;
 }
 llenarMail();
+
+// eventos al boton 
+
+
+
+const toastTrigger = document.getElementById('liveToastBtn')
+const toastLiveExample = document.getElementById('liveToast')
+
+
+
+    const formulario = document.getElementById("formularioPerfil");
+  
+    formulario.addEventListener("submit", function (event) {
+      if (formulario.checkValidity() === false) {
+        event.preventDefault(); // Evita la recarga de la página si no pasa la validación.
+      } else {
+        // El formulario está listo para ser enviado, puedes ejecutar cualquier acción adicional aquí.
+        
+        event.preventDefault()
+        guardarDatos()
+        if (toastTrigger) {
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+        toastTrigger.addEventListener('click', () => {
+          toastBootstrap.show()
+        })
+        }
+      }
+    });
+
 
