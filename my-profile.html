@@ -127,8 +127,8 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container" style="width: 75%;">
+<main>
+  <div class="container" style="width: 75%;">
       <!-- las clases son para separar del top, darle display:flex y que quede un elemento al final y otro al inicio -->
       <div class="mt-5 d-flex containerImagenes align-items-center">
         <h2 class="display-5 ">Perfil</h2>
@@ -143,27 +143,27 @@
     <form class="row g-3 needs-validation" id="formularioPerfil"  novalidate>
       <!--  primera columna -->
       <div class="mt-5 col-md">
-        <div class="form-floating mb-3">
+          <div class="form-floating mb-3">
             <input type="text" class="form-control " id="nombre" tabindex="1" placeholder="Nombre" required>
             <label for="floatingInput" class="form-label">Nombre*</label>
             <div class="invalid-feedback">
               Nombre es obligatorio
             </div>
-        </div>
-        <div class="form-floating mb-3">
+          </div>
+          <div class="form-floating mb-3">
             <input type="text" class="form-control " id="apellido" tabindex="3" placeholder="Apellido" required>
             <label for="floatingInput" class="form-label">Apellido*</label>
             <div class="invalid-feedback">
               Apellido es obligatorio
             </div>
-        </div>
-        <div class="form-floating mb-3">
+          </div>
+          <div class="form-floating mb-3">
             <input type="email" class="form-control " id="inputMail" tabindex="5" placeholder="E-mail" required>
             <label for="floatingInput" class="form-label" id="mail">E-mail*</label>
             <div class="invalid-feedback">
               E-mail es obligatorio
             </div>
-        </div>
+          </div>
         <div class="form-floating mb-3">
             <input type="tel" class="form-control" id="tel" tabindex="6" placeholder="Telefono de contacto" required>
             <label for="floatingInput" class="form-label">Telefono de contacto*</label>
@@ -177,12 +177,18 @@
       <!-- segunda columna -->
       <div class="mt-5 col-md">
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="segundoNombre"  tabindex="2" placeholder="Segundo Nombre">
+            <input type="text" class="form-control" id="segundoNombre"  tabindex="2" placeholder="Segundo Nombre" required>
             <label for="floatingInput" class="form-label">Segundo Nombre</label>
+            <div class="invalid-feedback">
+              Segundo Nombre es obligatorio
+            </div>
           </div>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="segundoApellido" tabindex="4" placeholder=" Segundo Apellido">
+            <input type="text" class="form-control" id="segundoApellido" tabindex="4" placeholder=" Segundo Apellido" required>
             <label for="floatingInput" class="form-label">Segundo Apellido</label>
+            <div class="invalid-feedback">
+              Segundo Apellido es obligatorio
+            </div>
           </div>
           <div class="form-group mb-3">
             <form id="uploadForm">
@@ -207,15 +213,9 @@
           </div>
           </div>
         </div>
-
-    </div>
+    </form>
   </div>
-
- 
-  </form>
-      
-  </div>
-  </main>
+</main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
